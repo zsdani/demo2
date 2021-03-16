@@ -1,0 +1,41 @@
+<br>
+<br>
+<br>
+<br>
+
+<p>*valami tájékoztató szöveg*</p>
+
+<h4>Kérem válassza ki melyik menhely elérhetőségére kívánics?</h4>
+<table>
+  <tbody>
+  <tr>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Menhely</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
+            {{shelter.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </td>
+    <td>
+      <ng-container *ngFor="let shelter of shelters">
+        <ul *ngIf="shelter.id==selected">
+          <li> {{shelter.name}} </li>
+          <li> {{shelter.number}} </li>
+          <li> {{shelter.adress}} </li>
+          <li> {{shelter.accoun_number}} </li>
+          <li> {{shelter.e_mail}} </li>
+        </ul>
+      </ng-container>
+
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+

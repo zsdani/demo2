@@ -1,0 +1,106 @@
+<p>animals works!</p>
+<body>
+<br>
+<br>
+    <h1 >Keresés szűrése:</h1>
+<table>
+  <tbody>
+  <tr>
+    <td>
+      Melyik menhely állatait szeretnéd látni?
+      <!--
+      <mat-form-field appearance="fill">
+        <mat-label>Menhely</mat-label>
+        <mat-select [(value)]="selected">
+        <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
+          {{shelter.name}}
+        </mat-option>
+        </mat-select>
+      </mat-form-field>
+      -->
+    </td>
+    <td>Milyen állatokat szeretnél látni?</td>
+    <td>
+      Milyen idős állatot szeretnél?
+
+    </td>
+    <td>Milyen méretű?</td>
+    <td>
+      Neme:
+      <mat-form-field appearance="fill">
+        <mat-label>Milyen nemű?</mat-label>
+        <mat-select [(value)]="selectedgender">
+          <mat-option value="-1">Nem fontos</mat-option>
+          <mat-option value="1">Szuka</mat-option>
+          <mat-option value="0">Kan</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p>You selected: {{selectedgender}}</p>
+
+    </td>
+    <td><button type="button" onclick="myFunction()">Keresés</button></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<table class="tabla">
+  <tbody >
+  <tr class="cella" *ngFor="let animal of animals"  >
+    <ng-container *ngIf="selectedgender==animal.gender; else elseBlock" > </ng-container>
+
+    <ng-template >
+    <td class="kep">{{animal.imagine}} </td>
+    <td class="adatok">
+      <ul >
+        <h1 class="name">{{ animal.name }}</h1> <br>
+        <li>{{ animal.gender }}</li>
+        <li>{{ animal.breed }}</li>
+        <li>{{ animal.lifestory}}</li>
+        <li>{{ animal.shelter_id}}</li>
+      </ul>
+    </td>
+    </ng-template>
+
+
+
+    <ng-template #elseBlock>
+      <td class="kep">{{animal.imagine}} </td>
+      <td class="adatok">
+        <ul >
+          <h1 class="name">{{ animal.name }}</h1> <br>
+          <li>{{ animal.gender }}</li>
+          <li>{{ animal.breed }}</li>
+          <li>{{ animal.lifestory}}</li>
+          <li>{{ animal.shelter_id}}</li>
+        </ul>
+      </td>
+
+    </ng-template>
+
+
+  </tr>
+
+  </tbody>
+</table>
+
+
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("mySelect").value;
+    document.getElementById("demo").innerHTML = x;
+  }
+</script>
+
+</body>
+
+
+
+
+
+
+
+
+

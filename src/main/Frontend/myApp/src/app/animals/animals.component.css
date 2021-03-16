@@ -1,0 +1,49 @@
+.tabla {
+  content: "";
+  display: table;
+  clear: both;
+  table-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.kep{
+  float: left;
+  width: 350px;
+  padding: 10px;
+  height: 300px;
+  color: blueviolet;
+  background: #333333;
+  margin-right: auto;
+  margin-left: auto;
+}
+.adatok{
+  font-size: 25px;
+  float: right;
+  width: 450px;
+  padding-top: 30px;
+  height: 300px;
+  color: coral;
+  background: antiquewhite;
+}
+.name{
+  text-align: center;
+  font-size: 50px;
+}
+li{
+
+  /*
+  list-style-image: url('/paw.png');
+  list-style-image: url('/Frontend/myApp/src/source/paw-print-.svg');
+  list-style-image: url('/Frontend/myApp/src/source/paw.png');
+  list-style-image: url('/Frontend/myApp/src/source/paw-print-.png');
+
+   */
+
+
+
+
+  padding-inline-start: 1.5ch;
+}

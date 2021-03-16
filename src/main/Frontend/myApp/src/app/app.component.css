@@ -1,0 +1,70 @@
+.div{
+  text-align: center;
+  vertical-align: middle;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.mat-button{
+  vertical-align: middle;
+  font-family: 'Baloo Thambi',sans-serif;
+  color: white;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
+}
+.mat-button:hover {
+  background-color: #111;
+}
+
+.mat-menu-item {
+
+  font-family: 'Baloo Thambi',sans-serif;
+  color: white;
+  text-align: end;
+  padding: 5px 25px;
+  text-decoration: none;
+  background-color: #333;
+}
+.mat-menu-item:hover {
+  background-color: #111;
+}
+
+.mat-button-right{
+  background-color: #333;
+  float:right;
+  font-family: 'Baloo Thambi',sans-serif;
+  color: white;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
+}
+.mat-button-right:hover {
+  background-color: #111;
+}
+body{
+  background: #F19F1F;
+  height: 2200px;
+}
+
+
+.sav{
+  background: #F19F1F;
+  height: 2200px;
+  width: 70%;
+  margin: auto;
+  border-left: dotted #111111;
+  border-right: dotted #111111;
+  border-bottom: dotted #111111;
+
+}
+
+
+
