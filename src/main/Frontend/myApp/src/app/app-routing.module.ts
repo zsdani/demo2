@@ -6,6 +6,7 @@ import {AnimalsComponent} from "./animals/animals.component";
 import {ConnectionComponent} from "./connection/connection.component";
 import {MainpageComponent} from "./mainpage/mainpage.component";
 import {LoginComponent} from "./login/login.component";
+import {AnimaldetailsComponent} from "./animaldetails/animaldetails.component";
 
 const routes: Routes = [
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'mainpage', component: MainpageComponent },
   { path: 'connection', component: ConnectionComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'animaldetails', component: AnimaldetailsComponent },
 
 
 

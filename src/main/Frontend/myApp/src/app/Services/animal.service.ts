@@ -23,6 +23,10 @@ export class AnimalService {
     return this.http.get<Animal[]>(`${this.animalURL}`, httpOptions).toPromise();
   }
 
+  public getAnimal(id: number): Promise<Animal> {
+    return this.http.get<Animal>(`${this.animalURL}/${id}`, httpOptions).toPromise();
+  }
+
   /*
 
     public async getAnimals(): Promise<any> {

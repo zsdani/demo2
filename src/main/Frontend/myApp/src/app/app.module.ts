@@ -24,6 +24,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
 
     RegistrationComponent,
+
+    AnimaldetailsComponent,
 
 
 

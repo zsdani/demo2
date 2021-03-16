@@ -24,6 +24,7 @@ public class AnimalController {
         this.animalService = animalService;
     }
     // api/movie/id?id=5
+
     @GetMapping("/id")
     public ResponseEntity<AnimalDTO> findAnimalById(@RequestParam long id) throws DataNotFoundException {
 
