@@ -21,6 +21,9 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConnectionComponent } from './connection/connection.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from '@angular/material/select';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,12 @@ import {MatSelectModule} from '@angular/material/select';
     AnimalsComponent,
 
     ConnectionComponent,
+
+    MainpageComponent,
+
+    LoginComponent,
+
+    RegistrationComponent,
 
 
 
