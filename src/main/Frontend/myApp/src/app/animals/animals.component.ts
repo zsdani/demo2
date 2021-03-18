@@ -30,10 +30,17 @@ export class AnimalsComponent implements OnInit {
 
 
     this.animals= await this.animalService.getAnimals();
+    //console.log(this.animals)
   }
 
-  async goToDetails(pageID: number): Promise<void> {
-    this.selectedAnimal = await this.animalService.getAnimal(pageID)
+
+
+  public goToDetails(pageID: number): void {
+    console.log(pageID);
+    this.animalService.getAnimal(pageID)
+      .subscribe(res=> console.log(res),
+        er => console.log(er))
+
   }
 
   public onNewClicka(): void {

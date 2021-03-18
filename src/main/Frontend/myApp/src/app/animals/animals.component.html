@@ -58,7 +58,7 @@
         <li>{{ animal.gender }}</li>
         <li>{{ animal.breed }}</li>
         <li>{{ animal.lifestory}}</li>
-        <li>{{ animal.shelter_id}}</li>
+        <li>{{ animal.shelter.name}}</li>
       </ul>
     </td>
     </ng-template>
@@ -73,7 +73,8 @@ asdasdasdas
           <li>{{ animal.gender }}</li>
           <li>{{ animal.breed }}</li>
           <li>{{ animal.lifestory}}</li>
-          <li>{{ animal.shelter_id}}</li>
+          <li>{{ animal.shelter.name}}</li>
+
         </ul>
         <div class="buttpos">
           <button (click)="goToDetails(animal.id)" class="button button1">Részletek</button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Animal} from "../class/Animal";
 import {httpOptions} from "./auth.service";
 import { Observable, throwError } from 'rxjs';
@@ -19,13 +19,19 @@ export class AnimalService {
 
 
 
+
+
   public getAnimals(): Promise<Animal[]> {
     return this.http.get<Animal[]>(`${this.animalURL}`, httpOptions).toPromise();
   }
 
-  public getAnimal(id: number): Promise<Animal> {
-    return this.http.get<Animal>(`${this.animalURL}/${id}`, httpOptions).toPromise();
+
+  public getAnimal(id: number): Observable<Animal> {
+    let params = new HttpParams();
+    params =params.append("id",id+"")
+    return this.http.get<Animal>(`${this.animalURL}/id`, {params:params});
   }
+
 
   /*
 

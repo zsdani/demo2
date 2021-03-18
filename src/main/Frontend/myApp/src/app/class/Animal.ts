@@ -13,7 +13,7 @@ export class Animal {
   age: number=0;
   lifestory: string = '';
   imagine: string = '';
-  shelter_id: any;
+  shelter: Shelter = new Shelter;
 
 
 
