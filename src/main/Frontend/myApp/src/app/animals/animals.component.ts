@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Animal} from "../class/Animal";
 import {AnimalService} from "../Services/animal.service";
 import {Route, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {AnimaldetailsService} from "../Services/animaldetails.service";
+
 
 
 @Component({
@@ -10,38 +13,65 @@ import {Route, Router} from "@angular/router";
   styleUrls: ['./animals.component.css']
 })
 export class AnimalsComponent implements OnInit {
+
+
   //public animals: any;
   selectedgender: number=-1;
   public animals: Animal[] = [];
   public genders: number[] = [0,1,-1];
-  public gender:number=-1;
+  private gender:number=-1;
+  public _x:number=0;
   public selectedAnimal: Animal = new Animal;
+  animal: Animal = new Animal;
   //animals: Array<Animal> = [];
 
   //public animalss: Animal[] = [];
 
   constructor(
     private animalService: AnimalService,
-    private router:Router
+    private animaldetailsService: AnimaldetailsService,
 
   ) { }
 
-  public async  ngOnInit(): Promise<void> {
+  public  ngOnInit(): void  {
 
 
-    this.animals= await this.animalService.getAnimals();
+     this.animalService.getAnimals().subscribe((res: Animal[])=>{
+       this.animals =res;
+     });
+
+
+
+  }
+
     //console.log(this.animals)
+
+
+   goToDetails(pageID: number): any {
+    console.log(pageID)
+    this.animaldetailsService.getAnimal(pageID)
+
+
   }
 
 
 
+
+/*
   public goToDetails(pageID: number): void {
     console.log(pageID);
-    this.animalService.getAnimal(pageID)
-      .subscribe(res=> console.log(res),
-        er => console.log(er))
+    this._x=pageID;
+    this.animaldetailsService.getAnimal(pageID)
+      .subscribe(res=> {this.animal=res})
 
   }
+
+
+ */
+
+
+
+
 
   public onNewClicka(): void {
     this.selectedAnimal = new Animal();
@@ -58,6 +88,14 @@ export class AnimalsComponent implements OnInit {
  */
 
 
+
+  set x(value: number) {
+    this._x = value;
+  }
+
+  get x(): number {
+    return this._x;
+  }
 
 
 

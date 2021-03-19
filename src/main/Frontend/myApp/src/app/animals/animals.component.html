@@ -63,7 +63,6 @@
     </td>
     </ng-template>
 
-asdasdasdas
 
     <ng-template #elseBlock>
       <td class="kep">{{animal.imagine}} </td>
@@ -77,7 +76,7 @@ asdasdasdas
 
         </ul>
         <div class="buttpos">
-          <button (click)="goToDetails(animal.id)" class="button button1">Részletek</button>
+          <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/animal">Részletek</button>
         </div>
       </td>
 
@@ -91,12 +90,7 @@ asdasdasdas
 
 
 
-<script>
-  function myFunction() {
-    var x = document.getElementById("mySelect").value;
-    document.getElementById("demo").innerHTML = x;
-  }
-</script>
+
 
 </body>
 

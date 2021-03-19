@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Animal} from "../class/Animal";
+import {AnimalService} from "../Services/animal.service";
+import {AnimaldetailsService} from "../Services/animaldetails.service";
+import {AnimalsComponent} from "../animals/animals.component";
+
 
 @Component({
   selector: 'app-animaldetails',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimaldetailsComponent implements OnInit {
 
-  constructor() { }
+  animal: Animal = new Animal;
+  szam:number=33;
+
+
+
+  constructor(
+    //private route: ActivatedRoute,
+    private animaldetailsService: AnimaldetailsService,
+
+  ) { }
 
   ngOnInit(): void {
+
+
+    //const id = +this.route.snapshot.paramMap.get('id');
+    this.animaldetailsService.getAnimal(this.animaldetailsService.num).subscribe((res: Animal)=>{
+      console.log(res)
+      this.animal =res;
+    });
   }
 
 }

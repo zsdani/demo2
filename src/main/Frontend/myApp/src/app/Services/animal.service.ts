@@ -21,16 +21,18 @@ export class AnimalService {
 
 
 
-  public getAnimals(): Promise<Animal[]> {
-    return this.http.get<Animal[]>(`${this.animalURL}`, httpOptions).toPromise();
+  public getAnimals(): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${this.animalURL}`);
   }
 
-
+/*
   public getAnimal(id: number): Observable<Animal> {
     let params = new HttpParams();
     params =params.append("id",id+"")
     return this.http.get<Animal>(`${this.animalURL}/id`, {params:params});
   }
+
+ */
 
 
   /*

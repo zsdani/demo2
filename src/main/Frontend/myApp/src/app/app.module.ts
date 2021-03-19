@@ -25,6 +25,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
+import {AnimaldetailsService} from "./Services/animaldetails.service";
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AnimaldetailsComponent } from './animaldetails/animaldetails.component'
   ],
   providers: [
     AnimalService,
+    AnimaldetailsService
 
   ],
   bootstrap: [AppComponent]
