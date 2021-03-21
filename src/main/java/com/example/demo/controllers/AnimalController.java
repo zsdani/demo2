@@ -28,7 +28,7 @@ public class AnimalController {
     @GetMapping("/id")
     public ResponseEntity<AnimalDTO> findAnimalById(@RequestParam long id) throws DataNotFoundException {
 
-         Animal animal=animalService.findAnimalById(id);
+        Animal animal=animalService.findAnimalById(id);
         AnimalDTO animalDTO = new AnimalDTO();
 
 
@@ -45,6 +45,9 @@ public class AnimalController {
         animalDTO.setGender(animal.getGender());
         animalDTO.setImagine(animal.getImagine());
         animalDTO.setLifestory(animal.getLifestory());
+        animalDTO.setIllnes(animal.getIllnes());
+        animalDTO.setGonadectomy(animal.getGonadectomy());
+        animalDTO.setSize(animal.getSize());
         try {
             animalDTO.setShelter(animalService.findGoodShelter(animal));
         } catch (DataNotFoundException e) {
@@ -114,13 +117,71 @@ public class AnimalController {
     }
 
     @GetMapping("/animaltype_id")
-    public ResponseEntity<List<Animal>> listByanimaltype_id(@RequestParam int animaltype_id)  {
-        return ResponseEntity.ok(animalService.listByanimaltype_id(animaltype_id));
+    public ResponseEntity<List<AnimalDTO> > listByanimaltype_id(@RequestParam int animaltype_id)  {
+        return ResponseEntity.ok(animalService.listByanimaltype_id(animaltype_id).stream().map(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO();
+
+            animalDTO.setId(animal.getId());
+            animalDTO.setVersion(animal.getVersion());
+            animalDTO.setStatus(animal.getStatus());
+            animalDTO.setComment(animal.getComment());
+            animalDTO.setCreated(animal.getCreated());
+            animalDTO.setUpdated(animal.getUpdated());
+            animalDTO.setName(animal.getName());
+            animalDTO.setAge(animal.getAge());
+            animalDTO.setBreed(animal.getBreed());
+            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            animalDTO.setGender(animal.getGender());
+            animalDTO.setImagine(animal.getImagine());
+            animalDTO.setLifestory(animal.getLifestory());
+            try {
+                animalDTO.setShelter(animalService.findGoodShelter(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                animalDTO.setType( animalService.findGoodAnimalType(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return animalDTO;
+        }).collect(Collectors.toList()));
     }
 
     @GetMapping("/shelter_id")
-    public ResponseEntity<List<Animal>> listByshelter_id(@RequestParam int shelter_id)  {
-        return ResponseEntity.ok(animalService.listByshelter_id(shelter_id));
+    public ResponseEntity<List<AnimalDTO> > listByshelter_id(@RequestParam int shelter_id)  {
+        return ResponseEntity.ok(animalService.listByshelter_id(shelter_id).stream().map(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO();
+
+            animalDTO.setId(animal.getId());
+            animalDTO.setVersion(animal.getVersion());
+            animalDTO.setStatus(animal.getStatus());
+            animalDTO.setComment(animal.getComment());
+            animalDTO.setCreated(animal.getCreated());
+            animalDTO.setUpdated(animal.getUpdated());
+            animalDTO.setName(animal.getName());
+            animalDTO.setAge(animal.getAge());
+            animalDTO.setBreed(animal.getBreed());
+            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            animalDTO.setGender(animal.getGender());
+            animalDTO.setImagine(animal.getImagine());
+            animalDTO.setLifestory(animal.getLifestory());
+            try {
+                animalDTO.setShelter(animalService.findGoodShelter(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                animalDTO.setType( animalService.findGoodAnimalType(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return animalDTO;
+        }).collect(Collectors.toList()));
     }
 
 

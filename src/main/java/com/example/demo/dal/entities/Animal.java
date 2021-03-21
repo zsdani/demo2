@@ -23,7 +23,13 @@ public class Animal extends BaseEntity {
 
     private int gender;
 
-    public int age;
+    private int age;
+
+    private String illnes;
+
+    private int gonadectomy;
+
+    private int size;
 
     @Lob
     private String lifestory;

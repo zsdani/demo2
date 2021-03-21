@@ -102,12 +102,12 @@ public class AnimalService {
     }
 
     public List<Animal> listByanimaltype_id(int animaltype_id) {
-        return  animalRepository.listByanimaltype_id(animaltype_id);
+        return (List<Animal>) animalRepository.listByanimaltype_id(animaltype_id);
 
     }
 
     public List<Animal> listByshelter_id(int shelter_id) {
-        return  animalRepository.listByshelter_id(shelter_id);
+        return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
 

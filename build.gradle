@@ -22,6 +22,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 	//Spring security
 	compile('org.springframework.boot:spring-boot-starter-security')

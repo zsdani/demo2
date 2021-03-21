@@ -15,4 +15,8 @@ public class Beans {
     public TokenAuthentication tokenAuthentication(JwtTokenManager jwtTokenManager) {
         return new TokenAuthentication(jwtTokenManager);
     }
+
+
+
+
 }

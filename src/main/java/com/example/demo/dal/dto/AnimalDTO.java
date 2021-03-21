@@ -31,7 +31,13 @@ public class AnimalDTO extends BaseEntity {
 
     private int gender;
 
-    public int age;
+    private int age;
+
+    private String illnes;
+
+    private int gonadectomy;
+
+    private int size;
 
     @Lob
     private String lifestory;
@@ -78,6 +84,9 @@ public class AnimalDTO extends BaseEntity {
         animalDTO.setAge(animal.getAge());
         animalDTO.setLifestory(animal.getLifestory());
         animalDTO.setImagine(animal.getImagine());
+        animalDTO.setIllnes(animal.getIllnes());
+        animalDTO.setGonadectomy(animal.getGonadectomy());
+        animalDTO.setSize(animal.getSize());
 
 
         return animalDTO;
