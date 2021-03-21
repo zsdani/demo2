@@ -10,7 +10,7 @@ import {AnimaldetailsService} from "../Services/animaldetails.service";
 @Component({
   selector: 'app-animals',
   templateUrl: './animals.component.html',
-  styleUrls: ['./animals.component.css']
+  styleUrls: ['./animals.component.css'],
 })
 export class AnimalsComponent implements OnInit {
 

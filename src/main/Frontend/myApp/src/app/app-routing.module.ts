@@ -10,6 +10,7 @@ import {AnimaldetailsComponent} from "./animaldetails/animaldetails.component";
 
 const routes: Routes = [
 
+  //{ path: 'animal/:animaltype_id', component: AnimalsComponent },
   { path: 'animals', component: AnimalsComponent },
   { path: 'mainpage', component: MainpageComponent },
   { path: 'connection', component: ConnectionComponent },

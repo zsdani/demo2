@@ -4,67 +4,39 @@ import {Animal} from "../class/Animal";
 import {httpOptions} from "./auth.service";
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {AnimaldetailsService} from "./animaldetails.service";
+import {AppComponent} from "../app.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AnimalService {
   private animalURL = 'http://localhost:8080/api/animal';
-  private tryURl = 'http://jsonplaceholder.typicode.com/posts';
+
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    //public appComponent: AppComponent,
   ) {
   }
-
-
-
-
 
   public getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>(`${this.animalURL}`);
   }
 
-/*
-  public getAnimal(id: number): Observable<Animal> {
+
+/* ha id szerint szeretném
+  public getAnimals(): Observable<Animal[]> {
+    //let x = this.appComponent.x
+    //console.log(x)
     let params = new HttpParams();
-    params =params.append("id",id+"")
-    return this.http.get<Animal>(`${this.animalURL}/id`, {params:params});
+    params =params.append("animaltype_id",0+"")
+    return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params:params});
   }
 
  */
 
 
-  /*
-
-    public async getAnimals(): Promise<any> {
-      this.http.get<Array<Animal>>('http://localhost:8080/api/animal');
-
-
-
-
-      let resp = await fetch(this.animalURL).then(response => {
-        response.json();
-
-      });
-      console.log(resp);
-      return resp;
-
-       */
-
-
-    //this.http.get<Array<Animal>>('http://localhost:8080/api/animal');
-
-
-
-
-
-  /*
-  public getAnimals(): Promise<Animal[]> {
-   return this.http.get<Animal[]>(`${this.animalURL}`, httpOptions).toPromise();
-  }
-
-   */
 
 
 }
