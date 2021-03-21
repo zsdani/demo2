@@ -23,6 +23,7 @@
     <td>
       <ng-container *ngFor="let shelter of shelters">
         <ul *ngIf="shelter.id==selected">
+          <li> {{shelter.id}} </li>
           <li> {{shelter.name}} </li>
           <li> {{shelter.number}} </li>
           <li> {{shelter.adress}} </li>

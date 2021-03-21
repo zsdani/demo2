@@ -7,19 +7,38 @@
   <tbody>
   <tr>
     <td>
-      Melyik menhely állatait szeretnéd látni?
-      <!--
+      Menhely:
+
       <mat-form-field appearance="fill">
-        <mat-label>Menhely</mat-label>
-        <mat-select [(value)]="selected">
-        <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
-          {{shelter.name}}
-        </mat-option>
+        <mat-label>Milyen menhelyen?</mat-label>
+        <mat-select [(value)]="selectedshelter">
+          <mat-option *ngFor="let shelter of shelterss" [value]="shelter.id" >
+            {{shelter.name}}
+          </mat-option>
+          <mat-option value="-1">Összes</mat-option>
+          <!--
+          <mat-option value="-1">Összes</mat-option>
+          <mat-option value="1">Kutya</mat-option>
+          <mat-option value="0">Macska</mat-option>
+          -->
         </mat-select>
       </mat-form-field>
-      -->
+
+      <p>You selected: {{selectedshelter}}</p>
     </td>
-    <td>Milyen állatokat szeretnél látni?</td>
+    <td>      Állat:
+
+      <mat-form-field appearance="fill">
+        <mat-label>Milyen állat?</mat-label>
+        <mat-select [(value)]="selectedanimal">
+          <mat-option value="-1">Mindkettő</mat-option>
+          <mat-option value="1">Kutya</mat-option>
+          <mat-option value="0">Macska</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p>You selected: {{selectedanimal}}</p></td>
+
     <td>
       Milyen idős állatot szeretnél?
 
@@ -48,7 +67,8 @@
 <table class="tabla">
   <tbody >
   <tr class="cella" *ngFor="let animal of animals"  >
-    <ng-container *ngIf="selectedgender==animal.gender; else elseBlock" > </ng-container>
+    se:{{selectedshelter}} animal se{{animal.shelter.id}}
+    <ng-container *ngIf="selectedgender==animal.gender || selectedanimal==animal.type.id || selectedshelter==animal.shelter.id; else elseBlock" > </ng-container>
 
     <ng-template >
     <td class="kep">{{animal.imagine}} </td>
@@ -56,20 +76,20 @@
       <ul >
         <h1 class="name">{{ animal.name }}</h1> <br>
         <li>{{ animal.gender }}</li>
+        <li>{{ animal.type.name }}</li>
         <li>{{ animal.breed }}</li>
         <li>{{ animal.lifestory}}</li>
         <li>{{ animal.shelter.name}}</li>
       </ul>
     </td>
     </ng-template>
-
-
     <ng-template #elseBlock>
       <td class="kep">{{animal.imagine}} </td>
       <td class="adatok">
         <ul >
           <h1 class="name">{{ animal.name }}</h1> <br>
           <li>{{ animal.gender }}</li>
+          <li>{{ animal.type.name }}</li>
           <li>{{ animal.breed }}</li>
           <li>{{ animal.lifestory}}</li>
           <li>{{ animal.shelter.name}}</li>

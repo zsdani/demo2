@@ -24,8 +24,10 @@ export class ConnectionComponent implements OnInit {
 
   public async  ngOnInit(): Promise<void> {
 
+    this.shelterService.getShelters().subscribe((res: Shelter[])=>{
+      this.shelters =res;
 
-    this.shelters= await this.shelterService.getShelters();
+    });
   }
 
 }

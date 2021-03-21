@@ -1,4 +1,5 @@
 import {Shelter} from "./Shelter";
+import {AnimalType} from "./AnimalType";
 
 export class Animal {
 
@@ -6,7 +7,7 @@ export class Animal {
 
   id: number = 0;
   name: string = '';
-  type: any;
+  type: AnimalType= new AnimalType();
   virtual_owner: number=0;
   breed: string = '';
   gender: number=0;

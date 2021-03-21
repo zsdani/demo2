@@ -4,6 +4,8 @@ import {AnimalService} from "../Services/animal.service";
 import {Route, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {AnimaldetailsService} from "../Services/animaldetails.service";
+import {Shelter} from "../class/Shelter";
+import {ShelterService} from "../Services/shelter.service";
 
 
 
@@ -17,11 +19,16 @@ export class AnimalsComponent implements OnInit {
 
   //public animals: any;
   selectedgender: number=-1;
+  public selectedanimal: number=-1;
+  public selectedshelter:   number=-1;//Shelter = new Shelter();
   public animals: Animal[] = [];
   public genders: number[] = [0,1,-1];
+  public animaltypes: number[] = [0,1,-1];
+  public shelterss: Shelter[] = [];
+  public shelters: number[] = [0,1,-1];
   private gender:number=-1;
   public _x:number=0;
-  public selectedAnimal: Animal = new Animal;
+
   animal: Animal = new Animal;
   //animals: Array<Animal> = [];
 
@@ -30,6 +37,7 @@ export class AnimalsComponent implements OnInit {
   constructor(
     private animalService: AnimalService,
     private animaldetailsService: AnimaldetailsService,
+    private  shelterService: ShelterService,
 
   ) { }
 
@@ -38,7 +46,14 @@ export class AnimalsComponent implements OnInit {
 
      this.animalService.getAnimals().subscribe((res: Animal[])=>{
        this.animals =res;
+
      });
+
+    this.shelterService.getShelters().subscribe((res: Shelter[])=>{
+      this.shelterss =res;
+
+    });
+
 
 
 
@@ -73,9 +88,7 @@ export class AnimalsComponent implements OnInit {
 
 
 
-  public onNewClicka(): void {
-    this.selectedAnimal = new Animal();
-  }
+
 
 
 

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Animal} from "../class/Animal";
 import {httpOptions} from "./auth.service";
 import {Shelter} from "../class/Shelter";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,11 @@ export class ShelterService {
 
 
 
-  public getShelters(): Promise<Shelter[]> {
-    return this.http.get<Shelter[]>(`${this.shelterURL}`, httpOptions).toPromise();
+  public getShelters(): Observable<Shelter[]> {
+    return this.http.get<Shelter[]>(`${this.shelterURL}`);
   }
+
+
 
   public getShelter(id: number): Promise<Shelter> {
     return this.http.get<Shelter>(`${this.shelterURL}/${id}`, httpOptions).toPromise();
