@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
 import {AnimaldetailsService} from "./Services/animaldetails.service";
+import { FileuploadComponent } from './fileupload/fileupload.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import {AnimaldetailsService} from "./Services/animaldetails.service";
     RegistrationComponent,
 
     AnimaldetailsComponent,
+
+    FileuploadComponent,
 
 
 
