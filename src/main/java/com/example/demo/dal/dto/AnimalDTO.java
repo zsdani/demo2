@@ -42,8 +42,8 @@ public class AnimalDTO extends BaseEntity {
     @Lob
     private String lifestory;
 
-    @Lob
-    private String imagine;
+
+    private Image image;
 
     private Shelter shelter ;
 
@@ -64,6 +64,13 @@ public class AnimalDTO extends BaseEntity {
         }
     }
 
+    public void setImage(Optional<Image> opt) {
+        if(opt.isPresent()){
+            this.image=opt.get();
+        }else{
+            this.image=null;
+        }
+    }
 
 
 
@@ -73,6 +80,7 @@ public class AnimalDTO extends BaseEntity {
 
 
 
+/*
     public AnimalDTO animalToDTO(Animal animal) throws DataNotFoundException {
         AnimalDTO animalDTO = new AnimalDTO();
 
@@ -93,5 +101,7 @@ public class AnimalDTO extends BaseEntity {
 
     }
 
+
+ */
 
 }

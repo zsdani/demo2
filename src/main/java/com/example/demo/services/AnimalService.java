@@ -1,14 +1,11 @@
 package com.example.demo.services;
 
 
-import com.example.demo.dal.dto.AnimalDTO;
-import com.example.demo.dal.entities.Animal;
+import com.example.demo.dal.entities.*;
 
-import com.example.demo.dal.entities.AnimalType;
-import com.example.demo.dal.entities.EntityStatus;
-import com.example.demo.dal.entities.Shelter;
 import com.example.demo.dal.repositories.AnimalRepository;
 import com.example.demo.dal.repositories.AnimalTypeRepository;
+import com.example.demo.dal.repositories.ImageRepository;
 import com.example.demo.dal.repositories.ShelterRepository;
 import com.example.demo.properties.AnimalProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -31,15 +28,17 @@ public class AnimalService {
     private final AnimalProperties animalProperties;
     private final AnimalTypeRepository animalTypeRepository;
     private final ShelterRepository shelterRepository;
+    private final ImageRepository imageRepository;
 
 
 
     @Autowired
-    public AnimalService(AnimalRepository animalRepository, AnimalProperties animalProperties,AnimalTypeRepository animalTypeRepository,ShelterRepository shelterRepository) {
+    public AnimalService(AnimalRepository animalRepository, AnimalProperties animalProperties, AnimalTypeRepository animalTypeRepository, ShelterRepository shelterRepository, ImageRepository imageRepository) {
         this.animalRepository = animalRepository;
         this.animalProperties = animalProperties;
         this.animalTypeRepository = animalTypeRepository;
         this.shelterRepository= shelterRepository;
+        this.imageRepository = imageRepository;
     }
 
     public List<Animal> findAllAnimals() {
@@ -59,6 +58,11 @@ public class AnimalService {
     public Optional<Shelter> findGoodShelter (Animal animal) throws DataNotFoundException{
 
         return  shelterRepository.findById((long) animal.getShelter_id());
+    }
+
+    public Optional<Image> findGoodImage (Animal animal) throws DataNotFoundException{
+
+        return  imageRepository.findById((long) animal.getImage());
     }
 
 
@@ -110,6 +114,8 @@ public class AnimalService {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
+
+
 
 
 

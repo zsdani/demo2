@@ -34,8 +34,7 @@ public class Animal extends BaseEntity {
     @Lob
     private String lifestory;
 
-    @Lob
-    private String imagine;
+    private int image;
 
     private int shelter_id;
 
