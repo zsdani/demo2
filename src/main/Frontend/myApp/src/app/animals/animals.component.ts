@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Animal} from "../class/Animal";
 import {AnimalService} from "../Services/animal.service";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {AnimaldetailsService} from "../Services/animaldetails.service";
 import {Shelter} from "../class/Shelter";
@@ -38,8 +38,9 @@ export class AnimalsComponent implements OnInit {
     private animalService: AnimalService,
     private animaldetailsService: AnimaldetailsService,
     private  shelterService: ShelterService,
+    private  rout: ActivatedRoute,
 
-  ) { }
+  ) {this.rout.snapshot.paramMap.get('animaltype_id')}
 
   public  ngOnInit(): void  {
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AnimalService } from './animal.service';
+import { FileuploadService } from '../fileupload.service';
 
-describe('AnimalService', () => {
-  let service: AnimalService;
+describe('FileuploadService', () => {
+  let service: FileuploadService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AnimalService);
+    service = TestBed.inject(FileuploadService);
   });
 
   it('should be created', () => {

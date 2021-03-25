@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,25 +9,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title = 'myApp';
-  /*
-  private _x:number=0;
-
-
-  goToDogss(animal: number): number {
-    console.log(animal)
-    this._x=animal
-    return this._x;
+  constructor(private router:Router) {
   }
 
-  goToCats(animal: number): number {
-    console.log(animal)
-    this._x=animal
-    return this._x;
+  openDog(){
+    this.router.navigate(["animal",id])
   }
 
-  get x(): number {
-    return this._x;
-  }
 
-   */
+
+
 }

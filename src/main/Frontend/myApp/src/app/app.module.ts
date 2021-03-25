@@ -27,6 +27,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
 import {AnimaldetailsService} from "./Services/animaldetails.service";
 import { FileuploadComponent } from './fileupload/fileupload.component';
+import {FileuploadService} from "./Services/fileupload.service";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
   ],
   providers: [
     AnimalService,
-    AnimaldetailsService
+    AnimaldetailsService,
+    FileuploadService,
 
   ],
   bootstrap: [AppComponent]

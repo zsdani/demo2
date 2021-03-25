@@ -13,7 +13,7 @@ public class StorageProperties {
 	/**
 	 * Folder location for storing files
 	 */
-	private String location = "upload-dir";
+	private String location = "/resources/pic";
 
 	public String getLocation() {
 		return location;
@@ -23,6 +23,7 @@ public class StorageProperties {
 		this.location = location;
 	}
 
+	/*
 	@Bean
 	CommandLineRunner init(StorageService storageService) {
 		return (args) -> {
@@ -30,6 +31,8 @@ public class StorageProperties {
 			storageService.init();
 		};
 	}
+
+	 */
 
 }
 
