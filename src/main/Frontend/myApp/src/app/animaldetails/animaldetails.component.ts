@@ -27,7 +27,7 @@ export class AnimaldetailsComponent implements OnInit {
 
 
     //const id = +this.route.snapshot.paramMap.get('id');
-    this.animaldetailsService.getAnimal(this.animaldetailsService.num).subscribe((res: Animal)=>{
+    this.animaldetailsService.getAnimal(this.animaldetailsService.num, this.animaldetailsService.text).subscribe((res: Animal)=>{
       console.log(res)
       this.animal =res;
     });

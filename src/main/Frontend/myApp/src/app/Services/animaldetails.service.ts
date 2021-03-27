@@ -12,8 +12,9 @@ import {Animal} from "../class/Animal";
 export class AnimaldetailsService {
 
 
-  private animalURL = 'http://localhost:8080/api/animal';
+  private animalURL = 'http://localhost:8080/api/animal/';
   private _num: number=0;
+  private _text: string="";
 
 
   constructor(
@@ -23,15 +24,24 @@ export class AnimaldetailsService {
 
 
 
-  public getAnimal(id: number): Observable<Animal> {
+  public getAnimal(id: number, valami: string | null): Observable<Animal> {
+
     this._num = id;
+
+    console.log(id)
+    console.log(valami)
     let params = new HttpParams();
+    params = params.append("valami", valami+"")
     params =params.append("id",id+"")
-    return this.http.get<Animal>(`${this.animalURL}/id`, {params:params});
+    return this.http.get<Animal>(`${this.animalURL}/valami/id`, {params:params});
   }
 
   get num(): number {
     return this._num;
+  }
+
+  get text(): string {
+    return this._text;
   }
 
 

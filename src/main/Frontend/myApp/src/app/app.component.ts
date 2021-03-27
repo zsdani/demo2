@@ -12,8 +12,14 @@ export class AppComponent {
   constructor(private router:Router) {
   }
 
-  openDog(){
-    this.router.navigate(["animal",id])
+  goToDogs(animalytype_id: number){
+    this.router.navigate(["animal", animalytype_id ])
+
+
+  }
+
+  goToCats(animalytype_id: number){
+    this.router.navigate(["animal", animalytype_id])
   }
 
 

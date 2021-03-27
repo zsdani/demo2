@@ -28,6 +28,7 @@ export class AnimalsComponent implements OnInit {
   public shelters: number[] = [0,1,-1];
   private gender:number=-1;
   public _x:number=0;
+  public  valami: string | null="";
 
   animal: Animal = new Animal;
   //animals: Array<Animal> = [];
@@ -43,9 +44,8 @@ export class AnimalsComponent implements OnInit {
   ) {this.rout.snapshot.paramMap.get('animaltype_id')}
 
   public  ngOnInit(): void  {
-
-
-     this.animalService.getAnimals().subscribe((res: Animal[])=>{
+    this.valami=this.rout.snapshot.paramMap.get('animaltype_id');
+     this.animalService.getAnimals(this.rout.snapshot.paramMap.get('animaltype_id')).subscribe((res: Animal[])=>{
        this.animals =res;
 
      });
@@ -60,12 +60,12 @@ export class AnimalsComponent implements OnInit {
 
   }
 
-    //console.log(this.animals)
+
 
 
    goToDetails(pageID: number): any {
-    console.log(pageID)
-    this.animaldetailsService.getAnimal(pageID)
+    console.log(this.valami)
+    this.animaldetailsService.getAnimal(pageID, this.valami)
 
 
   }

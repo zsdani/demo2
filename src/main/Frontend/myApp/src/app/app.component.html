@@ -3,14 +3,14 @@
   <div class="div" fxShow="false" fxShow.gt-sm>
     <button class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
 
-    <button class="mat-button" href="/animals" routerLink="/animals">Örökbefogadás</button>
-    <!--
+    <!--<button class="mat-button" href="/animals" routerLink="/animals">Örökbefogadás</button> -->
+
     <button class="mat-button" [matMenuTriggerFor]="animalMenu">Örökbefogadás</button>
     <mat-menu #animalMenu="matMenu" yPosition="below">
-      <button (click)="goToDogss(0)" class="mat-menu-item" href="/animals" routerLink="/animal/0">Kutyák</button>
-      <button (click)="goToCats(1)" class="mat-menu-item" href="/animals" routerLink="/animal/1">Macskák</button>
+      <button  (click)="goToCats(0)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Macskák</button>
+      <button  (click)="goToDogs(1)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Kutyák</button>
     </mat-menu>
-    -->
+
 
     <button class="mat-button" [matMenuTriggerFor]="donationMenu">Támogatás</button>
       <mat-menu #donationMenu="matMenu" yPosition="below">

@@ -73,8 +73,8 @@
     SE_animal: {{selectedanimal}} AN_shelter: {{animal.type.id}}<br>
     -------------------------------------------------------------<br>
 
-    <div *ngIf="selectedgender==animal.gender && selectedanimal==animal.type.id; then thenBlock else elseIf"></div>
-    <ng-template #thenBlock>
+
+
     <td class="kep">{{animal.imagine}} </td>
     <td class="adatok">
       <ul >
@@ -86,72 +86,18 @@
         <li>{{ animal.shelter.name}}</li>
       </ul>
       <div class="buttpos">
-        <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/animal">Részletek</button>
+        <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/:id">Részletek</button>
       </div>
     </td>
-    </ng-template>
-    <ng-template #elseIf>
-      <div *ngIf="selectedgender==-1 && selectedanimal==-1; then then1Block else else1Block"></div>
-      <ng-template #then1Block >
-      <td class="kep">{{animal.imagine}} </td>
-      <td class="adatok">
-        <ul >
-          <h1 class="name">{{ animal.name }}</h1> <br>
-          <li>{{ animal.gender }}</li>
-          <li>{{ animal.type.name }}</li>
-          <li>{{ animal.breed }}</li>
-          <li>{{ animal.lifestory}}</li>
-          <li>{{ animal.shelter.name}}</li>
-        </ul>
-        <div class="buttpos">
-          <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/animal">Részletek</button>
-        </div>
-      </td>
-      </ng-template>
-      <ng-template #else1Block>
-        <td class="kep">{{animal.imagine}} </td>
-        <td class="adatok">
-          <ul >
-            <h1 class="name">{{ animal.name }}</h1> <br>
-            <li>{{ animal.gender }}</li>
-            <li>{{ animal.type.name }}</li>
-            <li>{{ animal.breed }}</li>
-            <li>{{ animal.lifestory}}</li>
-            <li>{{ animal.shelter.name}}</li>
-          </ul>
-          <div class="buttpos">
-            <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/animal">Részletek</button>
-          </div>
-        </td>
-
-      </ng-template>
-    </ng-template>
-
-
-    <!--
-    <ng-template #elseIfBlock >
 
 
 
-      <td class="kep">{{animal.imagine}} </td>
-      <td class="adatok">
-        <ul >
-          <h1 class="name">{{ animal.name }}</h1> <br>
-          <li>{{ animal.gender }}</li>
-          <li>{{ animal.type.name }}</li>
-          <li>{{ animal.breed }}</li>
-          <li>{{ animal.lifestory}}</li>
-          <li>{{ animal.shelter.name}}</li>
-
-        </ul>
-        <div class="buttpos">
-          <button (click)="goToDetails(animal.id)" class="button button1 " href="/animal/:id" routerLink="/animal/animal">Részletek</button>
-        </div>
-      </td>
 
 
-    </ng-template>
-    -->
+
+
+
+
 
 
   </tr>

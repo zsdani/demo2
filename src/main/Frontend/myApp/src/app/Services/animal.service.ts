@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {AnimaldetailsService} from "./animaldetails.service";
 import {AppComponent} from "../app.component";
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +17,30 @@ export class AnimalService {
 
   constructor(
     private http: HttpClient,
+    private  rout: ActivatedRoute,
     //public appComponent: AppComponent,
   ) {
   }
-
+/*
   public getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>(`${this.animalURL}`);
   }
 
+ */
 
-/* ha id szerint szeretném
-  public getAnimals(): Observable<Animal[]> {
+
+
+  public getAnimals(valami: string | null): Observable<Animal[]> {
     //let x = this.appComponent.x
     //console.log(x)
     let params = new HttpParams();
-    params =params.append("animaltype_id",0+"")
+    if (typeof valami === "string") {
+      params = params.append("animaltype_id", valami)
+    }
     return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params:params});
   }
 
- */
+
 
 
 
