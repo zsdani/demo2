@@ -64,6 +64,7 @@ export class AnimalsComponent implements OnInit {
 
 
    goToDetails(pageID: number): any {
+    console.log(pageID)
     console.log(this.valami)
     this.animaldetailsService.getAnimal(pageID, this.valami)
 

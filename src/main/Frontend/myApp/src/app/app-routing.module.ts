@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'mainpage', component: MainpageComponent },
   { path: 'connection', component: ConnectionComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'animal/:id', component: AnimaldetailsComponent },
+  { path: ':id', component: AnimaldetailsComponent },
 
 
 

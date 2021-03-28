@@ -12,7 +12,7 @@ import {Animal} from "../class/Animal";
 export class AnimaldetailsService {
 
 
-  private animalURL = 'http://localhost:8080/api/animal/';
+  private animalURL = 'http://localhost:8080/api/animal';
   private _num: number=0;
   private _text: string="";
 
@@ -31,9 +31,9 @@ export class AnimaldetailsService {
     console.log(id)
     console.log(valami)
     let params = new HttpParams();
-    params = params.append("valami", valami+"")
+    //params = params.append("valami", valami+"")
     params =params.append("id",id+"")
-    return this.http.get<Animal>(`${this.animalURL}/valami/id`, {params:params});
+    return this.http.get<Animal>(`${this.animalURL}/id`, {params:params});
   }
 
   get num(): number {
