@@ -13,7 +13,8 @@ public class StorageProperties {
 	/**
 	 * Folder location for storing files
 	 */
-	private String location = "/resources/pic";
+	//private String location = "src/main/resources/pic";
+	private String location = "src/main/Frontend/myApp/src/assets/pic";
 
 	public String getLocation() {
 		return location;
@@ -31,9 +32,6 @@ public class StorageProperties {
 			storageService.init();
 		};
 	}
-
 	 */
 
 }
-
-

@@ -43,11 +43,11 @@ public class AnimalController {
         animalDTO.setBreed(animal.getBreed());
         animalDTO.setVirtual_owner(animal.getVirtual_owner());
         animalDTO.setGender(animal.getGender());
-
         animalDTO.setLifestory(animal.getLifestory());
         animalDTO.setIllnes(animal.getIllnes());
         animalDTO.setGonadectomy(animal.getGonadectomy());
         animalDTO.setSize(animal.getSize());
+        animalDTO.setImagine(animal.getImagine());
         try {
             animalDTO.setShelter(animalService.findGoodShelter(animal));
         } catch (DataNotFoundException e) {
@@ -92,6 +92,7 @@ public class AnimalController {
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            animalDTO.setImagine(animal.getImagine());
             animalDTO.setGender(animal.getGender());
 
             animalDTO.setLifestory(animal.getLifestory());
@@ -147,6 +148,7 @@ public class AnimalController {
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
             animalDTO.setGender(animal.getGender());
+            animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
@@ -171,6 +173,47 @@ public class AnimalController {
 
     @GetMapping("/shelter_id")
     public ResponseEntity<List<AnimalDTO> > listByshelter_id(@RequestParam int shelter_id)  {
+        return ResponseEntity.ok(animalService.listByshelter_id(shelter_id).stream().map(animal -> {
+            AnimalDTO animalDTO = new AnimalDTO();
+
+            animalDTO.setId(animal.getId());
+            animalDTO.setVersion(animal.getVersion());
+            animalDTO.setStatus(animal.getStatus());
+            animalDTO.setComment(animal.getComment());
+            animalDTO.setCreated(animal.getCreated());
+            animalDTO.setUpdated(animal.getUpdated());
+            animalDTO.setName(animal.getName());
+            animalDTO.setAge(animal.getAge());
+            animalDTO.setBreed(animal.getBreed());
+            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            animalDTO.setGender(animal.getGender());
+            animalDTO.setImagine(animal.getImagine());
+            animalDTO.setLifestory(animal.getLifestory());
+
+            try {
+                animalDTO.setShelter(animalService.findGoodShelter(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                animalDTO.setType( animalService.findGoodAnimalType(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                animalDTO.setImage( animalService.findGoodImage(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            return animalDTO;
+        }).collect(Collectors.toList()));
+    }
+
+
+    @GetMapping("uj/shelter_id")
+    public ResponseEntity<List<AnimalDTO> > listByanything(@RequestParam int shelter_id)  {
         return ResponseEntity.ok(animalService.listByshelter_id(shelter_id).stream().map(animal -> {
             AnimalDTO animalDTO = new AnimalDTO();
 

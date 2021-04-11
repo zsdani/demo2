@@ -68,6 +68,8 @@ public class AnimalService {
 
 
 
+
+
     public Animal addAnimal(Animal animal) {
 
         animal.setStatus(EntityStatus.ACTIVE);
@@ -114,6 +116,13 @@ public class AnimalService {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
+/*
+    public List<Animal> listByanything(int shelter_id) {
+        return (List<Animal>) animalRepository.listByanything(shelter_id);
+    }
+
+ */
+
 
 
 

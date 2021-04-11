@@ -68,14 +68,11 @@
 <table class="tabla">
   <tbody >
   <tr class="cella" *ngFor="let animal of animals"  >
-    SE_shelter: {{selectedshelter}} AN_shelter: {{animal.shelter.id}}<br>
-    SE_gender: {{selectedgender}} AN_shelter: {{animal.gender}}<br>
-    SE_animal: {{selectedanimal}} AN_shelter: {{animal.type.id}}<br>
-    -------------------------------------------------------------<br>
+    <td class="kep">
 
+      <img src="/assets/pic/{{animal.imagine}}" alt="image">
+    </td>
 
-
-    <td class="kep">{{animal.imagine}} </td>
     <td class="adatok">
       <ul >
         <h1 class="name">{{ animal.name }}</h1> <br>
@@ -99,10 +96,10 @@
 
 
 
-
   </tr>
 
   </tbody>
+
 </table>
 
 

@@ -52,7 +52,7 @@ public class FileUploadController {
 
 	@PostMapping("/upload")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file
-			) {
+	) {
 
 		storageService.store(file);
 		//redirectAttributes.addFlashAttribute("message",

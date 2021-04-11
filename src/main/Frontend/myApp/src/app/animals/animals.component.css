@@ -9,15 +9,17 @@
 
 
 
+
+
 .kep{
-  float: left;
-  width: 350px;
-  padding: 10px;
+
+  width: 400px;
   height: 300px;
   color: blueviolet;
-  background: #333333;
-  margin-right: auto;
-  margin-left: auto;
+  padding-bottom: 40px;
+
+
+
 }
 .adatok{
   font-size: 25px;
@@ -33,15 +35,14 @@
   font-size: 50px;
 }
 li{
-
+  list-style-image: url('src/main/resources/pic/paw-print-.svg');
   /*
-  list-style-image: url('/paw.png');
-  list-style-image: url('/Frontend/myApp/src/source/paw-print-.svg');
-  list-style-image: url('/Frontend/myApp/src/source/paw.png');
-  list-style-image: url('/Frontend/myApp/src/source/paw-print-.png');
+  list-style-image: url('src/main/Frontend/myApp/src/assets/pic');
 
    */
-  list-style-image: url('/Frontend/myApp/src/assets/pic/paw1.png');
+
+
+
 
 
 

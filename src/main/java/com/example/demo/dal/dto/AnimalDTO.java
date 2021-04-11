@@ -9,17 +9,26 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnimalDTO extends BaseEntity {
+public class AnimalDTO  {
 
     private long id;
 
-    private EntityStatus entityStatus;
+    private long version;
+
+    private EntityStatus status;
+
+    private String comment;
+
+    protected LocalDateTime created;
+
+    protected LocalDateTime updated;
 
     private String name;
 
@@ -41,6 +50,8 @@ public class AnimalDTO extends BaseEntity {
 
     @Lob
     private String lifestory;
+
+    private String imagine;
 
 
     private Image image;

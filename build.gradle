@@ -27,10 +27,13 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	//fileupload
+	compile 'commons-fileupload:commons-fileupload:1.4'
 
 	//Spring security
 	compile('org.springframework.boot:spring-boot-starter-security')
 	implementation 'com.auth0:java-jwt:3.4.0'
+	implementation 'org.hibernate:hibernate-entitymanager:5.4.21.Final'
 
 }
 

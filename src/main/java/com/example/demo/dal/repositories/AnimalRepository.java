@@ -20,6 +20,10 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
     @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id", nativeQuery = true)
     List<Animal> listByshelter_id(@Param("shelter_id") int shelter_id);
 
+
+    //@Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id", nativeQuery = true)
+    //List<Animal> listByanything(@Param("shelter_id") int shelter_id/*,@Param("animaltype_id") int animaltype_id,@Param("gender") int gender,@Param("size") int size,@Param("age") int age*/);
+
     // JPQL
     //@Query(value = "SELECT * FROM movies WHERE title = :title", nativeQuery = true)
     //List<Movie> listByTitle(@Param("title") String title);

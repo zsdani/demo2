@@ -19,7 +19,7 @@ public class JwtTokenManager {
         AuthenticatedUser findUserByUsername(String username);
     }
 
-    public static final String TOKEN_HEADER_NAME = "Token-bearer";
+    public static final String TOKEN_HEADER_NAME = "Token";
     public static final String TOKEN_PROVIDER = "Demo app";
     public static final String TOKEN_CLAIM_USERNAME_KEY = "username";
     public static final String TOKEN_CLAIM_NAME_KEY = "name";
