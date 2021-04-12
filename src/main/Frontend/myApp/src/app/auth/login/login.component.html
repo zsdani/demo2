@@ -1,14 +1,16 @@
-<form [formGroup]="signinForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signin(signinForm)" novalidate>
+<form [formGroup]="loginForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="login(loginForm)" novalidate>
+  <br>
   <mat-form-field >
     <input
       matInput
       type="username"
-      placeholder="Username"
+      placeholder="Felhasználónév"
       formControlName="username"
       required
     >
-    <mat-error>Adja meg a regisztráció során használt E-mail címét!</mat-error>
+    <mat-error>Adja meg a regisztráció során használt Felhasználónevét</mat-error>
   </mat-form-field>
+  <br>
   <mat-form-field>
     <input
       matInput
@@ -21,6 +23,7 @@
 
     <mat-error>Jelszó kitöltése kötelező!</mat-error>
   </mat-form-field>
+  <br>
   <button
     mat-raised-button
     color="primary"

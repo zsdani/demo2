@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../Services/auth.service";
+import {AuthService} from "../../Services/auth.service";
 import {Router} from "@angular/router";
-import {User} from "../class/User";
+import {User} from "../../class/User";
 import {HttpClient} from "@angular/common/http";
-import {NotificationService} from "../Services/notification.service";
+import {NotificationService} from "../../Services/notification.service";
 
 const RegExpValidator = {
   'lowerCase': RegExp(/^(?=.*?[a-z])/),
@@ -21,7 +21,7 @@ const RegExpValidator = {
 })
 export class LoginComponent implements OnInit {
 
-  public signinForm: FormGroup;
+  public loginForm: FormGroup;
   public valami: string | undefined;
 
   constructor(
@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private ns : NotificationService
   ) {
-    this.signinForm = this.fb.group({
+    this.loginForm = this.fb.group({
       username: [null, [Validators.minLength(4),Validators.required]],
-      password: [null, [Validators.minLength(6),Validators.required]]
+      password: [null, [Validators.pattern(RegExpValidator.lowerCase), Validators.pattern(RegExpValidator.upperCase), Validators.pattern(RegExpValidator.digit), Validators.minLength(6), Validators.maxLength(16), Validators.required]]
     });
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  signin(form: FormGroup): void {
+  login(form: FormGroup): void {
     if (form.valid) {
       this.as.login(<User>form.value);
     }

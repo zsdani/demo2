@@ -38,7 +38,7 @@ public class OwnerController {
         return ResponseEntity.ok(ownerService.findAllOwners());
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Owner> addOwner(@RequestBody Owner owner) {
         return ResponseEntity.ok(ownerService.addOwner(owner));
     }

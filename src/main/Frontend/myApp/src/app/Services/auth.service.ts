@@ -28,12 +28,11 @@ export class AuthService {
     })
   };
 
-  private authUrl = 'http://localhost:8080/api/owner/login';
+  private authUrl = 'http://localhost:8080/api/owner';
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
 
-  public valami: string | undefined;
-  authenticated = false;
+
 
 
   constructor(
@@ -47,36 +46,24 @@ export class AuthService {
     return this.isLogin$.asObservable();
   }
 
-
-/*
-  login(user: User)  {
-    console.log("1");
-    console.log(user.username);
-    return this.http.post<User>(`${this.authUrl}` , user);
-
-  }
-
- */
-
-
-
-
-/*
-  login(username:string, password:string )  {
-    return this.http.post<User>(`${this.authUrl}` , {username, password}, httpOptions).subscribe(
+  register(user: User): void {
+    this.http.post<User>(`${this.authUrl}/register`, user, this.httpOptions).subscribe(
       data => {
-        localStorage.setItem('token', data['token']);
-        this.isLogin$.next(true);
-      });
+        this.ns.show('Sikeres regisztráció!');
+
+      },
+      error => {
+        this.ns.show('HIBA! Regisztráció sikertelen!');
+        console.error(error);
+      }
+    );
   }
 
-
- */
 
   login(user: User): void {
     console.log(user);
     console.log("0");
-    this.http.post(`${this.authUrl}`, user, {responseType: 'text'}).subscribe(
+    this.http.post(`${this.authUrl}/login`, user, {responseType: 'text'}).subscribe(
 
       data => {
 
@@ -88,7 +75,7 @@ export class AuthService {
       },
 
       error => {
-        //this.ns.show('HIBA! Bejelentkezés sikertelen!');
+        this.ns.show('HIBA! Bejelentkezés sikertelen!');
         console.error(error);
       }
     );
@@ -99,7 +86,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('Token');
     this.isLogin$.next(false);
-    //this.ns.show('Sikeres kijelentkezés!');
+    this.ns.show('Sikeres kijelentkezés!');
     this.router.navigate(['/']);
   }
 

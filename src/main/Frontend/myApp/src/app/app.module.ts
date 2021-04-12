@@ -11,25 +11,28 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatMenuModule} from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConnectionComponent } from './connection/connection.component';
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from '@angular/material/select';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './auth/login/login.component';
 import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
 import {AnimaldetailsService} from "./Services/animaldetails.service";
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import {FileuploadService} from "./Services/fileupload.service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NotificationService} from "./Services/notification.service";
+import { SignupComponent } from './auth/signup/signup.component';
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+import { AuthComponent } from './auth/auth.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCard} from "@angular/material/card";
+import { SignupasShelterComponent } from './auth/signupas-shelter/signupas-shelter.component';
+
 
 @NgModule({
   declarations: [
@@ -42,11 +45,16 @@ import {NotificationService} from "./Services/notification.service";
 
     LoginComponent,
 
-    RegistrationComponent,
 
     AnimaldetailsComponent,
 
     FileuploadComponent,
+
+    SignupComponent,
+
+    AuthComponent,
+
+    SignupasShelterComponent,
 
 
 
@@ -67,8 +75,11 @@ import {NotificationService} from "./Services/notification.service";
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatPasswordStrengthModule,
     ReactiveFormsModule,
     MatOptionModule,
+    MatTabsModule,
+
 
 
 
