@@ -28,6 +28,8 @@ import { AnimaldetailsComponent } from './animaldetails/animaldetails.component'
 import {AnimaldetailsService} from "./Services/animaldetails.service";
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import {FileuploadService} from "./Services/fileupload.service";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {NotificationService} from "./Services/notification.service";
 
 @NgModule({
   declarations: [
@@ -64,6 +66,7 @@ import {FileuploadService} from "./Services/fileupload.service";
     MatButtonToggleModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     MatOptionModule,
 
@@ -75,6 +78,8 @@ import {FileuploadService} from "./Services/fileupload.service";
     AnimalService,
     AnimaldetailsService,
     FileuploadService,
+    NotificationService,
+
 
   ],
   bootstrap: [AppComponent]

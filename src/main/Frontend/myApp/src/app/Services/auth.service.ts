@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {User} from "../class/User";
 import {BehaviorSubject, Observable} from "rxjs";
 import {any} from "codelyzer/util/function";
+import {NotificationService} from "./notification.service";
 
 
 
@@ -37,7 +38,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private ns : NotificationService
   ) {
   }
 
@@ -72,23 +74,19 @@ export class AuthService {
  */
 
   login(user: User): void {
-    this.http.post<User>(`${this.authUrl}`, user, this.httpOptions).subscribe(
+    console.log(user);
+    console.log("0");
+    this.http.post(`${this.authUrl}`, user, {responseType: 'text'}).subscribe(
 
       data => {
-        console.log("1");
-        // @ts-ignore
-        localStorage.setItem('Token', data['Token']);
-        console.log("2");
-        if (typeof this.valami === "string") {
-          localStorage.setItem('Token', this.valami)
-        }
-        console.log("3");
-        console.log(localStorage.getItem('Token'));
-        console.log(this.valami);
+
+        localStorage.setItem('Token', data);
         this.isLogin$.next(true);
-        //this.ns.show('Sikeres bejelentkezés!');
+        this.ns.show('Sikeres bejelentkezés!');
         this.router.navigate(['/mainpage']);
+
       },
+
       error => {
         //this.ns.show('HIBA! Bejelentkezés sikertelen!');
         console.error(error);

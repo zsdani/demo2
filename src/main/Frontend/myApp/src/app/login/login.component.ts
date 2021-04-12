@@ -3,6 +3,16 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../Services/auth.service";
 import {Router} from "@angular/router";
 import {User} from "../class/User";
+import {HttpClient} from "@angular/common/http";
+import {NotificationService} from "../Services/notification.service";
+
+const RegExpValidator = {
+  'lowerCase': RegExp(/^(?=.*?[a-z])/),
+  'upperCase': RegExp(/^(?=.*?[A-Z])/),
+  'digit': RegExp(/^(?=.*?[0-9])/),
+  'specialChar': RegExp(/^(?=.*?[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])/)
+};
+
 
 @Component({
   selector: 'app-login',
@@ -17,43 +27,28 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private as: AuthService,
-    private router: Router
+    private http: HttpClient,
+    private router: Router,
+    private ns : NotificationService
   ) {
     this.signinForm = this.fb.group({
-      username: ['',Validators.required],
-      password: ['',Validators.required]
+      username: [null, [Validators.minLength(4),Validators.required]],
+      password: [null, [Validators.minLength(6),Validators.required]]
     });
   }
 
   ngOnInit(): void {
   }
-/*
-  login() {
-    const val = this.form.value;
 
-    if (val.username && val.password) {
-      this.authService.login(val.username, val.password)
-        .subscribe(
-           data => {
-
-
-            console.log("User is logged in");
-            this.router.navigateByUrl('/mainpage');
-          }
-        );
-    }
-  }
-
- */
 
   signin(form: FormGroup): void {
     if (form.valid) {
-      console.log("heheh")
-      this.as.login(<User>form.value)}
-    else {
-      console.log("ejhhhh");
-      //this.ns.show('HIBA! Adatok nem megfelelőek!');
+      this.as.login(<User>form.value);
     }
+    else {
+      this.ns.show('HIBA! Adatok nem megfelelőek!');
+    }
+
   }
 
 }
