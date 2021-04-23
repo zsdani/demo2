@@ -9,6 +9,8 @@ import {LoginComponent} from "./auth/login/login.component";
 import {AnimaldetailsComponent} from "./animaldetails/animaldetails.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {AuthComponent} from "./auth/auth.component";
+import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
+
 
 const routes: Routes = [
 
@@ -17,9 +19,14 @@ const routes: Routes = [
   { path: 'mainpage', component: MainpageComponent },
   { path: 'connection', component: ConnectionComponent },
   { path: 'login', component: AuthComponent },
-  { path: ':id', component: AnimaldetailsComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'registed', component: SignupComponent },
+  { path: 'id', component: AnimaldetailsComponent },
+  { path: 'pagenotfound', component: PagenotfoundComponent },
+  { path: '**', redirectTo: 'pagenotfound', pathMatch: 'full' },
+
+
+
+
 
 
 

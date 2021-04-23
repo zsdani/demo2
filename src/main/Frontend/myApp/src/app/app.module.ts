@@ -31,7 +31,10 @@ import { MatPasswordStrengthModule } from "@angular-material-extensions/password
 import { AuthComponent } from './auth/auth.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatCard} from "@angular/material/card";
-import { SignupasShelterComponent } from './auth/signupas-shelter/signupas-shelter.component';
+
+import {AuthService} from "./Services/auth.service";
+import {ShelterService} from "./Services/shelter.service";
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { SignupasShelterComponent } from './auth/signupas-shelter/signupas-shelt
 
     AuthComponent,
 
-    SignupasShelterComponent,
+    PagenotfoundComponent,
+
+
 
 
 
@@ -67,12 +72,12 @@ import { SignupasShelterComponent } from './auth/signupas-shelter/signupas-shelt
     BrowserAnimationsModule,
     MatSliderModule,
     MatMenuModule,
+    MatFormFieldModule,
     MatSelectModule,
     MatIconModule,
     MatToolbarModule,
     FormsModule,
     MatButtonToggleModule,
-    MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
     MatPasswordStrengthModule,
@@ -89,6 +94,8 @@ import { SignupasShelterComponent } from './auth/signupas-shelter/signupas-shelt
     AnimalService,
     AnimaldetailsService,
     FileuploadService,
+    AuthService,
+    ShelterService,
     NotificationService,
 
 

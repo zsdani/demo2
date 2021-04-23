@@ -51,13 +51,15 @@
 }
 body{
   background: #F19F1F;
-  height: 2200px;
+  min-height: 975px;
+  height: auto;
+
 }
 
 
 .sav{
   background: #F19F1F;
-  height: 2200px;
+
   width: 70%;
   margin: auto;
   border-left: dotted #111111;

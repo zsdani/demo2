@@ -65,7 +65,7 @@
 </table>
 
 
-<table class="tabla">
+<table class="tabla" cellspacing="0" cellpadding="0">
   <tbody >
   <tr class="cella" *ngFor="let animal of animals"  >
     <td class="kep">
@@ -74,18 +74,19 @@
     </td>
 
     <td class="adatok">
+      <h1 class="name">{{ animal.name }}</h1>
       <ul >
-        <h1 class="name">{{ animal.name }}</h1> <br>
-        <li>{{ animal.gender }}</li>
         <li>{{ animal.type.name }}</li>
+        <li>{{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}</li>
         <li>{{ animal.breed }}</li>
-        <li>{{ animal.lifestory}}</li>
         <li>{{ animal.shelter.name}}</li>
       </ul>
       <div class="buttpos">
-        <button (click)="goToDetails(animal.id)" class="button button1 " href="/id" routerLink="/:id">Részletek</button>
+        <button (click)="goToDetails(animal.id)" class="button button1 " href="/id" routerLink="/id">Részletek</button>
       </div>
     </td>
+
+
 
 
 

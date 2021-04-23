@@ -1,10 +1,19 @@
 .tabla {
+  border: none;
   content: "";
   display: table;
   clear: both;
   table-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+tr{
+
+}
+.cella{
+  border-color: aqua;
+  border-left: dotted #111111;
 }
 
 
@@ -22,31 +31,25 @@
 
 }
 .adatok{
+
+  width: 450px;
   font-size: 25px;
   float: right;
-  width: 450px;
   padding-top: 30px;
   height: 300px;
   color: coral;
   background: antiquewhite;
+
 }
 .name{
   text-align: center;
   font-size: 50px;
+
+
 }
 li{
-  list-style-image: url('src/main/resources/pic/paw-print-.svg');
-  /*
-  list-style-image: url('src/main/Frontend/myApp/src/assets/pic');
-
-   */
-
-
-
-
-
-
-
+  margin-left: 40px;
+  list-style-image: url('src/assets/pic/paw (2).png');
   padding-inline-start: 1.5ch;
 }
 .buttpos{
