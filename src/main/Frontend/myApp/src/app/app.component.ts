@@ -13,13 +13,17 @@ export class AppComponent {
   }
 
   goToDogs(animalytype_id: number){
-    this.router.navigate(["animal", animalytype_id ])
+
+    this.router.navigateByUrl('http://localhost:8080/api/animal/0', {skipLocationChange: true}).then(()=>
+    this.router.navigate(["animal", animalytype_id ]));
 
 
   }
 
   goToCats(animalytype_id: number){
-    this.router.navigate(["animal", animalytype_id])
+
+    this.router.navigateByUrl('http://localhost:8080/api/animal/1', {skipLocationChange: true}).then(()=>
+      this.router.navigate(["animal", animalytype_id]));
   }
 
 

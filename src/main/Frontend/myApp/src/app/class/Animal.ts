@@ -14,6 +14,9 @@ export class Animal {
   age: number=0;
   lifestory: string = '';
   imagine: string = '';
+  illnes: string = '';
+  gonadectomy: boolean = false;
+  size: number=0;
   shelter: Shelter = new Shelter;
 
 
