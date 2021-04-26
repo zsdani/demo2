@@ -30,6 +30,9 @@ dependencies {
 	//fileupload
 	compile 'commons-fileupload:commons-fileupload:1.4'
 
+	//hibenate
+	implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.30.Final'
+
 	//Spring security
 	compile('org.springframework.boot:spring-boot-starter-security')
 	implementation 'com.auth0:java-jwt:3.4.0'

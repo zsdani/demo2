@@ -3,10 +3,7 @@ package com.example.demo.services;
 
 import com.example.demo.dal.entities.*;
 
-import com.example.demo.dal.repositories.AnimalRepository;
-import com.example.demo.dal.repositories.AnimalTypeRepository;
-import com.example.demo.dal.repositories.ImageRepository;
-import com.example.demo.dal.repositories.ShelterRepository;
+import com.example.demo.dal.repositories.*;
 import com.example.demo.properties.AnimalProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +11,12 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +24,7 @@ import java.util.Optional;
 
 @Service
 @SessionScope
-public class AnimalService {
+public class AnimalService implements SpecRepositroy {
 
 
     private final AnimalRepository animalRepository;
@@ -29,6 +32,10 @@ public class AnimalService {
     private final AnimalTypeRepository animalTypeRepository;
     private final ShelterRepository shelterRepository;
     private final ImageRepository imageRepository;
+
+
+    @Autowired
+    private EntityManager entityManager;
 
 
 
@@ -116,12 +123,29 @@ public class AnimalService {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
-/*
-    public List<Animal> listByanything(int shelter_id) {
-        return (List<Animal>) animalRepository.listByanything(shelter_id);
+
+    public List<Animal> findspecanimal(int age, int shelter_id, int size,int gonadectomy,int gender){
+        CriteriaBuilder cb= entityManager.getCriteriaBuilder();
+        CriteriaQuery cq=cb.createQuery();
+
+        Root<Animal> animal = cq.from(Animal.class);
+
+        Predicate agePredicate= cb.equal(animal.get("age"),age);
+        Predicate shelter_idPredicate= cb.equal(animal.get("shelter_id"),shelter_id);
+        Predicate sizePredicate= cb.equal(animal.get("size"),size);
+        Predicate gonadectomyPredicate= cb.equal(animal.get("gonadectomy"),gonadectomy);
+        Predicate genderPredicate= cb.equal(animal.get("gender"),gender);
+
+        cq.select(animal);
+        cq.where(agePredicate,shelter_idPredicate,sizePredicate,gonadectomyPredicate,genderPredicate);
+
+
+        TypedQuery<Animal>query= entityManager.createQuery(cq);
+
+        return query.getResultList();
+
     }
 
- */
 
 
 
