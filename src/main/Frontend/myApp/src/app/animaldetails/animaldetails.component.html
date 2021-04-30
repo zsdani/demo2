@@ -2,6 +2,10 @@
 <br>
 <br>
 <br>
+
+
+ Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát ;)
+<br>
 <br>
 <table>
   <tbody>
@@ -13,7 +17,7 @@
       <div class="buttpos">
         <button  class="button button1 "  >Örökbe fogadom</button>
       </div>
-      Virtuális örökbe fogadás az meg mi? Merül fel a kérdés teljesen jogosan.
+      Virtuális örökbe fogadás?? Kattints a gombra és elmagyarázom.
       <div class="buttpos">
         <button  class="button button1 "  >Virtuálisan örökbe fogadom</button>
       </div>
@@ -22,7 +26,25 @@
   </tbody>
 </table>
 
-{{animal.name}}
+Szia a nevem: {{animal.name}} és {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
+{{animal.type.name}} vagyok.
+A test méretem: {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'Nagy'}} és
+{{animal.gonadectomy===0 ? 'nem vagyok ivartalanítva.' : 'ki vagyok ivartalanítva.'}}
+Nem tudom hogy fontos-e de {{animal.breed}} {{animal.type.name}} vagyok.
+A korom publikus: {{animal.age}} éves. {{animal.age>5 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}}
+Betgségem:
+{{animal.illnes==='nincs' ? 'Szerencsére ' : '' }}{{animal.illnes}}
+{{animal.illnes!=='nincs' ? 'Sajnos van: ' : '' }}{{animal.illnes}}
+<br>
+Az élet történetem:
+<br>
+{{animal.lifestory}}
+<br>
+Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:
+{{animal.virtual_owner}}
+<br>
+Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: {{animal.shelter.name}} és akár sétálni is
+ elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)
 
 <br>
 

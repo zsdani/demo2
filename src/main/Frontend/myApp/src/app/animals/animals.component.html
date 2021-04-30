@@ -27,24 +27,37 @@
 
       <p>You selected: {{selectedshelter}}</p>
     </td>
-    <td>      Állat:
 
+
+    <td>
+      Kora:
       <mat-form-field appearance="fill">
-        <mat-label>Milyen állat?</mat-label>
-        <mat-select [(value)]="selectedanimal">
-          <mat-option value="-1">Mindkettő</mat-option>
-          <mat-option value="1">Kutya</mat-option>
-          <mat-option value="0">Macska</mat-option>
+        <mat-label>Milyen korú?</mat-label>
+        <mat-select [(value)]="selectedage">
+          <mat-option value="-1">Nem fontos</mat-option>
+          <mat-option value="0">1</mat-option>
+          <mat-option value="1">2</mat-option>
+          <mat-option value="2">4</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedanimal}}</p></td>
-
-    <td>
-      Milyen idős állatot szeretnél?
+      <p>You selected: {{selectedage}}</p>
 
     </td>
-    <td>Milyen méretű?</td>
+    <td>
+      Méret:
+      <mat-form-field appearance="fill">
+        <mat-label>Milyen méretű?</mat-label>
+        <mat-select [(value)]="selectedsize">
+          <mat-option value="-1">Nem fontos</mat-option>
+          <mat-option value="0">Kicsi</mat-option>
+          <mat-option value="1">Közepes</mat-option>
+          <mat-option value="2">Nagy</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p>You selected: {{selectedsize}}</p>
+    </td>
     <td>
       Neme:
       <mat-form-field appearance="fill">
@@ -59,7 +72,19 @@
       <p>You selected: {{selectedgender}}</p>
 
     </td>
-    <td><button type="button" onclick="myFunction()">Keresés</button></td>
+    <td>      Ivartalanított:
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ivartalanított?</mat-label>
+        <mat-select [(value)]="selectedanimal">
+          <mat-option value="-1">Nem fontos</mat-option>
+          <mat-option value="1">Nem</mat-option>
+          <mat-option value="0">Igen</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <p>You selected: {{selectedanimal}}</p></td>
+    <td><button type="button" (click)="myFunction()">Keresés</button></td>
   </tr>
   </tbody>
 </table>

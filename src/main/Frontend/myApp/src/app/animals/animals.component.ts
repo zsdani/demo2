@@ -20,7 +20,9 @@ export class AnimalsComponent implements OnInit {
   //public animals: any;
   selectedgender: number=-1;
   public selectedanimal: number=-1;
+  public selectedage: number=-1;
   public selectedshelter:   number=-1;//Shelter = new Shelter();
+  public selectedsize:   number=-1;
   public animals: Animal[] = [];
   public genders: number[] = [0,1,-1];
   public animaltypes: number[] = [0,1,-1];
@@ -31,9 +33,7 @@ export class AnimalsComponent implements OnInit {
   public  valami: string | null="";
 
   animal: Animal = new Animal;
-  //animals: Array<Animal> = [];
 
-  //public animalss: Animal[] = [];
 
   constructor(
     private animalService: AnimalService,
@@ -74,33 +74,7 @@ export class AnimalsComponent implements OnInit {
 
 
 
-/*
-  public goToDetails(pageID: number): void {
-    console.log(pageID);
-    this._x=pageID;
-    this.animaldetailsService.getAnimal(pageID)
-      .subscribe(res=> {this.animal=res})
 
-  }
-
-
- */
-
-
-
-
-
-
-
-
-
-/*
-  public async ngOnInit(): Promise<void> {
-    this.animalss = await this.animalService.getAnimals();
-
-  }
-
- */
 
 
 
@@ -113,6 +87,7 @@ export class AnimalsComponent implements OnInit {
   }
 
 
+  myFunction() {
 
-
+  }
 }

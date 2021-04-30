@@ -31,8 +31,6 @@ export class AnimalService {
 
 
   public getAnimals(valami: string | null): Observable<Animal[]> {
-    //let x = this.appComponent.x
-    //console.log(x)
     let params = new HttpParams();
     if (typeof valami === "string") {
       params = params.append("animaltype_id", valami)

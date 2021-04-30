@@ -140,6 +140,7 @@ public class AnimalService implements SpecRepositroy {
         cq.where(agePredicate,shelter_idPredicate,sizePredicate,gonadectomyPredicate,genderPredicate);
 
 
+
         TypedQuery<Animal>query= entityManager.createQuery(cq);
 
         return query.getResultList();
