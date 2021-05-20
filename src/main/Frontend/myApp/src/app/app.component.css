@@ -59,13 +59,27 @@ body{
 
 .sav{
   background: #F19F1F;
-
   width: 70%;
   margin: auto;
   border-left: dotted #111111;
   border-right: dotted #111111;
   border-bottom: dotted #111111;
 
+}
+
+.mat-button-right2:hover {
+  background-color: #111;
+}
+
+.mat-button-right2{
+  background-color: #333;
+  height: 60px;
+  float:right;
+  font-family: 'Baloo Thambi',sans-serif;
+  color: white;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
 }
 
 

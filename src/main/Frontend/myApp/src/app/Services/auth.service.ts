@@ -6,6 +6,7 @@ import {User} from "../class/User";
 import {BehaviorSubject, Observable} from "rxjs";
 import {any} from "codelyzer/util/function";
 import {NotificationService} from "./notification.service";
+import {User1} from "../class/User1";
 
 
 
@@ -31,6 +32,7 @@ export class AuthService {
   private authUrl = 'http://localhost:8080/api/owner';
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  public isLogin1=false;
 
 
 
@@ -46,10 +48,15 @@ export class AuthService {
     return this.isLogin$.asObservable();
   }
 
-  register(user: User): void {
+  register(user: User1): void {
     this.http.post<User>(`${this.authUrl}/register`, user, this.httpOptions).subscribe(
       data => {
+        console.log(data);
         this.ns.show('Sikeres regisztráció!');
+
+        this.router.navigateByUrl('http://localhost:8080/api/owner/login', {skipLocationChange: true}).then(()=>
+          this.router.navigate(['/login']));
+
 
       },
       error => {
@@ -68,7 +75,10 @@ export class AuthService {
       data => {
 
         localStorage.setItem('Token', data);
+        console.log(this.isLogin$.value);
+        this.isLogin1=true;
         this.isLogin$.next(true);
+        console.log(this.isLogin$.value);
         this.ns.show('Sikeres bejelentkezés!');
         this.router.navigate(['/mainpage']);
 
@@ -76,6 +86,8 @@ export class AuthService {
 
       error => {
         this.ns.show('HIBA! Bejelentkezés sikertelen!');
+        console.log("tuuuup:");
+        console.log(this.isLogin$.value);
         console.error(error);
       }
     );
@@ -84,10 +96,13 @@ export class AuthService {
 
 
   logout(): void {
+    console.log(this.isLogin$);
     localStorage.removeItem('Token');
     this.isLogin$.next(false);
+    this.isLogin1=false;
     this.ns.show('Sikeres kijelentkezés!');
-    this.router.navigate(['/']);
+    console.log(this.isLogin$.value);
+    //this.router.navigate(['/']);
   }
 
 

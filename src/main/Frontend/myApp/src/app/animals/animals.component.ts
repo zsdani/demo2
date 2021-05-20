@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {AnimaldetailsService} from "../Services/animaldetails.service";
 import {Shelter} from "../class/Shelter";
 import {ShelterService} from "../Services/shelter.service";
+import {HttpClient} from "@angular/common/http";
 
 
 
@@ -36,6 +37,7 @@ export class AnimalsComponent implements OnInit {
 
 
   constructor(
+    private http: HttpClient,
     private animalService: AnimalService,
     private animaldetailsService: AnimaldetailsService,
     private  shelterService: ShelterService,
@@ -87,7 +89,20 @@ export class AnimalsComponent implements OnInit {
   }
 
 
+
+ url ="http://localhost:8080/api/animal/{age}/{shelter_id}/{size}/{gonadectomy}/{gender}";
+  //url = "http://httpbin.org/post";
   myFunction() {
+    let PostData = {
+      age: this.selectedage,
+      size: this.selectedsize,
+      gender: this.selectedgender,
+      shelter: this.selectedshelter,
+      animal: this.selectedanimal,
+
+    };
+    this.http.post(this.url,PostData);
+    console.log(PostData);
 
   }
 }

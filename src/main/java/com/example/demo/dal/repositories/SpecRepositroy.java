@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface SpecRepositroy {
 
-    List<Animal> findspecanimal(int age, int shelter_id,int size,int gonadectomy,int gender);
+    List<Animal> findspecanimal(Integer age, Integer shelter_id,Integer size,int gonadectomy,int gender);
 }

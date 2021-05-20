@@ -4,6 +4,7 @@ import {AuthService} from "../../Services/auth.service";
 import {NotificationService} from "../../Services/notification.service";
 import {User} from "../../class/User";
 import {MatchValidation} from "../../validators/MatchValidation";
+import {User1} from "../../class/User1";
 
 const RegExpValidator = {
   'lowerCase': RegExp(/^(?=.*?[a-z])/),
@@ -27,7 +28,7 @@ export class SignupComponent implements OnInit {
   ) {
     this.signupForm = this.formBuilder.group({
         username: [null, [Validators.minLength(4), Validators.required]],
-        email: [null, [Validators.email, Validators.required]],
+        e_mail: [null, [Validators.email, Validators.required]],
         password: [null, [Validators.pattern(RegExpValidator.lowerCase), Validators.pattern(RegExpValidator.upperCase), Validators.pattern(RegExpValidator.digit),Validators.pattern(RegExpValidator.specialChar), Validators.minLength(6), Validators.maxLength(30), Validators.required]],
         passwordConfirm: [null, Validators.required]
       },
@@ -43,7 +44,7 @@ export class SignupComponent implements OnInit {
     if (form.valid) {
       delete form.value.name;
       delete form.value.passwordConfirm;
-      this.auth.register(<User>form.value);
+      this.auth.register(<User1>form.value);
       this.signupForm.reset();
     }
     else {

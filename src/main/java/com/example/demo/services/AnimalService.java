@@ -6,6 +6,7 @@ import com.example.demo.dal.entities.*;
 import com.example.demo.dal.repositories.*;
 import com.example.demo.properties.AnimalProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
+import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -124,20 +126,32 @@ public class AnimalService implements SpecRepositroy {
 
     }
 
-    public List<Animal> findspecanimal(int age, int shelter_id, int size,int gonadectomy,int gender){
+    public List<Animal> findspecanimal(Integer age, Integer shelter_id, Integer size,int gonadectomy,int gender){
         CriteriaBuilder cb= entityManager.getCriteriaBuilder();
         CriteriaQuery cq=cb.createQuery();
-
         Root<Animal> animal = cq.from(Animal.class);
+        Predicate p = cb.conjunction();
 
-        Predicate agePredicate= cb.equal(animal.get("age"),age);
-        Predicate shelter_idPredicate= cb.equal(animal.get("shelter_id"),shelter_id);
+
+        //if( age!=-1 ){ p= cb.and(p, cb.equal(p, animal.get("age"))); }
+        // cb.equal(p,animal.get("gender"));
+
+        //if(shelter_id!=-1){p= cb.equal(p, animal.get("shelter_id"));}
+
+
+
+
         Predicate sizePredicate= cb.equal(animal.get("size"),size);
         Predicate gonadectomyPredicate= cb.equal(animal.get("gonadectomy"),gonadectomy);
         Predicate genderPredicate= cb.equal(animal.get("gender"),gender);
+        if(gender!=-1){ p= cb.equal(p, animal.get("gender")); }
 
         cq.select(animal);
-        cq.where(agePredicate,shelter_idPredicate,sizePredicate,gonadectomyPredicate,genderPredicate);
+        cq.where( p);
+
+
+
+
 
 
 
@@ -156,3 +170,4 @@ public class AnimalService implements SpecRepositroy {
 
 
 }
+

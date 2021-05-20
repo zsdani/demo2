@@ -252,9 +252,10 @@ public class AnimalController {
     }
 
     @GetMapping("/{age}/{shelter_id}/{size}/{gonadectomy}/{gender}")
-    public ResponseEntity<List<AnimalDTO> > findspecanimal(@PathVariable("age") int age,
-                                                           @PathVariable("shelter_id") int shelter_id,
-                                                           @PathVariable("size") int size,
+    public ResponseEntity<List<AnimalDTO> > findspecanimal(@RequestParam (required=false)
+                                                            @PathVariable("age") Integer age,
+                                                           @PathVariable("shelter_id") Integer shelter_id,
+                                                           @PathVariable("size") Integer size,
                                                             @PathVariable("gonadectomy") int gonadectomy,
                                                             @PathVariable("gender") int gender)  {
 
