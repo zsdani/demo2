@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.dal.dto.AnimalDTO;
 import com.example.demo.dal.entities.Animal;
+import com.example.demo.dal.entities.specanimal;
 import com.example.demo.services.AnimalService;
 import com.example.demo.services.exceptions.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,7 @@ public class AnimalController {
 
     @GetMapping
     public ResponseEntity<List<AnimalDTO> > findAllAnimals() throws DataNotFoundException {
+
         return ResponseEntity.ok(animalService.findAllAnimals().stream().map(animal -> {
             AnimalDTO animalDTO = new AnimalDTO();
 
@@ -251,15 +253,9 @@ public class AnimalController {
         }).collect(Collectors.toList()));
     }
 
-    @GetMapping("/{age}/{shelter_id}/{size}/{gonadectomy}/{gender}")
-    public ResponseEntity<List<AnimalDTO> > findspecanimal(@RequestParam (required=false)
-                                                            @PathVariable("age") Integer age,
-                                                           @PathVariable("shelter_id") Integer shelter_id,
-                                                           @PathVariable("size") Integer size,
-                                                            @PathVariable("gonadectomy") int gonadectomy,
-                                                            @PathVariable("gender") int gender)  {
-
-        return ResponseEntity.ok(animalService.findspecanimal(age,shelter_id,size,gonadectomy,gender).stream().map(animal -> {
+    @PatchMapping("/findspec")
+    public ResponseEntity<List<AnimalDTO> >  findspecanimal(@RequestBody specanimal spec) {
+        return ResponseEntity.ok(animalService.findspecanimal(spec).stream().map(animal -> {
             AnimalDTO animalDTO = new AnimalDTO();
 
             animalDTO.setId(animal.getId());
@@ -269,10 +265,10 @@ public class AnimalController {
             animalDTO.setCreated(animal.getCreated());
             animalDTO.setUpdated(animal.getUpdated());
             animalDTO.setName(animal.getName());
-            animalDTO.setAge(animal.getAge());
+            animalDTO.setAge(spec.getAge());
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
-            animalDTO.setGender(animal.getGender());
+            animalDTO.setGender(spec.getGender());
 
             animalDTO.setLifestory(animal.getLifestory());
             try {

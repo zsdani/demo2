@@ -20,7 +20,7 @@ export class AnimalsComponent implements OnInit {
 
   //public animals: any;
   selectedgender: number=-1;
-  public selectedanimal: number=-1;
+  public selectedgonadectomy: number=-1;
   public selectedage: number=-1;
   public selectedshelter:   number=-1;//Shelter = new Shelter();
   public selectedsize:   number=-1;
@@ -90,7 +90,7 @@ export class AnimalsComponent implements OnInit {
 
 
 
- url ="http://localhost:8080/api/animal/{age}/{shelter_id}/{size}/{gonadectomy}/{gender}";
+ url ="http://localhost:8080/api/animal/findspec";
   //url = "http://httpbin.org/post";
   myFunction() {
     let PostData = {
@@ -98,7 +98,7 @@ export class AnimalsComponent implements OnInit {
       size: this.selectedsize,
       gender: this.selectedgender,
       shelter: this.selectedshelter,
-      animal: this.selectedanimal,
+      gonadectomy: this.selectedgonadectomy,
 
     };
     this.http.post(this.url,PostData);

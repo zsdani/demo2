@@ -30,11 +30,17 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
 import { AuthComponent } from './auth/auth.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import {MatCard} from "@angular/material/card";
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {AuthService} from "./Services/auth.service";
 import {ShelterService} from "./Services/shelter.service";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { PopupadoptComponent} from './popupadopt/popupadopt.component';
+import { TobevirtualownerComponent } from './tobevirtualowner/tobevirtualowner.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
+
 
 
 @NgModule({
@@ -58,6 +64,12 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     AuthComponent,
 
     PagenotfoundComponent,
+
+    PopupadoptComponent,
+
+    TobevirtualownerComponent,
+
+
 
 
 
@@ -84,6 +96,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     ReactiveFormsModule,
     MatOptionModule,
     MatTabsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
 
 
 

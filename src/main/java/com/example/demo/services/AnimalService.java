@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.persistence.EntityManager;
@@ -126,28 +127,18 @@ public class AnimalService implements SpecRepositroy {
 
     }
 
-    public List<Animal> findspecanimal(Integer age, Integer shelter_id, Integer size,int gonadectomy,int gender){
+    public  List<Animal> findspecanimal(specanimal spec){
+
+
         CriteriaBuilder cb= entityManager.getCriteriaBuilder();
         CriteriaQuery cq=cb.createQuery();
-        Root<Animal> animal = cq.from(Animal.class);
-        Predicate p = cb.conjunction();
+        Root<specanimal> animal = cq.from(specanimal.class);
 
+        Predicate agePredicate = cb.equal(animal.get("age"),spec.getAge());
 
-        //if( age!=-1 ){ p= cb.and(p, cb.equal(p, animal.get("age"))); }
-        // cb.equal(p,animal.get("gender"));
-
-        //if(shelter_id!=-1){p= cb.equal(p, animal.get("shelter_id"));}
-
-
-
-
-        Predicate sizePredicate= cb.equal(animal.get("size"),size);
-        Predicate gonadectomyPredicate= cb.equal(animal.get("gonadectomy"),gonadectomy);
-        Predicate genderPredicate= cb.equal(animal.get("gender"),gender);
-        if(gender!=-1){ p= cb.equal(p, animal.get("gender")); }
 
         cq.select(animal);
-        cq.where( p);
+        cq.where( agePredicate);
 
 
 

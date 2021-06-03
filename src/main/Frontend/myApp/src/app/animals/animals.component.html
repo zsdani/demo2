@@ -16,7 +16,7 @@
           <mat-option *ngFor="let shelter of shelterss" [value]="shelter.id" >
             {{shelter.name}}
           </mat-option>
-          <mat-option value="-1">Összes</mat-option>
+          <mat-option value=-1>Összes</mat-option>
           <!--
           <mat-option value="-1">Összes</mat-option>
           <mat-option value="1">Kutya</mat-option>
@@ -34,10 +34,10 @@
       <mat-form-field appearance="fill">
         <mat-label>Milyen korú?</mat-label>
         <mat-select [(value)]="selectedage">
-          <mat-option value="-1">Nem fontos</mat-option>
-          <mat-option value="0">1</mat-option>
-          <mat-option value="1">2</mat-option>
-          <mat-option value="2">4</mat-option>
+          <mat-option value=-1>Nem fontos</mat-option>
+          <mat-option value=0>1</mat-option>
+          <mat-option value=1>2</mat-option>
+          <mat-option value=4>4</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -49,10 +49,10 @@
       <mat-form-field appearance="fill">
         <mat-label>Milyen méretű?</mat-label>
         <mat-select [(value)]="selectedsize">
-          <mat-option value="-1">Nem fontos</mat-option>
-          <mat-option value="0">Kicsi</mat-option>
-          <mat-option value="1">Közepes</mat-option>
-          <mat-option value="2">Nagy</mat-option>
+          <mat-option value=-1>Nem fontos</mat-option>
+          <mat-option value=0>Kicsi</mat-option>
+          <mat-option value=1>Közepes</mat-option>
+          <mat-option value=2>Nagy</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -63,9 +63,9 @@
       <mat-form-field appearance="fill">
         <mat-label>Milyen nemű?</mat-label>
         <mat-select [(value)]="selectedgender">
-          <mat-option value="-1">Nem fontos</mat-option>
-          <mat-option value="1">Szuka</mat-option>
-          <mat-option value="0">Kan</mat-option>
+          <mat-option value=-1>Nem fontos</mat-option>
+          <mat-option value=1>Szuka</mat-option>
+          <mat-option value=0>Kan</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -76,14 +76,14 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Ivartalanított?</mat-label>
-        <mat-select [(value)]="selectedanimal">
-          <mat-option value="-1">Nem fontos</mat-option>
-          <mat-option value="1">Nem</mat-option>
-          <mat-option value="0">Igen</mat-option>
+        <mat-select [(value)]="selectedgonadectomy">
+          <mat-option value=-1>Nem fontos</mat-option>
+          <mat-option value=1>Nem</mat-option>
+          <mat-option value=0>Igen</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedanimal}}</p></td>
+      <p>You selected: {{selectedgonadectomy}}</p></td>
     <td><button type="button" (click)="myFunction()">Keresés</button></td>
   </tr>
   </tbody>

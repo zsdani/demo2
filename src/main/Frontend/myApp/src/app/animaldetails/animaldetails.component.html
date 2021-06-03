@@ -3,7 +3,7 @@
 <br>
 <br>
 
-
+asdasdasdasdasd
 {{animal.type.name==='macska' ? 'Szia, ha megszeretnél ismerni, akkor lentebb megtalálhatod az elérhetőségemet ;) ' : 'Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát ;)' }}
 <br>
 <br>
@@ -15,11 +15,13 @@
     </td>
     <td class="gombok">
       <div class="buttpos">
-        <button  class="button button1 "  >Örökbe fogadom</button>
+        <button  class="button button1 " (click)="adopt()"  >Örökbe fogadom</button>
       </div>
-      Virtuális örökbe fogadás?? Kattints a gombra és elmagyarázom.
+
+      Virtuális örökbe fogadás? Kattints a <a href="/tobevirtualowner" routerLink="/tobevirtualowner">linkre</a>  és elmagyarázom.
+      Ha tudod mi az,akkor meg a gombra.
       <div class="buttpos">
-        <button  class="button button1 "  >Virtuálisan örökbe fogadom</button>
+        <button  class="button button1 " (click)="adopt()" >Virtuálisan örökbe fogadom</button>
       </div>
     </td>
   </tr>
@@ -33,18 +35,20 @@ A test méretem: {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'N
 Nem tudom hogy fontos-e de {{animal.breed}} {{animal.type.name}} vagyok.
 A korom publikus: {{animal.age}} éves. {{animal.age>5 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}}
 Betgségem:
-{{animal.illnes==='nincs' ? 'Szerencsére ' : '' }}{{animal.illnes}}
-{{animal.illnes!=='nincs' ? 'Sajnos van: ' : '' }}{{animal.illnes}}
+{{animal.illnes==='nincs' ? 'Szerencsére nincs ;) ' : 'Sajnos van: '+ animal.illnes }}
+
 <br>
 Az élet történetem:
 <br>
 {{animal.lifestory}}
 <br>
-Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:
-{{animal.virtual_owner}}
+{{animal.virtual_owner!==0 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
+{{animal.virtual_owner!==0 ? animal.virtual_owner : '' }}
+{{animal.virtual_owner===0 ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
 <br>
-Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: {{animal.shelter.name}} és akár sétálni is
- elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)
+{{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:'+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
+' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
+
 
 <br>
 

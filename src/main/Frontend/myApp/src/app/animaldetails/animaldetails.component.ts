@@ -3,6 +3,10 @@ import {Animal} from "../class/Animal";
 import {AnimalService} from "../Services/animal.service";
 import {AnimaldetailsService} from "../Services/animaldetails.service";
 import {AnimalsComponent} from "../animals/animals.component";
+import {AuthService} from "../Services/auth.service";
+import {Router} from "@angular/router";
+import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -18,10 +22,18 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   constructor(
+    public dialog: MatDialog,
+    private router:Router,
     //private route: ActivatedRoute,
     private animaldetailsService: AnimaldetailsService,
+    public auth: AuthService,
+
+
+
 
   ) { }
+
+
 
   ngOnInit(): void {
 
@@ -32,5 +44,20 @@ export class AnimaldetailsComponent implements OnInit {
       this.animal =res;
     });
   }
+
+  adopt() {
+    if(this.auth.isLogin$.value)
+    {this.router.navigateByUrl('http://localhost:4200/mainpage')}
+    else{this.dialog.open(PopupadoptComponent)}
+    }
+
+
+
+
+
+  wirtualadopt(){
+
+
+}
 
 }

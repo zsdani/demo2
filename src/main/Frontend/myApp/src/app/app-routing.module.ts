@@ -10,6 +10,7 @@ import {AnimaldetailsComponent} from "./animaldetails/animaldetails.component";
 import {SignupComponent} from "./auth/signup/signup.component";
 import {AuthComponent} from "./auth/auth.component";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
+import {TobevirtualownerComponent} from "./tobevirtualowner/tobevirtualowner.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'id', component: AnimaldetailsComponent },
+  { path: 'tobevirtualowner', component: TobevirtualownerComponent },
   { path: 'pagenotfound', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'pagenotfound', pathMatch: 'full' },
 

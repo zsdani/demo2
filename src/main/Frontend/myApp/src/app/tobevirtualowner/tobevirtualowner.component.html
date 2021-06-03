@@ -1,0 +1,63 @@
+<br>
+<br>
+<br>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Gyakori kérdések">
+
+
+<br>
+<h1>VIRTUÁLIS GAZDA gyakori kérdések</h1>
+
+<h3>Mikor érdemes Virtuális gazdinak állni?</h3>
+<ul>
+  <li>Szereted egy kis kedvencet, de még nem érzed késznek magad arra, hogy otthont adj egynek?</li>
+
+  <li>A lakásod jelenleg nem megfelelő méretű egy házi kedvencnek?</li>
+
+  <li>Családodban nem mindenki értene egyet az örökbefogadással?</li>
+
+  <li>Nem rendelkezel elegendő szabadidővel ahhoz, hogy megfelelően gondoskodhass egy kedvencről?</li>
+
+  <li>Szeretnél segíteni egy gazdátlan állaton?</li>
+
+  <li>Beleszerettél az egyik menhelylakóba, és szeretnél gondoskodni róla?</li>
+
+
+</ul>
+Ha fentiek közül bármelyik is igaz rád, akkor érdemes lehetne elgondolkodni a VIRTUÁLIS GAZDA létben!
+<br>
+<br>
+<h3>Mit is jelent ez pontosan?</h3>
+
+Virtuális gazdának az általad kiválasztott állat adatlapján keresztül jelentkezhetsz vagy ezen a képernyőn csak a másik fülön.
+
+Ezt követően havi rendszerességgel támogatod a választottadat minimum 5.000,-Ft.  utalásával.
+<br>
+<br>
+<h3>Hogyan juttathatom el a támogatás összegét?</h3>
+
+Hagyományos banki átutalással:
+
+Az alapítvány számlaszámára, közleményben az állat neve legyen.
+
+Miután sikeresen megérkezett az utalás a menhely tulaj(ok) jóváhagyják és hivatalosan is Virtuális gazda lettél.
+<br>
+<br>
+<h3>De ez miért jó ez Neked?</h3>
+
+Elsősorban azért, mert így Te is hozzájárulsz a kiválasztott kutya ellátásához addig, amíg gondozásunkban van, és így egy kicsit a Tiéd is.
+
+Ha a kutyát időközben örökbe fogadják, Te leszel az első, akit értesíteni fogunk.
+
+A VIRTUÁLIS GAZDÁK NEVEIT közzétesszük a kiválasztott kutyák részletek oldalon, amennyiben erre engedélyt kapunk tőlük.
+
+Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet és ajándékot is küldünk Neked.
+  </mat-tab>
+  <mat-tab *ngIf="auth.isLogin$.value; else elseBlock" label="Virtuális örökbefogadás" >
+    Melyik állatot szeretnéd virtuálisan örökbe fogadni?
+
+  </mat-tab>
+  <ng-template #elseBlock>
+    <mat-tab label="Virtuális örökbefogadás"  >Sajnos csak regisztráció/bejelentkezés után tudod használni ezt a funkciót. Térj vissza belépve ide</mat-tab>
+  </ng-template>>
+</mat-tab-group>
