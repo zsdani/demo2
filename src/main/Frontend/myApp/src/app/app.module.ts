@@ -38,6 +38,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PopupadoptComponent} from './popupadopt/popupadopt.component';
 import { TobevirtualownerComponent } from './tobevirtualowner/tobevirtualowner.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PopupadoptsureComponent } from './popupadoptsure/popupadoptsure.component';
+import {CalendarWeekModule} from "angular-calendar";
+
 
 
 
@@ -69,43 +72,46 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
     TobevirtualownerComponent,
 
+    PopupadoptsureComponent,
 
 
 
 
-
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatToolbarModule,
-    FormsModule,
-    MatButtonToggleModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatPasswordStrengthModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
 
 
 
 
 
   ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatToolbarModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatPasswordStrengthModule,
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSnackBarModule,
+
+
+
+    ],
   providers: [
     AnimalService,
     AnimaldetailsService,

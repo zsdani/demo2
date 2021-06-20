@@ -7,6 +7,7 @@ import {AuthService} from "../Services/auth.service";
 import {Router} from "@angular/router";
 import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
 import {MatDialog} from "@angular/material/dialog";
+import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
 
 
 @Component({
@@ -47,7 +48,7 @@ export class AnimaldetailsComponent implements OnInit {
 
   adopt() {
     if(this.auth.isLogin$.value)
-    {this.router.navigateByUrl('http://localhost:4200/mainpage')}
+    {this.dialog.open(PopupadoptsureComponent)}
     else{this.dialog.open(PopupadoptComponent)}
     }
 
@@ -56,6 +57,9 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   wirtualadopt(){
+    if(this.auth.isLogin$.value)
+    {this.router.navigateByUrl('/tobevirtualowner');}
+    else{this.dialog.open(PopupadoptComponent)}
 
 
 }

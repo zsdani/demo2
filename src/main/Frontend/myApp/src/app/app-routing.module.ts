@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'connection', component: ConnectionComponent },
   { path: 'login', component: AuthComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'tobevirtualowner', component: TobevirtualownerComponent },
   { path: 'id', component: AnimaldetailsComponent },
   { path: 'tobevirtualowner', component: TobevirtualownerComponent },
   { path: 'pagenotfound', component: PagenotfoundComponent },

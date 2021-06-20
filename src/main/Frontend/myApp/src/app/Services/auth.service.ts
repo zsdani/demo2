@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {User} from "../class/User";
 import {BehaviorSubject, Observable} from "rxjs";
-import {any} from "codelyzer/util/function";
+
 import {NotificationService} from "./notification.service";
 import {User1} from "../class/User1";
 
@@ -32,7 +32,10 @@ export class AuthService {
   private authUrl = 'http://localhost:8080/api/owner';
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
-  public isLogin1=false;
+
+
+
+
 
 
 
@@ -76,7 +79,7 @@ export class AuthService {
 
         localStorage.setItem('Token', data);
         console.log(this.isLogin$.value);
-        this.isLogin1=true;
+
         this.isLogin$.next(true);
         console.log(this.isLogin$.value);
         this.ns.show('Sikeres bejelentkezés!');
@@ -99,7 +102,7 @@ export class AuthService {
     console.log(this.isLogin$);
     localStorage.removeItem('Token');
     this.isLogin$.next(false);
-    this.isLogin1=false;
+
     this.ns.show('Sikeres kijelentkezés!');
     console.log(this.isLogin$.value);
     //this.router.navigate(['/']);
