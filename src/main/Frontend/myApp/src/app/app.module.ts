@@ -39,7 +39,12 @@ import { PopupadoptComponent} from './popupadopt/popupadopt.component';
 import { TobevirtualownerComponent } from './tobevirtualowner/tobevirtualowner.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { PopupadoptsureComponent } from './popupadoptsure/popupadoptsure.component';
-import {CalendarWeekModule} from "angular-calendar";
+import { CalendarComponent } from './calendar/calendar.component';
+import {CalendarCommonModule, CalendarModule, DateAdapter} from "angular-calendar";
+import {CommonModule} from "@angular/common";
+import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
+
 
 
 
@@ -75,6 +80,12 @@ import {CalendarWeekModule} from "angular-calendar";
     PopupadoptsureComponent,
 
 
+    CalendarComponent,
+
+
+
+
+
 
 
 
@@ -83,35 +94,44 @@ import {CalendarWeekModule} from "angular-calendar";
 
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        MatMenuModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatIconModule,
-        MatToolbarModule,
-        FormsModule,
-        MatButtonToggleModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatPasswordStrengthModule,
-        ReactiveFormsModule,
-        MatOptionModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatSnackBarModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    MatToolbarModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatPasswordStrengthModule,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    CalendarCommonModule,
+    CalendarModule,
+
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
 
 
-
-    ],
+  ],
   providers: [
     AnimalService,
     AnimaldetailsService,
