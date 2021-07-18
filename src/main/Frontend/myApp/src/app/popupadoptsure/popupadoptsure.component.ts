@@ -17,7 +17,7 @@ export class PopupadoptsureComponent implements OnInit {
   }
 
   openSnackBar(message: string){
-    this.snackBar.open(message)._dismissAfter(3000)
+    this.snackBar.open(message)._dismissAfter(1000)
 
 
   }

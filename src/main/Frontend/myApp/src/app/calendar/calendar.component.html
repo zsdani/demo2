@@ -48,10 +48,11 @@
     [events]="events"
     [refresh]="refresh"
     [weekStartsOn] = "1"
+    [hourSegments]="1"
     [dayStartHour]="8"
     [dayEndHour]="18"
     [locale]="locale"
-    [hourSegments]="1"
+
     [hourSegmentHeight]="50"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
@@ -61,19 +62,17 @@
 
 </div>
 
-<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
 
-<br /><br /><br />
 
+<br /><br />
 <h3>
-  Edit events
-  <button class="btn btn-primary float-right" (click)="addEvent()">
-    Add new
+  <button class="setabutton" (click)="addEvent()">
+    Séta foglalás
   </button>
   <div class="clearfix"></div>
 </h3>
-
+<!--
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
@@ -97,11 +96,9 @@
           (keyup)="refresh.next()"
         />
       </td>
-      <!--
       <td>
         <input
           type="color"
-
           [(ngModel)]="event.color.primary"
           (change)="refresh.next()"
         />
@@ -113,7 +110,6 @@
           (change)="refresh.next()"
         />
       </td>
-      -->
       <td>
         <input
           class="form-control"
@@ -121,6 +117,9 @@
           mwlFlatpickr
           [(ngModel)]="event.start"
           (ngModelChange)="refresh.next()"
+          [altInput]="true"
+          [convertModelValue]="true"
+          [enableTime]="true"
           dateFormat="Y-m-dTH:i"
           altFormat="F j, Y H:i"
           placeholder="Not set"
@@ -133,6 +132,9 @@
           mwlFlatpickr
           [(ngModel)]="event.end"
           (ngModelChange)="refresh.next()"
+          [altInput]="true"
+          [convertModelValue]="true"
+          [enableTime]="true"
           dateFormat="Y-m-dTH:i"
           altFormat="F j, Y H:i"
           placeholder="Not set"
@@ -171,3 +173,4 @@
     </button>
   </div>
 </ng-template>
+-->

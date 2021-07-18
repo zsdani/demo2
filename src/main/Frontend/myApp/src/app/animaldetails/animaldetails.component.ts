@@ -53,9 +53,6 @@ export class AnimaldetailsComponent implements OnInit {
     }
 
 
-
-
-
   wirtualadopt(){
     if(this.auth.isLogin$.value)
     {this.router.navigateByUrl('/tobevirtualowner');}
