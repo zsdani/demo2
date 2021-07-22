@@ -16,7 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConnectionComponent } from './connection/connection.component';
-import {MatOptionModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from '@angular/material/select';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -45,6 +45,11 @@ import {CommonModule} from "@angular/common";
 import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+
+
+
 
 
 
@@ -82,6 +87,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 
 
     CalendarComponent,
+
+
+    DatePickerComponent,
 
 
 
@@ -123,6 +131,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     CalendarCommonModule,
     CalendarModule,
 
+
     CommonModule,
     NgbModalModule,
     FormsModule,
@@ -131,6 +140,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    MatDatepickerModule,
+    MatNativeDateModule,
+
 
 
   ],
@@ -141,6 +153,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     AuthService,
     ShelterService,
     NotificationService,
+    {provide: MAT_DATE_LOCALE, useValue: 'hu-HU'},
 
 
   ],

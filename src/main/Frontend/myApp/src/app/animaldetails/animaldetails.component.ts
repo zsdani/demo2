@@ -50,7 +50,7 @@ export class AnimaldetailsComponent implements OnInit {
     if(this.auth.isLogin$.value)
     {this.dialog.open(PopupadoptsureComponent)}
     else{this.dialog.open(PopupadoptComponent)}
-    }
+  }
 
 
   wirtualadopt(){

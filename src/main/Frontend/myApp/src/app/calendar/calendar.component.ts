@@ -25,6 +25,12 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
+import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
+import {AnimaldetailsService} from "../Services/animaldetails.service";
+import {AuthService} from "../Services/auth.service";
 
 
 const colors = {
@@ -83,9 +89,11 @@ export class CalendarComponent implements OnInit {
     },
   ];
 
+
+
   refresh: Subject<any> = new Subject();
 
-  // @ts-ignore
+  // ide kéne majd backendről benyomni a dolgokat
   events: CalendarEvent[] = [
 
 
@@ -94,7 +102,10 @@ export class CalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,
+              public dialog: MatDialog,
+              private router:Router,
+              public auth: AuthService,) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -129,27 +140,49 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    //this.modalData = { event, action };
+    //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
+
+
+
+
+  now: number;
+  day: number
+/*
   addEvent(): void {
+    this.day=0;
+    var today = new Date();
+    this.now= today.getHours();
+    console.log(this.now);
+
+    if(this.now>17){
+      today.setDate(today.getDate() + 1)
+      this.now=7;
+    }
+    if(this.now<8){
+      this.now=7;
+    }
+
     this.events = [
       ...this.events,
       {
         title: 'Sétáltatás',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        start: addHours(startOfDay(today), this.now+1),
+        end: addHours(startOfDay(today), this.now+2),
         color: colors.red,
         draggable: true,
         resizable: {
           beforeStart: true,
-          afterEnd: true,
+          afterEnd: false,
         },
       },
     ];
   }
 
+
+ */
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
   }
@@ -161,6 +194,12 @@ export class CalendarComponent implements OnInit {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  addEvent() {
+    if(this.auth.isLogin$.value)
+    {this.dialog.open(PopupadoptsureComponent)}
+    else{this.dialog.open(PopupadoptComponent)}
   }
 
 
