@@ -67,7 +67,33 @@
 
 <br /><br />
 
-<app-date-picker></app-date-picker>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Válassz egy dátumot</mat-label>
+  <input matInput  [matDatepicker]="picker" [min]="minDate" [(ngModel)]="selectedday" >
+  <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+{{selectedday}}
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Mikor kezdődjön a séta?</mat-label>
+  <mat-select [(value)]="selectedhour">
+
+    <mat-option value=8>8:00</mat-option>
+    <mat-option value=9>9:00</mat-option>
+    <mat-option value=10>10:00</mat-option>
+    <mat-option value=11>11:00</mat-option>
+    <mat-option value=12>12:00</mat-option>
+    <mat-option value=13>13:00</mat-option>
+    <mat-option value=14>14:00</mat-option>
+    <mat-option value=15>15:00</mat-option>
+    <mat-option value=16>16:00</mat-option>
+  </mat-select>
+</mat-form-field>
+{{selectedhour}}
+<br>
+
 
 <h3>
   <button class="setabutton" (click)="addEvent()">

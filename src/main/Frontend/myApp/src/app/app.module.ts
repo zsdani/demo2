@@ -47,6 +47,7 @@ import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 
@@ -102,6 +103,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -142,6 +144,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     }),
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxMaterialTimepickerModule,
 
 
 

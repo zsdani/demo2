@@ -9,7 +9,7 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours,
+  addHours, getHours,
 } from 'date-fns';
 
 import { registerLocaleData } from '@angular/common';
@@ -30,23 +30,11 @@ import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {AnimaldetailsService} from "../Services/animaldetails.service";
-import {AuthService} from "../Services/auth.service";
+import {AuthService, httpOptions} from "../Services/auth.service";
+import {HttpClient} from "@angular/common/http";
+import {CalendarService} from "../Services/calendar.service";
 
 
-const colors = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
 
 @Component({
   selector: 'app-calendar',
@@ -54,6 +42,7 @@ const colors = {
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+
 
   locale: string = "hu";
   @ViewChild('modalContent', {static: true})
@@ -64,6 +53,8 @@ export class CalendarComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+  public selectedhour: number=-1;
+  public selectedday: string="default";
 
 
   modalData!: {
@@ -105,7 +96,9 @@ export class CalendarComponent implements OnInit {
   constructor(private modal: NgbModal,
               public dialog: MatDialog,
               private router:Router,
-              public auth: AuthService,) {}
+              public auth: AuthService,
+              private http: HttpClient,
+              private calendarService: CalendarService) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -147,42 +140,10 @@ export class CalendarComponent implements OnInit {
 
 
 
-
+  minDate= new Date();
   now: number;
   day: number
-/*
-  addEvent(): void {
-    this.day=0;
-    var today = new Date();
-    this.now= today.getHours();
-    console.log(this.now);
 
-    if(this.now>17){
-      today.setDate(today.getDate() + 1)
-      this.now=7;
-    }
-    if(this.now<8){
-      this.now=7;
-    }
-
-    this.events = [
-      ...this.events,
-      {
-        title: 'Sétáltatás',
-        start: addHours(startOfDay(today), this.now+1),
-        end: addHours(startOfDay(today), this.now+2),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: false,
-        },
-      },
-    ];
-  }
-
-
- */
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
   }
@@ -196,21 +157,41 @@ export class CalendarComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
+  private _PostData = {
+    date: this.selectedday,
+    hour: this.selectedhour,
+  };
+
+
   addEvent() {
-    if(this.auth.isLogin$.value)
-    {this.dialog.open(PopupadoptsureComponent)}
+    console.log(this._PostData)
+    this.calendarService.addevent(this._PostData);
+
+    if(this.auth.isLogin$.value) {
+      /*
+      this.http.post(this.url,valami,httpOptions);
+      console.log("elvileg elment...")
+
+       */
+
+    }
     else{this.dialog.open(PopupadoptComponent)}
   }
 
 
 
+
   ngOnInit(): void {
+
+    this.now=new Date(). getHours()
 
 
   }
 
 
-
+  get PostData(): { date: string; hour: number } {
+    return this._PostData;
+  }
 
 
 
