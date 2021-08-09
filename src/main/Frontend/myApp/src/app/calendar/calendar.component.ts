@@ -157,15 +157,20 @@ export class CalendarComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  private _PostData = {
-    date: this.selectedday,
-    hour: this.selectedhour,
-  };
+
 
 
   addEvent() {
-    console.log(this._PostData)
-    this.calendarService.addevent(this._PostData);
+    let PostData = {
+
+      date: this.selectedday,
+      hour: this.selectedhour,
+    }
+
+    console.log(PostData)
+    console.log(this.selectedhour)
+    this.calendarService.addevent(PostData);
+
 
     if(this.auth.isLogin$.value) {
       /*
@@ -189,9 +194,7 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  get PostData(): { date: string; hour: number } {
-    return this._PostData;
-  }
+
 
 
 
