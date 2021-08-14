@@ -18,6 +18,7 @@ import {HttpClient} from "@angular/common/http";
 export class AnimalsComponent implements OnInit {
 
 
+
   //public animals: any;
   selectedgender: number=-1;
   public selectedgonadectomy: number=-1;
@@ -33,7 +34,10 @@ export class AnimalsComponent implements OnInit {
   public _x:number=0;
   public  valami: string | null="";
 
+
+
   animal: Animal = new Animal;
+
 
 
   constructor(
@@ -105,4 +109,6 @@ export class AnimalsComponent implements OnInit {
     console.log(PostData);
 
   }
+
+
 }

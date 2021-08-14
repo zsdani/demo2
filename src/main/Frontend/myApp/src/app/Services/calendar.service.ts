@@ -18,7 +18,9 @@ export class CalendarService {
 
   url ="http://localhost:8080/api/date";
 
-  public addevent(k: { date: string; hour: number }): void{
+
+
+  public addevent(k: { allatid: number,date: string; hour: number }): void{
 
 
     this.http.post<Datee>(`${this.url}`,k).subscribe(

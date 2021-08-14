@@ -48,6 +48,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { TimepickerComponent } from './timepicker/timepicker.component';
+
+
 
 
 
@@ -91,6 +94,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
     DatePickerComponent,
+        TimepickerComponent,
 
 
 
@@ -145,6 +149,9 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
+
+
+
 
 
 

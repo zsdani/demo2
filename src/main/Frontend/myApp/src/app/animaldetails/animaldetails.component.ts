@@ -17,8 +17,10 @@ import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.componen
 })
 export class AnimaldetailsComponent implements OnInit {
 
+
   animal: Animal = new Animal;
-  szam:number=33;
+  public _currentlyanimalid: number=this.animal.id
+
 
 
 
@@ -59,6 +61,10 @@ export class AnimaldetailsComponent implements OnInit {
     else{this.dialog.open(PopupadoptComponent)}
 
 
-}
+  }
+
+  get currentlyanimalid(): number {
+    return this._currentlyanimalid;
+  }
 
 }

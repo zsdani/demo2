@@ -4,9 +4,9 @@ import {Shelter} from "./Shelter";
 export class Datee {
 
 
-
+  allatid: number=0;
   date: string = '';
-  hour: number = 0;
+  hour: string = '';
 
 
 

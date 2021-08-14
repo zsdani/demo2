@@ -17,6 +17,7 @@ public class Date {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Integer allatid;
     private java.util.Date date;
-    private Integer hour;
+    private String hour;
 }

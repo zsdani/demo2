@@ -33,6 +33,8 @@ import {AnimaldetailsService} from "../Services/animaldetails.service";
 import {AuthService, httpOptions} from "../Services/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {CalendarService} from "../Services/calendar.service";
+import {Animal} from "../class/Animal";
+import {AnimaldetailsComponent} from "../animaldetails/animaldetails.component";
 
 
 
@@ -98,7 +100,9 @@ export class CalendarComponent implements OnInit {
               private router:Router,
               public auth: AuthService,
               private http: HttpClient,
-              private calendarService: CalendarService) {}
+              private calendarService: CalendarService,
+              private animaldetailsService: AnimaldetailsService) {}
+
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -160,15 +164,18 @@ export class CalendarComponent implements OnInit {
 
 
 
+
   addEvent() {
     let PostData = {
-
+      allatid: this.animaldetailsService.num ,
       date: this.selectedday,
       hour: this.selectedhour,
     }
 
     console.log(PostData)
     console.log(this.selectedhour)
+    console.log(this.animaldetailsService.num)
+    console.log(PostData)
     this.calendarService.addevent(PostData);
 
 

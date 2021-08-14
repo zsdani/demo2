@@ -65,7 +65,7 @@
 
 
 
-<br /><br />
+<br/><br/>
 
 <mat-form-field class="example-full-width" appearance="fill">
   <mat-label>Válassz egy dátumot</mat-label>
@@ -73,26 +73,21 @@
   <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-{{selectedday}}
 
 
-<mat-form-field appearance="fill">
-  <mat-label>Mikor kezdődjön a séta?</mat-label>
-  <mat-select [(value)]="selectedhour">
+<div class="time-range-example">
+  <input  placeholder="Válassz egy kezdő időpontot"
+         [ngxTimepicker]="range" [(ngModel)]="selectedhour" [format]="24"  min="08:00 am" max="16:00 pm" readonly>
+  <ngx-material-timepicker  #range [cancelBtnTmpl]="cancelBtn"></ngx-material-timepicker>
+</div>
 
-    <mat-option value=8>8:00</mat-option>
-    <mat-option value=9>9:00</mat-option>
-    <mat-option value=10>10:00</mat-option>
-    <mat-option value=11>11:00</mat-option>
-    <mat-option value=12>12:00</mat-option>
-    <mat-option value=13>13:00</mat-option>
-    <mat-option value=14>14:00</mat-option>
-    <mat-option value=15>15:00</mat-option>
-    <mat-option value=16>16:00</mat-option>
-  </mat-select>
-</mat-form-field>
-{{selectedhour}}
-<br>
+<ng-template #cancelBtn>
+  <button style="margin-right: 10px;">Mégse</button>
+</ng-template>
+
+
+
+
 
 
 <h3>
