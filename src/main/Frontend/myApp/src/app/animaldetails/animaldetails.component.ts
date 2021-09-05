@@ -8,6 +8,8 @@ import {Router} from "@angular/router";
 import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
+import {Datee} from "../class/Datee";
+import {CalendarService} from "../Services/calendar.service";
 
 
 @Component({
@@ -16,6 +18,7 @@ import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.componen
   styleUrls: ['./animaldetails.component.css']
 })
 export class AnimaldetailsComponent implements OnInit {
+
 
 
   animal: Animal = new Animal;
@@ -30,13 +33,14 @@ export class AnimaldetailsComponent implements OnInit {
     //private route: ActivatedRoute,
     private animaldetailsService: AnimaldetailsService,
     public auth: AuthService,
+    public calendarService: CalendarService,
 
 
 
 
   ) { }
 
-
+  private _date2: Datee[];
 
   ngOnInit(): void {
 
@@ -46,6 +50,21 @@ export class AnimaldetailsComponent implements OnInit {
       console.log(res)
       this.animal =res;
     });
+
+
+
+    this.calendarService.getevents(this.animaldetailsService.num).subscribe((res: Datee[])=>{
+      this._date2 =res;
+      console.log(res)
+      console.log(this._date2)
+
+    });
+
+
+
+
+
+
   }
 
   adopt() {
@@ -63,8 +82,8 @@ export class AnimaldetailsComponent implements OnInit {
 
   }
 
-  get currentlyanimalid(): number {
-    return this._currentlyanimalid;
+  get date2(): Datee[] {
+    return this._date2;
   }
 
 }

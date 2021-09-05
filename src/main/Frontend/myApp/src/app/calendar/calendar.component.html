@@ -12,6 +12,7 @@
         [view]="view"
         [(viewDate)]="viewDate"
         (viewDateChange)="closeOpenMonthViewDay()"
+
       >
         Előző
       </div>
@@ -54,8 +55,7 @@
     [locale]="locale"
 
     [hourSegmentHeight]="50"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
-    (eventTimesChanged)="eventTimesChanged($event)"
+
 
   >
   </mwl-calendar-week-view>
@@ -73,6 +73,8 @@
   <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+{{selectedday}}
+
 
 
 <div class="time-range-example">
@@ -80,6 +82,7 @@
          [ngxTimepicker]="range" [(ngModel)]="selectedhour" [format]="24"  min="08:00 am" max="16:00 pm" readonly>
   <ngx-material-timepicker  #range [cancelBtnTmpl]="cancelBtn"></ngx-material-timepicker>
 </div>
+{{selectedhour}}
 
 <ng-template #cancelBtn>
   <button style="margin-right: 10px;">Mégse</button>

@@ -18,6 +18,6 @@ public class Date {
     private Long id;
 
     private Integer allatid;
-    private java.util.Date date;
+    private String date;
     private String hour;
 }

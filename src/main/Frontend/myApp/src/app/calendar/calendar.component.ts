@@ -17,7 +17,7 @@ import localeHu from '@angular/common/locales/hu';
 
 registerLocaleData(localeHu);
 
-import { Subject } from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -35,6 +35,8 @@ import {HttpClient} from "@angular/common/http";
 import {CalendarService} from "../Services/calendar.service";
 import {Animal} from "../class/Animal";
 import {AnimaldetailsComponent} from "../animaldetails/animaldetails.component";
+import {Datee} from "../class/Datee";
+import {Shelter} from "../class/Shelter";
 
 
 
@@ -56,7 +58,7 @@ export class CalendarComponent implements OnInit {
 
   viewDate: Date = new Date();
   public selectedhour: number=-1;
-  public selectedday: string="default";
+  public selectedday: Date= new Date();
 
 
   modalData!: {
@@ -64,34 +66,18 @@ export class CalendarComponent implements OnInit {
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
-  ];
+
 
 
 
   refresh: Subject<any> = new Subject();
 
+
+
   // ide kéne majd backendről benyomni a dolgokat
-  events: CalendarEvent[] = [
 
 
 
-  ];
 
   activeDayIsOpen: boolean = true;
 
@@ -101,7 +87,10 @@ export class CalendarComponent implements OnInit {
               public auth: AuthService,
               private http: HttpClient,
               private calendarService: CalendarService,
-              private animaldetailsService: AnimaldetailsService) {}
+              private animaldetailsService: AnimaldetailsService,
+              private animaldetails: AnimaldetailsComponent,
+
+              ) {}
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -117,7 +106,7 @@ export class CalendarComponent implements OnInit {
       this.viewDate = date;
     }
   }
-
+/*
   eventTimesChanged({
                       event,
                       newStart,
@@ -141,10 +130,12 @@ export class CalendarComponent implements OnInit {
     //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
+ */
 
 
 
-  minDate= new Date();
+
+  minDate= new Date()
   now: number;
   day: number
 
@@ -172,30 +163,125 @@ export class CalendarComponent implements OnInit {
       hour: this.selectedhour,
     }
 
-    console.log(PostData)
-    console.log(this.selectedhour)
-    console.log(this.animaldetailsService.num)
-    console.log(PostData)
-    this.calendarService.addevent(PostData);
-
-
     if(this.auth.isLogin$.value) {
-      /*
-      this.http.post(this.url,valami,httpOptions);
-      console.log("elvileg elment...")
-
-       */
+      this.calendarService.addevent(PostData);
 
     }
     else{this.dialog.open(PopupadoptComponent)}
+
   }
+
+
+  events: CalendarEvent[]=[];
+
+
+
+  x: number=this.animaldetailsService.num;
+  public date3: Datee[];
+  public date4: Observable<Datee[]>;
+
+
 
 
 
 
   ngOnInit(): void {
 
-    this.now=new Date(). getHours()
+    this.date3= this.animaldetails.date2;
+    console.log(this.date3)
+    console.log(this.animaldetails.date2)
+
+
+
+
+
+    this.calendarService.getevents(this.animaldetailsService.num).subscribe((res: Datee[])=>{
+      this.date3 =res;
+      console.log(res)
+      console.log(this.date3)
+      for (let i = 0; i < this.date3.length; i++) {
+        let num= this.date3[i].hour;
+        var a = num.split(':');
+        var minute = +a[1];
+        var hour = +a[0]
+
+        console.log(minute);
+        console.log(hour);
+
+
+        this.events[i] = {
+          start: addHours(new Date(this.date3[i].date).setHours(hour,minute),0),
+          end: addHours(new Date(this.date3[i].date).setHours(hour+1,minute),0),
+          title: 'Sétáltatás',
+
+        }
+
+        console.log(this.events[i]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      }
+
+    });
+    console.log("kivul")
+    console.log(this.events)
+
+
+
+
+
+
+
+    this.now=new Date().getHours()
+
+
+
+    console.log(this.animaldetailsService.num)
+
+
+    console.log(this.date3)
+    console.log(this.date3)
+
+
+
+    console.log(this.date3)
+    console.log(this.date3)
+
+
+    /*
+    for (let i = 0; i < this.date3.length; i++) {
+      console.log("1");
+    }
+
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   }
