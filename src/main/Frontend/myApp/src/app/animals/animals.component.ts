@@ -72,6 +72,7 @@ export class AnimalsComponent implements OnInit {
    goToDetails(pageID: number): any {
     console.log(pageID)
     console.log(this.valami)
+     localStorage.setItem('animalid', String(pageID));
     this.animaldetailsService.getAnimal(pageID, this.valami)
 
 

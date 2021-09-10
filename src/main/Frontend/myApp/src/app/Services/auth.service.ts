@@ -7,6 +7,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 
 import {NotificationService} from "./notification.service";
 import {User1} from "../class/User1";
+import {Shelter} from "../class/Shelter";
 
 
 
@@ -32,6 +33,7 @@ export class AuthService {
   private authUrl = 'http://localhost:8080/api/owner';
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  //isLogin$ = new BehaviorSubject<boolean>(false);
 
 
 
@@ -52,7 +54,7 @@ export class AuthService {
   }
 
   register(user: User1): void {
-    this.http.post<User>(`${this.authUrl}/register`, user, this.httpOptions).subscribe(
+    this.http.post<User1>(`${this.authUrl}/register`, user, this.httpOptions).subscribe(
       data => {
         console.log(data);
         this.ns.show('Sikeres regisztráció!');
@@ -73,6 +75,7 @@ export class AuthService {
   login(user: User): void {
     console.log(user);
     console.log("0");
+
     this.http.post(`${this.authUrl}/login`, user, {responseType: 'text'}).subscribe(
 
       data => {
@@ -94,6 +97,15 @@ export class AuthService {
         console.error(error);
       }
     );
+
+
+    this.http.get<User1>(`${this.authUrl}/username?username=${user.username}`).subscribe(
+      data => {
+        localStorage.setItem('ownerID', String(data.id));
+      }
+    );
+
+
   }
 
 
@@ -101,11 +113,12 @@ export class AuthService {
   logout(): void {
     console.log(this.isLogin$);
     localStorage.removeItem('Token');
+    localStorage.removeItem('ownerID');
     this.isLogin$.next(false);
 
     this.ns.show('Sikeres kijelentkezés!');
     console.log(this.isLogin$.value);
-    //this.router.navigate(['/']);
+
   }
 
 

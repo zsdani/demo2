@@ -4,6 +4,7 @@
 
 
 <div class="row text-center">
+
   <div class="col-md-4">
     <div class="btn-group">
       <div
@@ -45,6 +46,7 @@
   <mwl-calendar-week-view
 
     *ngSwitchCase="CalendarView.Week"
+
     [viewDate]="viewDate"
     [events]="events"
     [refresh]="refresh"
@@ -53,10 +55,8 @@
     [dayStartHour]="8"
     [dayEndHour]="18"
     [locale]="locale"
-
     [hourSegmentHeight]="50"
-
-
+    (eventClicked)="handleEvent('Clicked', $event.event)"
   >
   </mwl-calendar-week-view>
 
@@ -73,16 +73,32 @@
   <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-{{selectedday}}
 
 
 
+<!--jóóóóó
 <div class="time-range-example">
   <input  placeholder="Válassz egy kezdő időpontot"
-         [ngxTimepicker]="range" [(ngModel)]="selectedhour" [format]="24"  min="08:00 am" max="16:00 pm" readonly>
+         [ngxTimepicker]="range" [(ngModel)]="selectedhour" [format]="24"  min="08:00 am" max="16:00 pm"  >
   <ngx-material-timepicker  #range [cancelBtnTmpl]="cancelBtn"></ngx-material-timepicker>
 </div>
-{{selectedhour}}
+-->
+
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <input
+    matInput
+    placeholder="Időpont "
+    [ngxTimepicker]="range"
+    [(ngModel)]="selectedhour"
+    [format]="24"
+    color="primary"
+    min="08:00 am" max="16:00 pm"
+  >
+  <mat-icon matSuffix>schedule</mat-icon>
+  <ngx-material-timepicker  #range [cancelBtnTmpl]="cancelBtn"></ngx-material-timepicker>
+</mat-form-field>
+
 
 <ng-template #cancelBtn>
   <button style="margin-right: 10px;">Mégse</button>
@@ -91,14 +107,23 @@
 
 
 
-
-
-<h3>
+<div *ngIf="selectedhour!==0; else elseBlock">
+  <h3>
   <button class="setabutton" (click)="addEvent()">
     Séta foglalás
   </button>
   <div class="clearfix"></div>
+</h3></div>
+<ng-template #elseBlock>
+  <h3>
+  <button class="setabutton" (click)="addEvent()" disabled>
+    Séta foglalás
+  </button>
+  <div class="clearfix"></div>
 </h3>
+</ng-template>
+
+
 <!--
 <div class="table-responsive">
   <table class="table table-bordered">

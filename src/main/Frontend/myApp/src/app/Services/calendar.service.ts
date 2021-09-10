@@ -58,7 +58,7 @@ export class CalendarService {
 
 
 
-  public addevent(k: { allatid: number,date: Date; hour: number }): void{
+  public addevent(k: { allatid: number, ownerid:number,date: Date; hour: number }): void{
 
 
     this.http.post<Datee>(`${this.url}`,k).subscribe(
@@ -68,14 +68,14 @@ export class CalendarService {
 
       },
       error => {
-        this.ns.show('HIBA!');
+        this.ns.show('HIBA időpont üzközés miatt!');
         console.error(error);
       }
     );
 
+
+
   }
 
-  get date2(): Datee[] {
-    return this._date2;
-  }
+
 }

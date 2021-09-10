@@ -22,7 +22,7 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   animal: Animal = new Animal;
-  public _currentlyanimalid: number=this.animal.id
+
 
 
 
@@ -40,25 +40,25 @@ export class AnimaldetailsComponent implements OnInit {
 
   ) { }
 
-  private _date2: Datee[];
+
+
+
 
   ngOnInit(): void {
 
 
     //const id = +this.route.snapshot.paramMap.get('id');
-    this.animaldetailsService.getAnimal(this.animaldetailsService.num, this.animaldetailsService.text).subscribe((res: Animal)=>{
+    this.animaldetailsService.getAnimal(parseInt(localStorage.getItem("animalid")), this.animaldetailsService.text).subscribe((res: Animal)=>{
       console.log(res)
       this.animal =res;
     });
 
 
 
-    this.calendarService.getevents(this.animaldetailsService.num).subscribe((res: Datee[])=>{
-      this._date2 =res;
-      console.log(res)
-      console.log(this._date2)
 
-    });
+
+
+    console.log(parseInt(localStorage.getItem("animalid")));
 
 
 
@@ -82,8 +82,6 @@ export class AnimaldetailsComponent implements OnInit {
 
   }
 
-  get date2(): Datee[] {
-    return this._date2;
-  }
+
 
 }

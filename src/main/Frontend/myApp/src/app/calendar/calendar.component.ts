@@ -57,7 +57,7 @@ export class CalendarComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
-  public selectedhour: number=-1;
+  public selectedhour: number=0;
   public selectedday: Date= new Date();
 
 
@@ -65,6 +65,26 @@ export class CalendarComponent implements OnInit {
     action: string;
     event: CalendarEvent;
   };
+
+  actions: CalendarEventAction[];
+  actions2: CalendarEventAction[];
+  actions3: CalendarEventAction[];
+
+  //localStorage.getItem("ownerID")
+/*
+  actions: CalendarEventAction[] = [
+    {
+
+      label: '<i class="fas fa-trash-alt"></i>',
+      a11yLabel: 'Delete',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter((iEvent) => iEvent !== event);
+        this.handleEvent('Deleted', event);
+      },
+    },
+  ];
+
+ */
 
 
 
@@ -106,7 +126,7 @@ export class CalendarComponent implements OnInit {
       this.viewDate = date;
     }
   }
-/*
+
   eventTimesChanged({
                       event,
                       newStart,
@@ -130,7 +150,7 @@ export class CalendarComponent implements OnInit {
     //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
- */
+
 
 
 
@@ -139,9 +159,7 @@ export class CalendarComponent implements OnInit {
   now: number;
   day: number
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
-  }
+
 
   setView(view: CalendarView) {
     this.view = view;
@@ -159,8 +177,10 @@ export class CalendarComponent implements OnInit {
   addEvent() {
     let PostData = {
       allatid: this.animaldetailsService.num ,
+      ownerid: parseInt(localStorage.getItem("ownerID")),
       date: this.selectedday,
-      hour: this.selectedhour,
+      hour: this.selectedhour
+
     }
 
     if(this.auth.isLogin$.value) {
@@ -168,6 +188,14 @@ export class CalendarComponent implements OnInit {
 
     }
     else{this.dialog.open(PopupadoptComponent)}
+
+
+  }
+
+  deleteEvent(eventToDelete: CalendarEvent) {
+    this.events = this.events.filter((event) => event !== eventToDelete);
+
+
 
   }
 
@@ -177,8 +205,8 @@ export class CalendarComponent implements OnInit {
 
 
   x: number=this.animaldetailsService.num;
-  public date3: Datee[];
-  public date4: Observable<Datee[]>;
+  public date3: Datee[]=[];
+  public date4: Datee[]=[];
 
 
 
@@ -187,36 +215,44 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.date3= this.animaldetails.date2;
+
+
+
     console.log(this.date3)
-    console.log(this.animaldetails.date2)
 
 
 
 
 
-    this.calendarService.getevents(this.animaldetailsService.num).subscribe((res: Datee[])=>{
+
+    this.calendarService.getevents(parseInt(localStorage.getItem("animalid"))).subscribe((res: Datee[])=>{
       this.date3 =res;
-      console.log(res)
-      console.log(this.date3)
+      console.log("bent:")
       for (let i = 0; i < this.date3.length; i++) {
+        this.date4[i]=res[i];
         let num= this.date3[i].hour;
         var a = num.split(':');
         var minute = +a[1];
         var hour = +a[0]
 
-        console.log(minute);
-        console.log(hour);
+
+
+        if(this.date3[i].ownerid== parseInt(localStorage.getItem("ownerID"))){
+          this.actions3=this.actions
+        } else{
+          this.actions3=this.actions2
+        }
 
 
         this.events[i] = {
           start: addHours(new Date(this.date3[i].date).setHours(hour,minute),0),
           end: addHours(new Date(this.date3[i].date).setHours(hour+1,minute),0),
           title: 'Sétáltatás',
+          actions: this.actions3,
 
         }
 
-        console.log(this.events[i]);
+
 
 
 
@@ -238,6 +274,8 @@ export class CalendarComponent implements OnInit {
     });
     console.log("kivul")
     console.log(this.events)
+    console.log(this.date4)
+
 
 
 
@@ -249,16 +287,7 @@ export class CalendarComponent implements OnInit {
 
 
 
-    console.log(this.animaldetailsService.num)
 
-
-    console.log(this.date3)
-    console.log(this.date3)
-
-
-
-    console.log(this.date3)
-    console.log(this.date3)
 
 
     /*
@@ -267,6 +296,23 @@ export class CalendarComponent implements OnInit {
     }
 
      */
+
+
+    this.actions = [
+      {
+
+        label:'<i class="fas fa-trash-alt"></i>',
+        a11yLabel: 'Delete',
+        onClick: ({ event }: { event: CalendarEvent }): void => {
+          this.events = this.events.filter((iEvent) => iEvent !== event);
+          this.handleEvent('Deleted', event);
+        },
+      },
+    ];
+
+    this.actions2 = [
+
+    ];
 
 
 

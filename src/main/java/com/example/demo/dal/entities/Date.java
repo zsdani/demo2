@@ -18,6 +18,7 @@ public class Date {
     private Long id;
 
     private Integer allatid;
+    private Integer ownerid;
     private String date;
     private String hour;
 }

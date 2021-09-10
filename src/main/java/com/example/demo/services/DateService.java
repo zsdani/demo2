@@ -36,17 +36,27 @@ public class DateService {
         List<Date> list=dateRepository.findDateByAllatid(date.getAllatid());
         for (int i = 0; i < list.size(); i++) {
             System.out.println("__________________");
-            String[] split=date.getDate().split(":");
-            String[] split2=list.get(i).getDate().split(":");
 
-            System.out.println(split[0]);
+            System.out.println(date.getDate().split(":",10));
+            System.out.println(list.get(i).getDate());
+
+            String[] split=date.getDate().split(":");
+            String[] split2=list.get(i).getDate().split(":",6);
+
+
+
+            System.out.println(split[0].substring(0,10));
             System.out.println(split2[0]);
+            /*
 
             System.out.println(date.getHour());
             System.out.println(list.get(i).getHour());
             System.out.println("__________________");
 
-            if(split[0].compareTo(split2[0])==0){
+             */
+
+            //if(split[0].compareTo(split2[0])==0){
+            if(split[0].substring(0,10).compareTo(split2[0].substring(0,10))==0){
 
                 System.out.println("______IGAZ_______");
 
@@ -74,6 +84,8 @@ public class DateService {
         }
         return true;
     }
+
+
 
     public Date addDate(Date date) throws Dateisnotgood {
         if(DateCheck(date)) {

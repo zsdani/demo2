@@ -33,6 +33,11 @@ public class OwnerController {
         return ResponseEntity.ok(ownerService.findOwnerById(id));
     }
 
+    @GetMapping("/username")
+    public ResponseEntity<Owner> findOwnerByUsername(@RequestParam String username) throws DataNotFoundException {
+        return ResponseEntity.ok(ownerService.findOwnerByUsername(username));
+    }
+
     @GetMapping
     public ResponseEntity<List<AppUserDto>> findAllOwners() throws DataNotFoundException {
         return ResponseEntity.ok(ownerService.findAllOwners());

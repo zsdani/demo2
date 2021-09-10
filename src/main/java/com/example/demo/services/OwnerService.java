@@ -51,6 +51,11 @@ public class OwnerService {
                 .orElseThrow(() -> new DataNotFoundException("Owner by id " + id + " not found!"));
     }
 
+    public Owner findOwnerByUsername(String username) throws DataNotFoundException {
+        return  ownerRepository.findOwnerByUsername(username)
+                .orElseThrow(() -> new DataNotFoundException("Owner by username " + username + " not found!"));
+    }
+
     public Owner addOwner(Owner owner) {
 
         owner.setStatus(EntityStatus.ACTIVE);

@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
   login(form: FormGroup): void {
     if (form.valid) {
       this.as.login(<User>form.value);
+
     }
     else {
       this.ns.show('HIBA! Adatok nem megfelelőek!');
