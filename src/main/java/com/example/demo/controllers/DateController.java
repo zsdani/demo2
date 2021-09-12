@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.dal.entities.AnimalType;
 import com.example.demo.dal.entities.Date;
+import com.example.demo.dal.entities.Owner;
 import com.example.demo.services.AnimalService;
 import com.example.demo.services.DateService;
 import com.example.demo.services.ShelterService;
@@ -33,6 +34,11 @@ public class DateController {
     @PostMapping("/d")
     public ResponseEntity<List<Date>> listalldatestooneanimal(@RequestBody int index) throws DataNotFoundException {
         return ResponseEntity.ok(dateService.listDate(index));
+    }
+
+    @DeleteMapping("/delete/id")
+    public void deleteDate(@RequestParam long id) throws DataNotFoundException {
+        dateService.deleteDate(id);
     }
 
 

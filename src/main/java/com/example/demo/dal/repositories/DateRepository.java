@@ -14,4 +14,5 @@ import java.util.Optional;
 public interface DateRepository extends CrudRepository<Date, Long> {
 
     List<Date> findDateByAllatid(Integer allatid);
+    Date findDateByid(Long id);
 }

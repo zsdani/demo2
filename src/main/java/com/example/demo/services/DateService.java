@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.dal.entities.EntityStatus;
 import com.example.demo.dal.entities.Date;
+import com.example.demo.dal.entities.Owner;
 import com.example.demo.dal.repositories.DateRepository;
 import com.example.demo.dal.repositories.DateRepository;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -99,6 +100,14 @@ public class DateService {
     public List<Date> listDate(int index) {
         List<Date> list = dateRepository.findDateByAllatid(index);
         return list;
+    }
+
+    public void deleteDate(long id) throws DataNotFoundException {
+        Date date = dateRepository.findDateByid(id);
+
+
+
+        dateRepository.delete(date);
     }
 
 

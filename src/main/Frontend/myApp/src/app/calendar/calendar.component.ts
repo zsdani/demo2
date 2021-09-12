@@ -193,7 +193,11 @@ export class CalendarComponent implements OnInit {
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
+    //this.events = this.events.filter((event) => event !== eventToDelete);
+
+    console.log(eventToDelete.id)
+    console.log("hahahha")
+    //this.calendarService.deleteevent(eve)
 
 
 
@@ -237,6 +241,7 @@ export class CalendarComponent implements OnInit {
 
 
 
+
         if(this.date3[i].ownerid== parseInt(localStorage.getItem("ownerID"))){
           this.actions3=this.actions
         } else{
@@ -248,6 +253,7 @@ export class CalendarComponent implements OnInit {
           start: addHours(new Date(this.date3[i].date).setHours(hour,minute),0),
           end: addHours(new Date(this.date3[i].date).setHours(hour+1,minute),0),
           title: 'Sétáltatás',
+          id: this.date3[i].id,
           actions: this.actions3,
 
         }
@@ -302,11 +308,23 @@ export class CalendarComponent implements OnInit {
       {
 
         label:'<i class="fas fa-trash-alt"></i>',
+
         a11yLabel: 'Delete',
         onClick: ({ event }: { event: CalendarEvent }): void => {
+          this.calendarService.deleteevent(event.id).subscribe()
+          console.log(event.title)
+          console.log(typeof event.id)
+          console.log("ejhhh")
           this.events = this.events.filter((iEvent) => iEvent !== event);
           this.handleEvent('Deleted', event);
-        },
+
+
+        }
+
+
+
+
+
       },
     ];
 
