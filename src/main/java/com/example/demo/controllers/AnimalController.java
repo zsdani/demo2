@@ -253,7 +253,7 @@ public class AnimalController {
         }).collect(Collectors.toList()));
     }
 
-    @PatchMapping("/findspec")
+    @PostMapping("/findspec")
     public ResponseEntity<List<AnimalDTO> >  findspecanimal(@RequestBody specanimal spec) {
         return ResponseEntity.ok(animalService.findspecanimal(spec).stream().map(animal -> {
             AnimalDTO animalDTO = new AnimalDTO();

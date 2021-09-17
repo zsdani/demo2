@@ -7,6 +7,7 @@ import {AnimaldetailsService} from "../Services/animaldetails.service";
 import {Shelter} from "../class/Shelter";
 import {ShelterService} from "../Services/shelter.service";
 import {HttpClient} from "@angular/common/http";
+import {Datee} from "../class/Datee";
 
 
 
@@ -95,19 +96,26 @@ export class AnimalsComponent implements OnInit {
 
 
 
- url ="http://localhost:8080/api/animal/findspec";
-  //url = "http://httpbin.org/post";
+
+
   myFunction() {
     let PostData = {
       age: this.selectedage,
       size: this.selectedsize,
+
       gender: this.selectedgender,
       shelter: this.selectedshelter,
       gonadectomy: this.selectedgonadectomy,
 
     };
-    this.http.post(this.url,PostData);
-    console.log(PostData);
+
+    this.animalService.getspecanimals(PostData).subscribe((res: Animal[])=> {
+      console.log(res);
+
+    })
+
+
+
 
   }
 

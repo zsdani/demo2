@@ -7,6 +7,8 @@ import com.example.demo.dal.repositories.*;
 import com.example.demo.properties.AnimalProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
 import org.hibernate.Criteria;
+import org.hibernate.Metamodel;
+import org.hibernate.type.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -130,25 +132,40 @@ public class AnimalService implements SpecRepositroy {
     public  List<Animal> findspecanimal(specanimal spec){
 
 
+        CriteriaQuery<Animal> cq = cb.createQuery(Animal.class);
+        Metamodel m = (Metamodel) entityManager.getMetamodel();
+        EntityType<Animal> Pet_ = m.entity(Pet.class);
+        Root<Pet> pet = cq.from(Pet.class);
+        cq.where(pet.get(Pet_.color).in("brown", "black");
+
+        /*
         CriteriaBuilder cb= entityManager.getCriteriaBuilder();
         CriteriaQuery cq=cb.createQuery();
-        Root<specanimal> animal = cq.from(specanimal.class);
+        Root<Animal> animal = cq.from(specanimal.class);
 
+
+
+
+        //Predicate agePredicate = cb.equal(animal.get("age"),spec.getAge());
+        System.out.println(animal.get("age"));
+        System.out.println(spec.getAge());
         Predicate agePredicate = cb.equal(animal.get("age"),spec.getAge());
 
 
-        cq.select(animal);
-        cq.where( agePredicate);
-
-
-
-
+        cq.select(animal).where(agePredicate);
+        System.out.println("heheh");
 
 
 
         TypedQuery<Animal>query= entityManager.createQuery(cq);
+        System.out.println(query.getResultList());
 
         return query.getResultList();
+
+         */
+
+
+
 
     }
 

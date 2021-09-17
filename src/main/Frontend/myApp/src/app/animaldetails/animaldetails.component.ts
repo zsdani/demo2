@@ -10,6 +10,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
 import {Datee} from "../class/Datee";
 import {CalendarService} from "../Services/calendar.service";
+import {CalendarEvent} from "angular-calendar";
+import {addHours} from "date-fns";
 
 
 @Component({
@@ -18,6 +20,7 @@ import {CalendarService} from "../Services/calendar.service";
   styleUrls: ['./animaldetails.component.css']
 })
 export class AnimaldetailsComponent implements OnInit {
+
 
 
 
@@ -43,7 +46,6 @@ export class AnimaldetailsComponent implements OnInit {
 
 
 
-
   ngOnInit(): void {
 
 
@@ -58,7 +60,8 @@ export class AnimaldetailsComponent implements OnInit {
 
 
 
-    console.log(parseInt(localStorage.getItem("animalid")));
+
+
 
 
 
@@ -81,6 +84,8 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   }
+
+
 
 
 

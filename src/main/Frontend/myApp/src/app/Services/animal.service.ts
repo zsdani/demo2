@@ -7,6 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 import {AnimaldetailsService} from "./animaldetails.service";
 import {AppComponent} from "../app.component";
 import {ActivatedRoute} from "@angular/router";
+import {Datee} from "../class/Datee";
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,13 @@ export class AnimalService {
     }
     return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params:params});
   }
+
+
+
+  public getspecanimals(param: { age: number, size:number,gender: number; shelter: number, gonadectomy: number } ): Observable<Animal[]> {
+    return this.http.post<Animal[]>(`${this.animalURL}/findspec`,param)
+  }
+
 
 
 

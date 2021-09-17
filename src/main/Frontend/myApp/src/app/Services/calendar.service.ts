@@ -34,12 +34,6 @@ export class CalendarService {
 
 
 
-/*
-  public getevents(index: number): Observable<Datee[]> {
-    return this.http.post<Datee[]>(`${this.url}/d`,{index});
-  }
-
- */
 
   public deleteevent(index: string | number): Observable<Datee> {
     return this.http.delete<Datee>(`${this.url}/delete/id?id=${index}`)

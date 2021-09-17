@@ -203,8 +203,8 @@ export class CalendarComponent implements OnInit {
 
   }
 
+  events: CalendarEvent[]= []
 
-  events: CalendarEvent[]=[];
 
 
 
@@ -218,13 +218,6 @@ export class CalendarComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
-
-
-    console.log(this.date3)
-
-
 
 
 
@@ -252,11 +245,21 @@ export class CalendarComponent implements OnInit {
         this.events[i] = {
           start: addHours(new Date(this.date3[i].date).setHours(hour,minute),0),
           end: addHours(new Date(this.date3[i].date).setHours(hour+1,minute),0),
-          title: 'Sétáltatás',
+          title: "Sétáltatás",
+
           id: this.date3[i].id,
           actions: this.actions3,
 
+
+
+
         }
+
+
+
+
+
+
 
 
 
