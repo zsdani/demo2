@@ -24,7 +24,7 @@
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedshelter}}</p>
+
     </td>
 
 
@@ -34,13 +34,16 @@
         <mat-label>Milyen korú?</mat-label>
         <mat-select [(value)]="selectedage">
           <mat-option value=-1>Nem fontos</mat-option>
-          <mat-option value=0>1</mat-option>
-          <mat-option value=1>2</mat-option>
-          <mat-option value=4>4</mat-option>
+          <mat-option value=0>Kölyök </mat-option>
+          <mat-option value=1>Fiatal </mat-option>
+          <mat-option value=2>Felnőtt </mat-option>
+          <mat-option value=3>Öreg </mat-option>
         </mat-select>
+
       </mat-form-field>
 
-      <p>You selected: {{selectedage}}</p>
+
+
 
     </td>
     <td>
@@ -55,7 +58,7 @@
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedsize}}</p>
+
     </td>
     <td>
       Neme:
@@ -68,7 +71,7 @@
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedgender}}</p>
+
 
     </td>
     <td>      Ivartalanított:
@@ -82,7 +85,7 @@
         </mat-select>
       </mat-form-field>
 
-      <p>You selected: {{selectedgonadectomy}}</p></td>
+
     <td><button type="button" (click)="myFunction()">Keresés</button></td>
   </tr>
   </tbody>

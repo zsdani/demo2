@@ -18,6 +18,7 @@ public class specanimal extends BaseEntity {
 
     int age;
     int size;
+    int animaltype;
     int gonadectomy;
     int shelter_id;
     int gender;

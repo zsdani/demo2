@@ -41,7 +41,7 @@ export class AnimalService {
 
 
 
-  public getspecanimals(param: { age: number, size:number,gender: number; shelter: number, gonadectomy: number } ): Observable<Animal[]> {
+  public getspecanimals(param: { age: number, size:number,animaltype: number,gender: number; shelter_id: number, gonadectomy: number } ): Observable<Animal[]> {
     return this.http.post<Animal[]>(`${this.animalURL}/findspec`,param)
   }
 

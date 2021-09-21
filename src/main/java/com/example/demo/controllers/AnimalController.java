@@ -265,10 +265,10 @@ public class AnimalController {
             animalDTO.setCreated(animal.getCreated());
             animalDTO.setUpdated(animal.getUpdated());
             animalDTO.setName(animal.getName());
-            animalDTO.setAge(spec.getAge());
+            animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
-            animalDTO.setGender(spec.getGender());
+            animalDTO.setGender(animal.getGender());
 
             animalDTO.setLifestory(animal.getLifestory());
             try {

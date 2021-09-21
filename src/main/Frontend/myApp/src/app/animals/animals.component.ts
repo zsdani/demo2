@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Animal} from "../class/Animal";
-import {AnimalService} from "../Services/animal.service";
-import {ActivatedRoute, Route, Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {AnimaldetailsService} from "../Services/animaldetails.service";
-import {Shelter} from "../class/Shelter";
-import {ShelterService} from "../Services/shelter.service";
-import {HttpClient} from "@angular/common/http";
-import {Datee} from "../class/Datee";
+import {Animal} from '../class/Animal';
+import {AnimalService} from '../Services/animal.service';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AnimaldetailsService} from '../Services/animaldetails.service';
+import {Shelter} from '../class/Shelter';
+import {ShelterService} from '../Services/shelter.service';
+import {HttpClient} from '@angular/common/http';
+import {Datee} from '../class/Datee';
 
 
 
@@ -20,20 +20,20 @@ export class AnimalsComponent implements OnInit {
 
 
 
-  //public animals: any;
-  selectedgender: number=-1;
-  public selectedgonadectomy: number=-1;
-  public selectedage: number=-1;
-  public selectedshelter:   number=-1;//Shelter = new Shelter();
-  public selectedsize:   number=-1;
+  // public animals: any;
+  selectedgender = -1;
+  public selectedgonadectomy = -1;
+  public selectedage = -1;
+  public selectedshelter = -1; // Shelter = new Shelter();
+  public selectedsize = -1;
   public animals: Animal[] = [];
-  public genders: number[] = [0,1,-1];
-  public animaltypes: number[] = [0,1,-1];
+  public genders: number[] = [0, 1, -1];
+  public animaltypes: number[] = [0, 1, -1];
   public shelterss: Shelter[] = [];
-  public shelters: number[] = [0,1,-1];
-  private gender:number=-1;
-  public _x:number=0;
-  public  valami: string | null="";
+  public shelters: number[] = [0, 1, -1];
+  private gender = -1;
+  public _x = 0;
+  public  valami: string | null = '';
 
 
 
@@ -48,17 +48,64 @@ export class AnimalsComponent implements OnInit {
     private  shelterService: ShelterService,
     private  rout: ActivatedRoute,
 
-  ) {this.rout.snapshot.paramMap.get('animaltype_id')}
+  ) {this.rout.snapshot.paramMap.get('animaltype_id'); }
 
   public  ngOnInit(): void  {
-    this.valami=this.rout.snapshot.paramMap.get('animaltype_id');
-     this.animalService.getAnimals(this.rout.snapshot.paramMap.get('animaltype_id')).subscribe((res: Animal[])=>{
-       this.animals =res;
+    localStorage.setItem('animaltype', this.rout.snapshot.paramMap.get('animaltype_id'));
+    this.valami = this.rout.snapshot.paramMap.get('animaltype_id');
+    this.animalService.getAnimals(this.rout.snapshot.paramMap.get('animaltype_id')).subscribe((res: Animal[]) => {
+       this.animals = res;
 
      });
 
-    this.shelterService.getShelters().subscribe((res: Shelter[])=>{
-      this.shelterss =res;
+    this.shelterService.getShelters().subscribe((res: Shelter[]) => {
+      this.shelterss = res;
+
+    });
+
+
+  }
+
+
+
+
+   goToDetails(pageID: number): any {
+    console.log(pageID);
+    console.log(this.valami);
+    localStorage.setItem('animalid', String(pageID));
+    this.animaldetailsService.getAnimal(pageID, this.valami);
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  myFunction() {
+    const PostData = {
+      age: this.selectedage,
+      size: this.selectedsize,
+      animaltype: parseInt(localStorage.getItem('animaltype')),
+      gender: this.selectedgender,
+      shelter_id: this.selectedshelter,
+      gonadectomy: this.selectedgonadectomy,
+
+    };
+
+    this.animalService.getspecanimals(PostData).subscribe((res: Animal[]) => {
+      console.log('na?');
+      console.log(res);
+      this.animals = res;
+
 
     });
 
@@ -68,55 +115,12 @@ export class AnimalsComponent implements OnInit {
   }
 
 
-
-
-   goToDetails(pageID: number): any {
-    console.log(pageID)
-    console.log(this.valami)
-     localStorage.setItem('animalid', String(pageID));
-    this.animaldetailsService.getAnimal(pageID, this.valami)
-
-
-  }
-
-
-
-
-
-
-
-
   set x(value: number) {
     this._x = value;
   }
 
   get x(): number {
     return this._x;
-  }
-
-
-
-
-
-  myFunction() {
-    let PostData = {
-      age: this.selectedage,
-      size: this.selectedsize,
-
-      gender: this.selectedgender,
-      shelter: this.selectedshelter,
-      gonadectomy: this.selectedgonadectomy,
-
-    };
-
-    this.animalService.getspecanimals(PostData).subscribe((res: Animal[])=> {
-      console.log(res);
-
-    })
-
-
-
-
   }
 
 

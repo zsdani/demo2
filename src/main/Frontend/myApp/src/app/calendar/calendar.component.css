@@ -10,3 +10,7 @@ fas fa-clock{
   text-align: right;
   color: white;
 }
+
+.setabuttonNO{
+  cursor: not-allowed;
+}
