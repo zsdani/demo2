@@ -59,7 +59,7 @@ public class OwnerService {
     public Owner addOwner(Owner owner) {
 
         owner.setStatus(EntityStatus.ACTIVE);
-        owner.setRole("USER");
+
 
 
 

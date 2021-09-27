@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {Router} from "@angular/router";
-import {User} from "../class/User";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Router} from '@angular/router';
+import {User} from '../class/User';
+import {BehaviorSubject, Observable} from 'rxjs';
 
-import {NotificationService} from "./notification.service";
-import {User1} from "../class/User1";
-import {Shelter} from "../class/Shelter";
+import {NotificationService} from './notification.service';
+import {User1} from '../class/User1';
+import {Shelter} from '../class/Shelter';
+import {token} from "flatpickr/dist/utils/formatting";
 
 
 
 export const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': '',
+    Authorization: '',
   })
 };
 
@@ -22,18 +23,24 @@ export const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  get OwnerRole(): string {
+    return this._OwnerRole;
+  }
+
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': ''
+      Authorization: ''
     })
   };
 
   private authUrl = 'http://localhost:8080/api/owner';
+  private _OwnerID: number;
+  private _OwnerRole: string;
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
-  //isLogin$ = new BehaviorSubject<boolean>(false);
+
 
 
 
@@ -45,7 +52,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private ns : NotificationService
+    private ns: NotificationService
   ) {
   }
 
@@ -59,7 +66,7 @@ export class AuthService {
         console.log(data);
         this.ns.show('Sikeres regisztráció!');
 
-        this.router.navigateByUrl('http://localhost:8080/api/owner/login', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl('http://localhost:8080/api/owner/login', {skipLocationChange: true}).then(() =>
           this.router.navigate(['/login']));
 
 
@@ -73,18 +80,20 @@ export class AuthService {
 
 
   login(user: User): void {
-    console.log(user);
-    console.log("0");
 
     this.http.post(`${this.authUrl}/login`, user, {responseType: 'text'}).subscribe(
 
       data => {
 
         localStorage.setItem('Token', data);
-        console.log(this.isLogin$.value);
+
+        // tslint:disable-next-line:no-unused-expression radix
+        this._OwnerID = parseInt(this.parseJwt(data).id);
+        this._OwnerRole = this.parseJwt(data).role;
+
 
         this.isLogin$.next(true);
-        console.log(this.isLogin$.value);
+
         this.ns.show('Sikeres bejelentkezés!');
         this.router.navigate(['/mainpage']);
 
@@ -92,7 +101,6 @@ export class AuthService {
 
       error => {
         this.ns.show('HIBA! Bejelentkezés sikertelen!');
-        console.log("tuuuup:");
         console.log(this.isLogin$.value);
         console.error(error);
       }
@@ -116,6 +124,8 @@ export class AuthService {
     localStorage.removeItem('ownerID');
     this.isLogin$.next(false);
 
+    this._OwnerID = -1;
+
     this.ns.show('Sikeres kijelentkezés!');
     console.log(this.isLogin$.value);
 
@@ -126,12 +136,27 @@ export class AuthService {
     return !!localStorage.getItem('Token');
   }
 
+  public parseJwt(token): any  {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    // tslint:disable-next-line:only-arrow-functions typedef
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+
+
+    return JSON.parse(jsonPayload);
+  }
 
 
 
 
 
 
+  get OwnerID(): number {
+    return this._OwnerID;
+  }
 
 
 }

@@ -22,7 +22,7 @@ public class JwtTokenManager {
     public static final String TOKEN_HEADER_NAME = "Token";
     public static final String TOKEN_PROVIDER = "Demo app";
     public static final String TOKEN_CLAIM_USERNAME_KEY = "username";
-    public static final String TOKEN_CLAIM_NAME_KEY = "name";
+    public static final String TOKEN_CLAIM_NAME_KEY = "id";
     public static final String TOKEN_CLAIM_ROLE_KEY = "role";
     public static final int TOKEN_EXPIRATION_IN_MINUTES = 60;
 
@@ -37,7 +37,7 @@ public class JwtTokenManager {
         JWTCreator.Builder tokenBuilder = JWT.create()
                 .withIssuer(TOKEN_PROVIDER)
                 .withClaim(TOKEN_CLAIM_USERNAME_KEY, user.getUsername())
-                .withClaim(TOKEN_CLAIM_NAME_KEY, user.getFirstname())
+                .withClaim(TOKEN_CLAIM_NAME_KEY, user.getId())
                 .withClaim(TOKEN_CLAIM_ROLE_KEY, user.getRole());
 
         Algorithm algorithm = Algorithm.HMAC256("secret key");

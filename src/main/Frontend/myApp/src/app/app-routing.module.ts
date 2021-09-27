@@ -11,6 +11,7 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {AuthComponent} from "./auth/auth.component";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 import {TobevirtualownerComponent} from "./tobevirtualowner/tobevirtualowner.component";
+import {ShelterpageComponent} from "./shelterpage/shelterpage.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'tobevirtualowner', component: TobevirtualownerComponent },
   { path: 'id', component: AnimaldetailsComponent },
   { path: 'tobevirtualowner', component: TobevirtualownerComponent },
+  { path: 'shelterpage', component: ShelterpageComponent },
   { path: 'pagenotfound', component: PagenotfoundComponent },
   { path: '**', redirectTo: 'pagenotfound', pathMatch: 'full' },
 

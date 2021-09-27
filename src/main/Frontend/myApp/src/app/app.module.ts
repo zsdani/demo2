@@ -49,6 +49,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { TimepickerComponent } from './timepicker/timepicker.component';
+import { ShelterpageComponent } from './shelterpage/shelterpage.component';
 
 
 
@@ -95,6 +96,7 @@ import { TimepickerComponent } from './timepicker/timepicker.component';
 
     DatePickerComponent,
         TimepickerComponent,
+        ShelterpageComponent,
 
 
 

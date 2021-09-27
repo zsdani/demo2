@@ -130,6 +130,8 @@ export class CalendarComponent implements OnInit {
   public date3: Datee[] = [];
   public date4: Datee[] = [];
 
+  events: CalendarEvent[] = [];
+
 
 
 
@@ -217,13 +219,12 @@ export class CalendarComponent implements OnInit {
 
   }
 
-  events: CalendarEvent[] = [];
-
   ngOnInit(): void {
 
 
 
 
+    // tslint:disable-next-line:radix
     this.calendarService.getevents(parseInt(localStorage.getItem('animalid'))).subscribe((res: Datee[]) => {
 
       this.date3 = res;
@@ -235,7 +236,8 @@ export class CalendarComponent implements OnInit {
         const minute = +a[1];
         const hour = +a[0];
 
-        if (this.date3[i].ownerid === parseInt(localStorage.getItem('ownerID'))){
+        // tslint:disable-next-line:radix
+        if (this.date3[i].ownerid === this.auth.OwnerID){
           this.actions3 = this.actions;
         } else{
           this.actions3 = this.actions2;
@@ -254,28 +256,6 @@ export class CalendarComponent implements OnInit {
 
 
         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       }
@@ -316,7 +296,7 @@ export class CalendarComponent implements OnInit {
         onClick: ({ event }: { event: CalendarEvent }): void => {
           this.calendarService.deleteevent(event.id).subscribe();
           console.log(event.title);
-          console.log(typeof event.id);
+          console.log(event.id);
           console.log('ejhhh');
           this.events = this.events.filter((iEvent) => iEvent !== event);
           this.handleEvent('Deleted', event);
