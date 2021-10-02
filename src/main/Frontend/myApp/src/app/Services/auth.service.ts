@@ -8,7 +8,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {NotificationService} from './notification.service';
 import {User1} from '../class/User1';
 import {Shelter} from '../class/Shelter';
-import {token} from "flatpickr/dist/utils/formatting";
+import {token} from 'flatpickr/dist/utils/formatting';
 
 
 
@@ -40,6 +40,7 @@ export class AuthService {
   private _OwnerRole: string;
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
 
 
 
@@ -59,6 +60,8 @@ export class AuthService {
   isLoggedIn(): Observable<boolean> {
     return this.isLogin$.asObservable();
   }
+
+
 
   register(user: User1): void {
     this.http.post<User1>(`${this.authUrl}/register`, user, this.httpOptions).subscribe(
@@ -87,12 +90,16 @@ export class AuthService {
 
         localStorage.setItem('Token', data);
 
+
         // tslint:disable-next-line:no-unused-expression radix
         this._OwnerID = parseInt(this.parseJwt(data).id);
         this._OwnerRole = this.parseJwt(data).role;
 
 
         this.isLogin$.next(true);
+        if (this.parseJwt(data).role === 'ADMIN'){
+          this.isADMIN$.next(true);
+        }
 
         this.ns.show('Sikeres bejelentkezés!');
         this.router.navigate(['/mainpage']);
@@ -110,6 +117,8 @@ export class AuthService {
     this.http.get<User1>(`${this.authUrl}/username?username=${user.username}`).subscribe(
       data => {
         localStorage.setItem('ownerID', String(data.id));
+
+        localStorage.setItem('ownerRole', data.role);
       }
     );
 
@@ -122,7 +131,9 @@ export class AuthService {
     console.log(this.isLogin$);
     localStorage.removeItem('Token');
     localStorage.removeItem('ownerID');
+    localStorage.removeItem('ownerRole');
     this.isLogin$.next(false);
+    this.isADMIN$.next(false);
 
     this._OwnerID = -1;
 
@@ -137,10 +148,10 @@ export class AuthService {
   }
 
   public parseJwt(token): any  {
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     // tslint:disable-next-line:only-arrow-functions typedef
-    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 

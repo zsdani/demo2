@@ -29,7 +29,7 @@
 
     <button class="mat-button" href="/connection" routerLink="/connection">Elérhetőségeink</button>
 
-    <button  *ngIf="auth.isLogin$.value && auth.OwnerRole==='ADMIN'; else elseBlock2" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
+    <button  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock2" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
       Menhelyem
     </button>
     <ng-template #elseBlock2>

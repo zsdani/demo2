@@ -28,6 +28,7 @@ export class ConnectionComponent implements OnInit {
       this.shelters =res;
 
     });
+
   }
 
 }

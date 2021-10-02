@@ -1,8 +1,153 @@
 <p>shelterpage works!</p>
-<p>shelterpage works!</p><p>shelterpage works!</p>
 <p>shelterpage works!</p>
 <p>shelterpage works!</p>
-<p>shelterpage works!</p>
+
+<div *ngIf="shelters2.length===0; else elseBlock">
+  <form  [formGroup]="shelterForm" class="example-form"  (ngSubmit)="addShelter(shelterForm)">
+
+    <table class="example-full-width" ><tr>
+      <td><mat-form-field class="example-full-width" appearance="fill">
+
+        <mat-label>Menhely neve:</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field></td>
+
+
+    </tr></table>
+
+    <p>
+      <mat-form-field hintLabel="Megfelelő formátum: pl valami@valami.valami" class="example-full-width" appearance="fill">
+        <input
+          matInput
+          type="email"
+          placeholder="E-mail címe"
+          formControlName="e_mail"
+          required
+        >
+        <mat-error>Adjon meg egy érvényes E-mail címet!</mat-error>
+      </mat-form-field>
+    </p>
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Város</mat-label>
+        <input matInput placeholder="Pl Soltvadkert" formControlName="city">
+      </mat-form-field></td>
+
+      <td><mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Irányító szám</mat-label>
+        <input matInput #postalCode maxlength="4" formControlName="postcode"  >
+        <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+        <mat-error>Az irányítószám, csak számot tartalmahat és 4 jegyűnek kell lennie!</mat-error>
+      </mat-form-field></td>
+    </tr></table>
+
+    <p>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Cím</mat-label>
+        <input matInput placeholder="Pl Kossuth Lajos utca 10." formControlName="addres" >
+      </mat-form-field>
+    </p>
+
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Telefonszám</mat-label>
+          <mat-icon matSuffix>phone</mat-icon>
+          <input  #number maxlength="12" matInput placeholder="+36209870901" formControlName="phonenumber" >
+          <mat-hint align="end">{{number.value.length}} / 12</mat-hint>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Bankszámlaszám</mat-label>
+          <input type="number" #bank  maxlength="16" matInput placeholder="5000-2066-5756-4512"  formControlName="accoun_number">
+          <mat-hint align="end">{{bank.value.length}} / 16</mat-hint>
+          <mat-error>Ebbe a mezőbe csak szám szerepelhet</mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    </table>
+
+
+    <div *ngIf= "shelterForm.valid; else elseBlock">
+      <h3>
+        <button mat-button >Létrehozás</button>
+        <div class="clearfix"></div>
+      </h3></div>
+    <ng-template #elseBlock>
+      <h3>
+        <button mat-button disabled>Létrehozás</button>
+        <div class="clearfix"></div>
+      </h3>
+    </ng-template>
+
+
+  </form>
+
+</div>
+<ng-template #elseBlock>
+
+  A te menhelye(i)d:
+
+  <div class="table"  *ngFor="let shelter of shelters2" >
+
+    <div class="row header green">
+      <div class="cell">
+        Név
+      </div>
+      <div class="cell">
+        Irányítószám
+      </div>
+      <div class="cell">
+        Város
+      </div>
+      <div class="cell">
+        Cím
+      </div>
+      <div class="cell">
+        E-mail
+      </div>
+      <div class="cell">
+        Telefonszám
+      </div>
+      <div class="cell">
+        Bankszámla
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Product">
+        {{shelter.name}}
+      </div>
+      <div class="cell" data-title="Unit Price">
+        {{shelter.postcode}}
+      </div>
+      <div class="cell" data-title="Quantity">
+        {{shelter.city}}
+      </div>
+      <div class="cell" data-title="Date Sold">
+        {{shelter.addres}}
+      </div>
+      <div class="cell" data-title="Status">
+        {{shelter.e_mail}}
+      </div>
+      <div class="cell" data-title="Status">
+        {{shelter.phonenumber}}
+      </div>
+      <div class="cell" data-title="Status">
+        {{shelter.accoun_number}}
+      </div>
+    </div>
+
+
+  </div>
+
+</ng-template>
+
+
+
+
 
 
 

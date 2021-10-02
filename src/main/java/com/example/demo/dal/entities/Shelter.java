@@ -14,12 +14,16 @@ public class Shelter extends BaseEntity {
 
     private String name;
 
-    private String adress;
+    private String city;
 
-    private int number;
+    private String addres;
+
+    private String postcode;
+
+    private String phonenumber;
 
     private String e_mail;
 
-    private int accoun_number;
+    private String accoun_number;
 
 }

@@ -1,35 +1,48 @@
 export class Shelter {
-  get id(): number {
-    return this._id;
+  get _id(): number {
+    return this.id;
   }
 
-  get name(): string {
-    return this._name;
+  get _name(): string {
+    return this.name;
   }
 
-  get number(): number {
-    return this._number;
+  get _phonenumber(): string {
+    return this.phonenumber;
   }
 
-  get e_mail(): string {
-    return this._e_mail;
+  get _e_mail(): string {
+    return this.e_mail;
   }
 
-  get adress(): string {
-    return this._adress;
+  get _city(): string {
+    return this.city;
   }
 
-  get accoun_number(): number {
-    return this._accoun_number;
+  get _postcode(): string {
+    return this.postcode;
   }
 
-  private _id: number = 0;
-  private _name: string = '';
-  private _number: number=0;
-  private _e_mail: string = '';
-  private _adress: string = '';
-  private _accoun_number: number=0;
+  get _adress(): string {
+    return this.addres;
+  }
 
+  get _accoun_number(): string {
+    return this.accoun_number;
+  }
+
+
+
+
+
+  public id: number = 0;
+  public name: string = '';
+  public phonenumber: string='';
+  public e_mail: string = '';
+  public city: string = '';
+  public postcode: string = '';
+  public addres: string = '';
+  public accoun_number: string='';
   constructor() {
   }
 

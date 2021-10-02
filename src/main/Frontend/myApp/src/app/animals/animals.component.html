@@ -18,7 +18,7 @@
         <mat-label>Milyen menhelyen?</mat-label>
         <mat-select [(value)]="selectedshelter">
           <mat-option *ngFor="let shelter of shelterss" [value]="shelter.id" >
-            {{shelter.name}}
+            {{shelter.name}} ({{shelter.city}})
           </mat-option>
           <mat-option value=-1>Összes</mat-option>
         </mat-select>

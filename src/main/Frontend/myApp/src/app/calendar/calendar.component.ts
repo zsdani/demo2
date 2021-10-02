@@ -236,8 +236,8 @@ export class CalendarComponent implements OnInit {
         const minute = +a[1];
         const hour = +a[0];
 
-        // tslint:disable-next-line:radix
-        if (this.date3[i].ownerid === this.auth.OwnerID){
+
+        if (this.date3[i].ownerid === parseInt(localStorage.getItem('ownerID'))){
           this.actions3 = this.actions;
         } else{
           this.actions3 = this.actions2;
