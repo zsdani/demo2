@@ -58,6 +58,26 @@ body {
     display: block;
   }
 }
+div{
+
+  text-align: center;
+}
+
+table{
+
+  border: #2b2b2b;
+  border-style: dotted;
+
+}
+td{
+  border: #2b2b2b;
+  border-style: dotted;
+}
+
+tr{
+  border: aqua;
+  border-style: dotted;
+}
 
 .row {
   display: table-row;
@@ -114,5 +134,10 @@ body {
     padding: 2px 16px;
     display: block;
   }
+}
+
+specfield2{
+  width: 70%;
+
 }
 

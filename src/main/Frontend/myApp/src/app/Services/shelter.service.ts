@@ -37,22 +37,14 @@ export class ShelterService {
 
 
   addShelter(shelter: Shelter): void {
-
-    console.log(shelter);
-
     this.http.post<Shelter>(`${this.shelterURL}`, shelter, httpOptions).subscribe(
       data => {
-        console.log(data.id);
-
         const PostData = {
           ownerid: parseInt(localStorage.getItem('ownerID')),
           shelterid: data.id
         };
-
         this.addSheltertoOwner(PostData);
         this.ns.show('Sikeres menhely létrehozás!');
-
-
 
       },
       error => {

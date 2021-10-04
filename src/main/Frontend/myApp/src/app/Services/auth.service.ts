@@ -139,6 +139,7 @@ export class AuthService {
 
     this.ns.show('Sikeres kijelentkezés!');
     console.log(this.isLogin$.value);
+    this.router.navigate(['/mainpage']);
 
   }
 

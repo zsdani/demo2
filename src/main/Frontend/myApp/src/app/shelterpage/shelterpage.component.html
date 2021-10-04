@@ -88,6 +88,94 @@
 </div>
 <ng-template #elseBlock>
 
+  <button (click)="toggle()" id="bt">
+    {{buttonName}}
+  </button>
+
+  <ng-container *ngIf="show">
+    <form  [formGroup]="shelterForm" class="example-form"  (ngSubmit)="addShelter(shelterForm)">
+
+      <table class="example-full-width" ><tr>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+
+          <mat-label>Menhely neve:</mat-label>
+          <input formControlName="name" matInput>
+        </mat-form-field></td>
+
+
+      </tr></table>
+
+      <p>
+        <mat-form-field hintLabel="Megfelelő formátum: pl valami@valami.valami" class="example-full-width" appearance="fill">
+          <input
+            matInput
+            type="email"
+            placeholder="E-mail címe"
+            formControlName="e_mail"
+            required
+          >
+          <mat-error>Adjon meg egy érvényes E-mail címet!</mat-error>
+        </mat-form-field>
+      </p>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Város</mat-label>
+          <input matInput placeholder="Pl Soltvadkert" formControlName="city">
+        </mat-form-field></td>
+
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Irányító szám</mat-label>
+          <input matInput #postalCode maxlength="4" formControlName="postcode"  >
+          <mat-hint align="end">{{postalCode.value.length}} / 4</mat-hint>
+          <mat-error>Az irányítószám, csak számot tartalmahat és 4 jegyűnek kell lennie!</mat-error>
+        </mat-form-field></td>
+      </tr></table>
+
+      <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Cím</mat-label>
+          <input matInput placeholder="Pl Kossuth Lajos utca 10." formControlName="addres" >
+        </mat-form-field>
+      </p>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Telefonszám</mat-label>
+            <mat-icon matSuffix>phone</mat-icon>
+            <input  #number maxlength="12" matInput placeholder="+36209870901" formControlName="phonenumber" >
+            <mat-hint align="end">{{number.value.length}} / 12</mat-hint>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Bankszámlaszám</mat-label>
+            <input type="number" #bank  maxlength="16" matInput placeholder="5000-2066-5756-4512"  formControlName="accoun_number">
+            <mat-hint align="end">{{bank.value.length}} / 16</mat-hint>
+            <mat-error>Ebbe a mezőbe csak szám szerepelhet</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+      </table>
+
+
+      <div *ngIf= "shelterForm.valid; else elseBlock">
+        <h3>
+          <button mat-button >Létrehozás</button>
+          <div class="clearfix"></div>
+        </h3></div>
+      <ng-template #elseBlock>
+        <h3>
+          <button mat-button disabled>Létrehozás</button>
+          <div class="clearfix"></div>
+        </h3>
+      </ng-template>
+
+
+    </form>
+  </ng-container>
+  <br>
   A te menhelye(i)d:
 
   <div class="table"  *ngFor="let shelter of shelters2" >
@@ -114,6 +202,12 @@
       <div class="cell">
         Bankszámla
       </div>
+      <div class="cell">
+       Módosítás
+      </div>
+      <div class="cell">
+        Állatfelvétel
+      </div>
     </div>
 
     <div class="row">
@@ -138,10 +232,144 @@
       <div class="cell" data-title="Status">
         {{shelter.accoun_number}}
       </div>
+      <div class="cell" data-title="Status">
+        <button (click)="changeshelterclick()" >
+          <mat-icon>settings</mat-icon>
+        </button>
+      </div>
+      <div class="cell" data-title="Status">
+
+        <button   (click)="addanimalclick(shelter.id)">
+          <mat-icon>pets</mat-icon>
+        </button>
+
+        <!--
+         <input type="button" value={{shelter.id}} onclick="addanimalclick(this.value)">
+         -->
+      </div>
+
+
     </div>
 
 
   </div>
+
+  <div *ngIf= "show3">
+    <form  [formGroup]="animalForm" class="example-form"  (ngSubmit)="addAnimal(animalForm)">
+
+      <mat-form-field class="specfield2" appearance="fill">
+        <mat-label>Állat neve:</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+
+      <table class="table2">
+        <tbody>
+        <tr>
+          <td rowspan="5">
+            <app-fileupload>
+            </app-fileupload>
+
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Milyen állat?</mat-label>
+              <mat-select formControlName="animaltype_id">
+                <mat-option value=1>Kutya</mat-option>
+                <mat-option value=0>Macska</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Állat Fajta:</mat-label>
+              <input formControlName="breed" matInput>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Neme?</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="0">Kan</mat-option>
+                <mat-option value="1">Szuka</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <!--
+            <input formControlName="age" type="number" id="tentacles" name="tentacles"
+                   min="0" max="20">
+            -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Kora?</mat-label>
+              <input type="number" matInput  formControlName="age"  >
+            </mat-form-field>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Méret?</mat-label>
+              <mat-select formControlName="size">
+                <mat-option value="1">Kicsi</mat-option>
+                <mat-option value=2>Átlagos</mat-option>
+                <mat-option value=3>Nagy</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Ivartalanított?</mat-label>
+              <mat-select formControlName="gonadectomy">
+                <mat-option value=0>Igen</mat-option>
+                <mat-option value=1>Nem</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+      <table>
+        <tr>
+          <mat-form-field class="specfield" appearance="fill">
+            <mat-label>Betegség (ha nincs, akkor írja ba azt, hogy nincs)?</mat-label>
+            <input formControlName="illnes" matInput>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="specfield" appearance="fill">
+            <mat-label>Élet történet. Hogyan lett megtlaálva. Mit érdemes tudni az állatról.</mat-label>
+            <input formControlName="lifestory" matInput>
+          </mat-form-field>
+        </tr>
+      </table>
+
+      <h3>
+        <button mat-button >Létrehozás</button>
+        <div class="clearfix"></div>
+      </h3>
+
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
 
 </ng-template>
 
