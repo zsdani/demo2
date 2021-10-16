@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,7 @@ public class FileUploadController {
 				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
 	}
 
+	//MultipartFile
 	@PostMapping("/upload")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file
 	) {

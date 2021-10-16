@@ -6,12 +6,51 @@
 
 <p>fileupload works!</p>
 
+<input formControlName="imagine" type="file"(change)="onFileSelected($event)">
 
-<input type="file"(change)="onFileSelected($event)">
+<div class="column">
+  <figure class="image is-128x128">
+    <img [src]="imageUrl" />
+
+  </figure>
+</div>
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      Angular Crop Image Tutorial Example - ItSolutionStuff.com
+    </div>
+    <div class="card-body">
+      <input type="file" (change)="fileChangeEvent($event)" />
+      <div class="row" style="margin-top: 15px;">
+        <div class="text-center col-md-8">
+          <h5>Crop Image</h5>
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="false"
+            [cropperStaticWidth]=440
+            [cropperStaticHeight]=331
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady()"
+            (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+        <div class="text-center col-md-4">
+          <h5>Preview</h5>
+          <img [src]="croppedImage" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
 <button type="button" (click)="onUpload()">Upload</button>
 
 
-<!--
+
 <form [formGroup]="signup" (ngSubmit)="submit()">
 
   <div class="form-group">

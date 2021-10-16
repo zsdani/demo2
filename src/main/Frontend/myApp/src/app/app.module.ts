@@ -4,52 +4,53 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnimalsComponent } from './animals/animals.component';
-import {HttpClientModule} from "@angular/common/http";
-import {AnimalService} from "./Services/animal.service";
+import {HttpClientModule} from '@angular/common/http';
+import {AnimalService} from './Services/animal.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSliderModule} from "@angular/material/slider";
+import {MatSliderModule} from '@angular/material/slider';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ConnectionComponent } from './connection/connection.component';
-import {MAT_DATE_LOCALE, MatNativeDateModule, MatOptionModule} from "@angular/material/core";
+import {MAT_DATE_LOCALE, MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AnimaldetailsComponent } from './animaldetails/animaldetails.component';
-import {AnimaldetailsService} from "./Services/animaldetails.service";
+import {AnimaldetailsService} from './Services/animaldetails.service';
 import { FileuploadComponent } from './fileupload/fileupload.component';
-import {FileuploadService} from "./Services/fileupload.service";
-import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {NotificationService} from "./Services/notification.service";
+import {FileuploadService} from './Services/fileupload.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {NotificationService} from './Services/notification.service';
 import { SignupComponent } from './auth/signup/signup.component';
-import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { AuthComponent } from './auth/auth.component';
-import {MatTabsModule} from "@angular/material/tabs";
+import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 
-import {AuthService} from "./Services/auth.service";
-import {ShelterService} from "./Services/shelter.service";
+import {AuthService} from './Services/auth.service';
+import {ShelterService} from './Services/shelter.service';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PopupadoptComponent} from './popupadopt/popupadopt.component';
 import { TobevirtualownerComponent } from './tobevirtualowner/tobevirtualowner.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { PopupadoptsureComponent } from './popupadoptsure/popupadoptsure.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import {CalendarCommonModule, CalendarModule, DateAdapter} from "angular-calendar";
-import {CommonModule} from "@angular/common";
-import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
-import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
+import {CalendarCommonModule, CalendarModule, DateAdapter} from 'angular-calendar';
+import {CommonModule} from '@angular/common';
+import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { DatePickerComponent } from './date-picker/date-picker.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ShelterpageComponent } from './shelterpage/shelterpage.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 
 
@@ -95,8 +96,9 @@ import { ShelterpageComponent } from './shelterpage/shelterpage.component';
 
 
     DatePickerComponent,
-        TimepickerComponent,
-        ShelterpageComponent,
+    TimepickerComponent,
+    ShelterpageComponent,
+
 
 
 
@@ -151,10 +153,7 @@ import { ShelterpageComponent } from './shelterpage/shelterpage.component';
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaterialTimepickerModule,
-
-
-
-
+    ImageCropperModule,
 
 
   ],
@@ -166,6 +165,8 @@ import { ShelterpageComponent } from './shelterpage/shelterpage.component';
     ShelterService,
     NotificationService,
     {provide: MAT_DATE_LOCALE, useValue: 'hu-HU'},
+    ImageCropperModule,
+
 
 
   ],

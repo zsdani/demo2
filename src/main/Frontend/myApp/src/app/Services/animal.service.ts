@@ -45,7 +45,7 @@ export class AnimalService {
 
       },
       error => {
-        this.ns.show('HIBA! Menhely létrehozás sikertelen!');
+        this.ns.show('HIBA! Állat létrehozás sikertelen!');
         console.error(error);
       }
     );

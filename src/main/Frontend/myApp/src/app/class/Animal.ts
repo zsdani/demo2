@@ -1,22 +1,22 @@
-import {Shelter} from "./Shelter";
-import {AnimalType} from "./AnimalType";
+import {Shelter} from './Shelter';
+import {AnimalType} from './AnimalType';
 
 export class Animal {
 
 
 
-  id: number = 0;
-  name: string = '';
-  type: AnimalType= new AnimalType();
-  virtual_owner: number=0;
-  breed: string = '';
-  gender: number=0;
-  age: number=0;
-  lifestory: string = '';
-  imagine: string = '';
-  illnes: string = '';
-  gonadectomy: number=0;
-  size: number=0;
+  id = 0;
+  name = '';
+  type: AnimalType = new AnimalType();
+  virtual_owner = 0;
+  breed = '';
+  gender = 0;
+  age = 0;
+  lifestory = '';
+  imagine = '';
+  illnes = '';
+  gonadectomy = 0;
+  size = 0;
   shelter: Shelter = new Shelter;
 
 
