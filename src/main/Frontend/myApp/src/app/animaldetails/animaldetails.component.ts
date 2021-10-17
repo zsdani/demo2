@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {Animal} from "../class/Animal";
-import {AnimalService} from "../Services/animal.service";
-import {AnimaldetailsService} from "../Services/animaldetails.service";
-import {AnimalsComponent} from "../animals/animals.component";
-import {AuthService} from "../Services/auth.service";
-import {Router} from "@angular/router";
-import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
-import {MatDialog} from "@angular/material/dialog";
-import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
-import {Datee} from "../class/Datee";
-import {CalendarService} from "../Services/calendar.service";
-import {CalendarEvent} from "angular-calendar";
-import {addHours} from "date-fns";
+import {Animal} from '../class/Animal';
+import {AnimalService} from '../Services/animal.service';
+import {AnimaldetailsService} from '../Services/animaldetails.service';
+import {AnimalsComponent} from '../animals/animals.component';
+import {AuthService} from '../Services/auth.service';
+import {Router} from '@angular/router';
+import {PopupadoptComponent} from '../popupadopt/popupadopt.component';
+import {MatDialog} from '@angular/material/dialog';
+import {PopupadoptsureComponent} from '../popupadoptsure/popupadoptsure.component';
+import {Datee} from '../class/Datee';
+import {CalendarService} from '../Services/calendar.service';
+import {CalendarEvent} from 'angular-calendar';
+import {addHours} from 'date-fns';
+import {TobevirtualownerComponent} from '../tobevirtualowner/tobevirtualowner.component';
+
 
 
 @Component({
@@ -23,8 +25,8 @@ export class AnimaldetailsComponent implements OnInit {
 
 
 
-
   animal: Animal = new Animal;
+
 
 
 
@@ -32,11 +34,12 @@ export class AnimaldetailsComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private router:Router,
-    //private route: ActivatedRoute,
+    private router: Router,
+    // private route: ActivatedRoute,
     private animaldetailsService: AnimaldetailsService,
     public auth: AuthService,
     public calendarService: CalendarService,
+
 
 
 
@@ -47,40 +50,35 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
+    localStorage.setItem('kex', '2');
 
 
-    //const id = +this.route.snapshot.paramMap.get('id');
-    this.animaldetailsService.getAnimal(parseInt(localStorage.getItem("animalid")), this.animaldetailsService.text).subscribe((res: Animal)=>{
-      console.log(res)
-      this.animal =res;
+    // const id = +this.route.snapshot.paramMap.get('id');
+    this.animaldetailsService.getAnimal(parseInt(localStorage.getItem('animalid')), this.animaldetailsService.text).subscribe((res: Animal) => {
+      console.log(res);
+      this.animal = res;
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   }
 
   adopt() {
-    if(this.auth.isLogin$.value)
-    {this.dialog.open(PopupadoptsureComponent)}
-    else{this.dialog.open(PopupadoptComponent)}
+    if (this.auth.isLogin$.value)
+    {
+
+      this.dialog.open(PopupadoptsureComponent);
+    }
+    else{this.dialog.open(PopupadoptComponent); }
   }
 
 
   wirtualadopt(){
-    if(this.auth.isLogin$.value)
-    {this.router.navigateByUrl('/tobevirtualowner');}
-    else{this.dialog.open(PopupadoptComponent)}
+    if (this.auth.isLogin$.value)
+    {
+      localStorage.setItem('kex', '1');
+      localStorage.setItem('wirtualowneranimal', (localStorage.getItem('animalid')) );
+      this.router.navigateByUrl('/tobevirtualowner'); }
+    else{this.dialog.open(PopupadoptComponent); }
 
 
   }

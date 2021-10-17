@@ -1,13 +1,9 @@
 package com.example.demo.services;
 
 
-import com.example.demo.dal.entities.Animal;
 import com.example.demo.dal.entities.EntityStatus;
 import com.example.demo.dal.entities.Shelter;
-import com.example.demo.dal.repositories.AnimalRepository;
 import com.example.demo.dal.repositories.ShelterRepository;
-import com.example.demo.properties.AnimalProperties;
-import com.example.demo.properties.ShelterProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,15 +57,19 @@ public class ShelterService {
         // TODO validate data, do not change id
         Optional<Shelter> tmp = shelterRepository.findById(id);
         if(shelterRepository.existsById(id)){
-            shelter.setId(id);
-            shelter.setStatus(EntityStatus.ACTIVE);
-            shelter.setCreated(tmp.get().getCreated());
-            shelter.setUpdated(LocalDateTime.now());
+            tmp.get().setName(shelter.getName());
+            tmp.get().setPostcode(shelter.getPostcode());
+            tmp.get().setCity(shelter.getCity());
+            tmp.get().setAddres(shelter.getAddres());
+            tmp.get().setE_mail(shelter.getE_mail());
+            tmp.get().setPhonenumber(shelter.getPhonenumber());
+            tmp.get().setAccoun_number(shelter.getAccoun_number());
+
 
 
         }
 
-        return shelterRepository.save(shelter);
+        return shelterRepository.save(tmp.get());
     }
 
 }

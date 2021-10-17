@@ -40,4 +40,6 @@ public class Animal extends BaseEntity {
 
     private int shelter_id;
 
+    //private boolean adopted;
+
 }

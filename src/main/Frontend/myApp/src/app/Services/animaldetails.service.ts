@@ -24,6 +24,7 @@ export class AnimaldetailsService {
 
 
 
+
   public getAnimal(id: number, valami: string | null): Observable<Animal> {
 
     this._num = id;

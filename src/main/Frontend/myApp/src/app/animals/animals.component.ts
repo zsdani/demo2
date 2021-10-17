@@ -51,6 +51,7 @@ export class AnimalsComponent implements OnInit {
   ) {this.rout.snapshot.paramMap.get('animaltype_id'); }
 
   public  ngOnInit(): void  {
+    localStorage.setItem('animalid', '0');
     localStorage.setItem('animaltype', this.rout.snapshot.paramMap.get('animaltype_id'));
     this.valami = this.rout.snapshot.paramMap.get('animaltype_id');
     this.animalService.getAnimals(this.rout.snapshot.paramMap.get('animaltype_id')).subscribe((res: Animal[]) => {

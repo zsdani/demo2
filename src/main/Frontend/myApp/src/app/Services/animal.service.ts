@@ -62,6 +62,10 @@ export class AnimalService {
     return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params});
   }
 
+  public getanimalsbyshelterid(id: number): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${this.animalURL}/shelter_id?shelter_id=${id}`);
+  }
+
 
 
   // tslint:disable-next-line:max-line-length

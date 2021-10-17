@@ -15,6 +15,7 @@ import {FileuploadComponent} from '../fileupload/fileupload.component';
 import {FileuploadService} from '../Services/fileupload.service';
 import * as _ from 'lodash';
 import {base64ToFile, ImageCroppedEvent} from 'ngx-image-cropper';
+import {Observer} from 'rxjs';
 
 const RegExpValidator = {
   digit: RegExp(/^(?=.*?[0-9])/),
@@ -57,7 +58,7 @@ export class ShelterpageComponent implements OnInit {
       });
 
     this.shelterForm2 = this.formBuilder.group({
-      name: [ this.shelterid, [Validators.minLength(1), Validators.required]],
+      name: [ this.name, [Validators.minLength(1), Validators.required]],
       city: [null, [Validators.minLength(1), Validators.required]],
       addres: [null, [Validators.minLength(1), Validators.required]],
       postcode: [null, [Validators.minLength(4), Validators.pattern(RegExpValidator.digit), Validators.maxLength(4), Validators.required]],
@@ -67,6 +68,8 @@ export class ShelterpageComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       accoun_number: [null, [Validators.minLength(16), Validators.maxLength(16), Validators.pattern(RegExpValidator.digit), Validators.required]]
     });
+
+
 
     this.animalForm = this.formBuilder.group({
       name:   [null, [ Validators.required]],
@@ -103,6 +106,13 @@ export class ShelterpageComponent implements OnInit {
   public show3 = false;
   public shelterid: number;
   public fileupload: FileuploadComponent;
+  public name: string;
+  public city: string;
+  public addres: string;
+  public postcode: string;
+  public phonenumber: string;
+  public e_mail: string;
+  public accoun_number: string;
   selectedFile!: File;
   selectedFile2!: File;
   // tslint:disable-next-line:variable-name
@@ -119,6 +129,8 @@ export class ShelterpageComponent implements OnInit {
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
+
+  observer: Observer<Shelter>;
 
   ngOnInit(): void {
 
@@ -167,35 +179,20 @@ export class ShelterpageComponent implements OnInit {
 
   }
 
-  onUpload(){
 
+  modifyShelter( form: FormGroup){
+    if (form.valid) {
+      console.log(form.value);
+      this.shelterService.updateShelter(this.shelterid, form.value as Shelter);
 
+      this.shelterForm2.reset();
 
-    const allowed_types = ['image/png', 'image/jpeg'];
-    const fd = new FormData();
-
-    let isImageSaved;
-    if (!_.includes(allowed_types, this.selectedFile.type)) {
-      this.imageError = 'Only Images are allowed ( JPG | PNG )';
-      isImageSaved = false;
     }
-    console.log();
-    this._filename = this.selectedFile.name;
+    else {
+      this.ns.show('HIBA! Adatok nem megfelelőek!');
+    }
+    location.reload();
 
-    fd.append('file', this.selectedFile, this.selectedFile.name);
-
-    // this.http.post(`${'http://localhost:8080/api/files/upload'}`, fd).subscribe();
-
-
-    this.fileuploadService.addPicc(fd);
-
-
-
-
-
-  }
-
-  modifyShelter(form: FormGroup){
 
 }
 
@@ -264,7 +261,36 @@ addShelter(form: FormGroup) {
     this.show2 = true;
     this.show3 = false;
     this.shelterid = shelteid;
-    this.shelterService.getShelter(this.shelterid);
+    console.log(this.shelterid);
+    this.shelterService.getShelter(this.shelterid).subscribe(
+      data => {
+
+        this.shelterForm2 = this.formBuilder.group({
+          name: [ data.name, [Validators.minLength(1), Validators.required]],
+          city: [data.city, [Validators.minLength(1), Validators.required]],
+          addres: [data.addres, [Validators.minLength(1), Validators.required]],
+          postcode: [data.postcode, [Validators.minLength(4), Validators.pattern(RegExpValidator.digit), Validators.maxLength(4), Validators.required]],
+          // tslint:disable-next-line:max-line-length
+          phonenumber: [data.phonenumber, [Validators.minLength(11), Validators.pattern(RegExpValidator.digit), Validators.maxLength(12), Validators.required]],
+          e_mail: [data.e_mail, [Validators.email, Validators.required]],
+          // tslint:disable-next-line:max-line-length
+          accoun_number: [data.accoun_number, [Validators.minLength(16), Validators.maxLength(16), Validators.pattern(RegExpValidator.digit), Validators.required]]
+        });
+
+      }
+
+    );
+
+
+
+
+
+
+
+    console.log(this.observer);
+
+
+
   }
 
   cancel() {
@@ -284,7 +310,7 @@ addShelter(form: FormGroup) {
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
-    let fileToReturn = this.base64ToFile(
+    const fileToReturn = this.base64ToFile(
       event.base64,
       this.imageChangedEvent.target.files[0].name,
     );
@@ -292,7 +318,7 @@ addShelter(form: FormGroup) {
 
     this.selectedFile = fileToReturn;
 
-    //return fileToReturn;
+    // return fileToReturn;
   }
   imageLoaded() {
     /* show cropper */

@@ -3,11 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {Animal} from '../class/Animal';
 import {httpOptions} from './auth.service';
 import {Shelter} from '../class/Shelter';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {Datee} from '../class/Datee';
 import {NotificationService} from './notification.service';
 import {Router} from '@angular/router';
-import {OwnerShelter} from "../class/OwnerShelter";
+import {OwnerShelter} from '../class/OwnerShelter';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,22 @@ export class ShelterService {
 
 
 
-  public getShelter(id: number): Promise<Shelter> {
-    return this.http.get<Shelter>(`${this.shelterURL}/${id}`, httpOptions).toPromise();
+  public getShelter(id: number): Observable<Shelter> {
+    return this.http.get<Shelter>(`${this.shelterURL}/id?id=${id}`, httpOptions);
+  }
+
+  updateShelter(id: number, shelter: Shelter): void {
+    this.http.put<Shelter>(`${this.shelterURL}?id=${id}`, shelter , httpOptions).subscribe(
+      data => {
+        this.ns.show('Sikeres menhely módosítás!');
+
+      },
+      error => {
+        this.ns.show('HIBA! Menhely módosítása sikertelen!');
+        console.error(error);
+      }
+    );
+
   }
 
 
@@ -69,9 +83,6 @@ export class ShelterService {
   getaSheltertoOwner(ownerid: number): Observable<OwnerShelter[]>{
 
     return this.http.post<OwnerShelter[]>(`${this.url}/index?index=${ownerid}`, ownerid );
-
-
-
 
   }
 

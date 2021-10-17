@@ -412,8 +412,10 @@
 
   </div>
 
+
+  <!-- MÓDOSÍTÁS MENHELY -->
   <div *ngIf= "show2">
-    <form  [formGroup]="shelterForm2" class="example-form"  (ngSubmit)="modifyShelter(shelterForm)">
+    <form  [formGroup]="shelterForm2" class="example-form"  (ngSubmit)="modifyShelter(shelterForm2)">
 
       <table class="example-full-width" ><tr>
         <td><mat-form-field class="example-full-width" appearance="fill">
@@ -480,14 +482,14 @@
       </table>
 
 
-      <div *ngIf= "shelterForm.valid; else elseBlock">
+      <div *ngIf= "shelterForm2.valid; else elseBlock">
         <h3>
-          <button mat-button >Létrehozás</button>
+          <button mat-button >Módosítás</button>
           <div class="clearfix"></div>
         </h3></div>
       <ng-template #elseBlock>
         <h3>
-          <button mat-button disabled>Létrehozás</button>
+          <button mat-button disabled>Módosítás</button>
           <div class="clearfix"></div>
         </h3>
       </ng-template>

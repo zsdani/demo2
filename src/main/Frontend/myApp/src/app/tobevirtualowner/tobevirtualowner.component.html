@@ -1,7 +1,8 @@
 <br>
 <br>
 <br>
-<mat-tab-group mat-align-tabs="center">
+<br>
+<mat-tab-group [(selectedIndex)]="demo1TabIndex" mat-align-tabs="center">
   <mat-tab label="Gyakori kérdések">
 
 
@@ -54,7 +55,76 @@ A VIRTUÁLIS GAZDÁK NEVEIT közzétesszük a kiválasztott kutyák részletek o
 Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet és ajándékot is küldünk Neked.
   </mat-tab>
   <mat-tab *ngIf="auth.isLogin$.value; else elseBlock" label="Virtuális örökbefogadás" >
-    Melyik állatot szeretnéd virtuálisan örökbe fogadni?
+
+    <div *ngIf="aszam===null; else elseBlock2">
+
+      <table>
+        <tbody>
+        <tr>
+          <td *ngIf="selectedanimal===null; else elseBlock3">
+            <img src="/assets/pic/semmi.jpg" >
+          </td>
+          <ng-template #elseBlock3>
+            <img src="/assets/pic/{{selectedanimal.imagine}}" >
+          </ng-template>
+          <td>
+            1. Melyik menhylből szeretnél virtuálisan örökbefogadni?
+            <mat-form-field>
+              <mat-label>Milyen menhelyen?</mat-label>
+              <mat-select [(value)]="selectedshelter" >
+                <mat-option *ngFor="let shelter of shelterss" [value]="shelter.id" (click)="function(shelter.id)" >
+                  {{shelter.name}} ({{shelter.city}})
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            2. Melyik állatot szeretnéd virtuálisan örökbe fogadni?
+            <mat-form-field  >
+              <mat-label>Melyik állat?</mat-label>
+              <mat-select [(value)]="selectedanimal">
+                <mat-option *ngFor="let animal of animalss" [value]="animal" >
+                  {{animal.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="selectedanimal===null; else elseBlock4">
+
+            </div>
+            <ng-template #elseBlock4>
+              <br>
+              Ha nincsenek kérdéseid és biztosan virtuálisan örökbe akarod fogadni ezt az állatot ({{selectedanimal.name}}), <br>
+              akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{selectedanimal.name}}-nak a menhelyének ({{selectedanimal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
+              Fontos, hogy közleményben add meg a kutyának a nevét!
+              Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
+            </ng-template>
+          </td>
+          <!--<button (click)="cancel()">Mégse</button>-->
+
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <ng-template #elseBlock2>
+      <table>
+        <tbody>
+        <tr>
+          <td>
+            <img src="/assets/pic/{{animal.imagine}}" alt="image">
+          </td>
+          <td>
+            Ha nincsenek kérdéseid és biztosan virtuálisan örökbe akarod fogadni ezt az állatot ({{animal.name}}), <br>
+            akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{animal.name}}-nak a menhelyének ({{animal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
+            Fontos, hogy közleményben add meg a kutyának a nevét!
+            Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </ng-template>
+
 
   </mat-tab>
   <ng-template #elseBlock>
