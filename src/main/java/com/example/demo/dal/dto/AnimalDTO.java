@@ -53,8 +53,7 @@ public class AnimalDTO  {
 
     private String imagine;
 
-    //private boolean adopted;
-
+    private int isadopted;
 
     private Image image;
 

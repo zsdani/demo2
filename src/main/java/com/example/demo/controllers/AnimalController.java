@@ -49,6 +49,7 @@ public class AnimalController {
         animalDTO.setGonadectomy(animal.getGonadectomy());
         animalDTO.setSize(animal.getSize());
         animalDTO.setImagine(animal.getImagine());
+        animalDTO.setIsadopted(animal.getIsadopted());
         try {
             animalDTO.setShelter(animalService.findGoodShelter(animal));
         } catch (DataNotFoundException e) {
@@ -96,6 +97,7 @@ public class AnimalController {
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setGender(animal.getGender());
+            animalDTO.setIsadopted(animal.getIsadopted());
 
             animalDTO.setLifestory(animal.getLifestory());
             try {
@@ -152,6 +154,7 @@ public class AnimalController {
             animalDTO.setGender(animal.getGender());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
+            animalDTO.setIsadopted(animal.getIsadopted());
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
             } catch (DataNotFoundException e) {
@@ -191,6 +194,7 @@ public class AnimalController {
             animalDTO.setGender(animal.getGender());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
+            animalDTO.setIsadopted(animal.getIsadopted());
 
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
@@ -230,6 +234,7 @@ public class AnimalController {
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
             animalDTO.setGender(animal.getGender());
+            animalDTO.setIsadopted(animal.getIsadopted());
 
             animalDTO.setLifestory(animal.getLifestory());
             try {
@@ -269,6 +274,7 @@ public class AnimalController {
             animalDTO.setBreed(animal.getBreed());
             animalDTO.setVirtual_owner(animal.getVirtual_owner());
             animalDTO.setGender(animal.getGender());
+            animalDTO.setIsadopted(animal.getIsadopted());
 
             animalDTO.setLifestory(animal.getLifestory());
             try {
