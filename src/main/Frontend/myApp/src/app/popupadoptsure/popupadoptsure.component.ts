@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {trackDuration} from "@angular/compiler-cli/ngcc/src/entry_point_finder/utils";
+import {AnimalService} from "../Services/animal.service";
+import {AdoptedService} from "../Services/adopted.service";
 
 @Component({
   selector: 'app-popupadoptsure',
@@ -9,7 +11,11 @@ import {trackDuration} from "@angular/compiler-cli/ngcc/src/entry_point_finder/u
 })
 export class PopupadoptsureComponent implements OnInit {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar,
+              private adoptedService: AdoptedService,
+              private animalService: AnimalService,
+
+              ) { }
 
   durationInSeconds = 5;
 
@@ -17,7 +23,17 @@ export class PopupadoptsureComponent implements OnInit {
   }
 
   openSnackBar(message: string){
-    this.snackBar.open(message)._dismissAfter(1000)
+    this.snackBar.open(message)._dismissAfter(3000);
+    const PostData = {
+      allatid: parseInt(localStorage.getItem('animalid')) ,
+      ownerid: parseInt(localStorage.getItem('ownerID')),
+      shelterid: 2
+
+    };
+    console.log(PostData);
+    this.adoptedService.addadopted(PostData);
+    //this.adoptedService.adoptednotsure(PostData.allatid);
+
 
 
   }

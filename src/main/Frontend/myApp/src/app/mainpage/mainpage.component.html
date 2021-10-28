@@ -3,7 +3,82 @@
 <br>
 <p>mainpage works!</p>
 
-<br>
+{{this.theuser.username}}
+{{this.theuser.role}}
+
+<div  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock2" >
+  <div  *ngIf="animals.length===0; else elseBlock22" >
+    Nincs egyik menhelye(i)dnél örökbefogadás
+  </div>
+  <ng-template #elseBlock22>
+
+
+  <div class="table"  *ngFor="let animal of animals" >
+
+    <div class="row header green">
+      <div class="cell">
+        Név
+      </div>
+      <div class="cell">
+        Állat faj
+      </div>
+      <div class="cell">
+        Neme
+      </div>
+      <div class="cell">
+        Menhely neve
+      </div>
+      <div class="cell">
+        Örökbefogadó
+      </div>
+      <div class="cell">
+        Elfogadás
+      </div>
+      <div class="cell">
+        Elutasítás
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="cell" data-title="Product">
+        {{animal.name}}
+      </div>
+      <div class="cell" data-title="Unit Price">
+        {{animal.type.name}}
+      </div>
+      <div class="cell" data-title="Quantity">
+        {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
+      </div>
+      <div class="cell" data-title="Date Sold">
+        {{animal.shelter.name}}
+      </div>
+      <div class="cell" data-title="Status">
+          {{animal.owner}}
+      </div>
+      <div class="cell" data-title="Status">
+        <button  (click)="accept(animal.id)"  style="background:greenyellow;">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+      </div>
+      <div class="cell" data-title="Status" >
+        <button  (click)="refuse(animal.id)" style="background:red; " >
+          <mat-icon>highlight_off</mat-icon>
+        </button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  </ng-template>
+
+
+</div>
+
+<ng-template #elseBlock2>
+ Ne ezt csak a nem adminok látják
+</ng-template>
 
 
 

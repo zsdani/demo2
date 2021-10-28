@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dal.entities.IsAdopted;
+import com.example.demo.dal.entities.Owner;
 import com.example.demo.dal.entities.Shelter;
 import com.example.demo.services.IsAdoptedService;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -34,11 +35,22 @@ public class IsAdoptedController {
         return ResponseEntity.ok(isadoptedService.findIsAdoptedByid(id));
     }
 
+    @GetMapping("/allatid")
+    public ResponseEntity<IsAdopted> findIsAdoptedByAllatid(@RequestParam long allatid) throws DataNotFoundException {
+        return ResponseEntity.ok(isadoptedService.findIsAdoptedByAllatid(allatid));
+    }
+
 
 
     @GetMapping
     public ResponseEntity<List<IsAdopted>> findAllIsAdopted() throws DataNotFoundException {
         return ResponseEntity.ok(isadoptedService.findAllIsAdopted() );
+    }
+
+
+    @GetMapping("/all/shelterid")
+    public ResponseEntity<List<IsAdopted>> listByshelteridandbool(@RequestParam long shelterid) throws DataNotFoundException {
+        return ResponseEntity.ok(isadoptedService.listByshelteridandbool(shelterid) );
     }
 
 
@@ -48,22 +60,22 @@ public class IsAdoptedController {
         return ResponseEntity.ok(isadoptedService.addIsAdopted(isadopted));
     }
 
-    @PostMapping("/good")
-    public ResponseEntity updateIsAdpotedgood(@RequestBody int id) throws DataNotFoundException{
-        System.out.println(id+ "controll");
-        return ResponseEntity.ok(isadoptedService.agreewithadopted(id));
+    @PostMapping("/adoptednotsure")
+    public void updateIsAdpotedgood(@RequestBody int id) throws DataNotFoundException{
+         isadoptedService.adoptednotsure(id);
     }
 
-    @PostMapping("/bad")
-    public ResponseEntity updateIsAdpotedbad(@RequestBody int id) throws DataNotFoundException{
-        System.out.println(id+ "controll");
-        return ResponseEntity.ok(isadoptedService.dissagreewithadopted(id));
+    @DeleteMapping("/id")
+    public void deleteIsAdopted(@RequestParam long id) throws DataNotFoundException {
+        isadoptedService.deleteIsAdopted(id);
     }
 
-    @PutMapping("/id/bad")
-    public void updateIsAdpotedbad(@RequestBody IsAdopted isadopted, @RequestParam long id) throws DataNotFoundException{
-        isadoptedService.dissagreewithadopted(id);
+    @DeleteMapping("/2/id")
+    public void deleteIsAdopted2(@RequestParam long id) throws DataNotFoundException {
+        isadoptedService.deleteIsAdopted2(id);
     }
+
+
 
 
 

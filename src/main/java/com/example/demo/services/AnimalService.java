@@ -39,6 +39,7 @@ public class AnimalService implements SpecRepositroy {
     private final AnimalTypeRepository animalTypeRepository;
     private final ShelterRepository shelterRepository;
     private final ImageRepository imageRepository;
+    private final IsAdoptedRepository isadoptedRepository;
 
 
     @Autowired
@@ -47,17 +48,22 @@ public class AnimalService implements SpecRepositroy {
 
 
     @Autowired
-    public AnimalService(AnimalRepository animalRepository, AnimalProperties animalProperties, AnimalTypeRepository animalTypeRepository, ShelterRepository shelterRepository, ImageRepository imageRepository) {
+    public AnimalService(AnimalRepository animalRepository, AnimalProperties animalProperties, AnimalTypeRepository animalTypeRepository, ShelterRepository shelterRepository, ImageRepository imageRepository,IsAdoptedRepository isadoptedRepository) {
         this.animalRepository = animalRepository;
         this.animalProperties = animalProperties;
         this.animalTypeRepository = animalTypeRepository;
         this.shelterRepository= shelterRepository;
         this.imageRepository = imageRepository;
+        this.isadoptedRepository = isadoptedRepository;
     }
 
     public List<Animal> findAllAnimals() {
         return (List<Animal>) animalRepository.findAll();
     }
+
+
+
+
 
     public Animal findAnimalById(long id) throws DataNotFoundException {
         return animalRepository.findById(id)
@@ -72,6 +78,12 @@ public class AnimalService implements SpecRepositroy {
     public Optional<Shelter> findGoodShelter (Animal animal) throws DataNotFoundException{
 
         return  shelterRepository.findById((long) animal.getShelter_id());
+    }
+
+    public Optional<IsAdopted> findGoodIsAdopted (Animal animal) throws DataNotFoundException{
+
+        //return  shelterRepository.findById((long) animal.getShelter_id());
+        return  isadoptedRepository.findById((long) animal.getIsadopted() );
     }
 
     public Optional<Image> findGoodImage (Animal animal) throws DataNotFoundException{
@@ -122,12 +134,19 @@ public class AnimalService implements SpecRepositroy {
     }
 
     public List<Animal> listByanimaltype_id(int animaltype_id) {
-        return (List<Animal>) animalRepository.listByanimaltype_id(animaltype_id);
+        return (List<Animal>) animalRepository.listByanimaltype_id(animaltype_id,"ACTIVE");
 
     }
 
     public List<Animal> listByshelter_id(int shelter_id) {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
+
+    }
+    public List<Animal> listByshelterandisadopted(long shelter_id) {
+
+
+
+        return (List<Animal>) animalRepository.listByshelterandisadopted(shelter_id);
 
     }
 

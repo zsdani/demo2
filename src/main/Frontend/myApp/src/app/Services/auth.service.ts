@@ -9,6 +9,7 @@ import {NotificationService} from './notification.service';
 import {User1} from '../class/User1';
 import {Shelter} from '../class/Shelter';
 import {token} from 'flatpickr/dist/utils/formatting';
+import {Animal} from "../class/Animal";
 
 
 
@@ -124,6 +125,14 @@ export class AuthService {
 
 
   }
+
+  public getOwnerbyid(id: number): Observable<User1> {
+    return this.http.get<User1>(`${this.authUrl}/id?id=${id}`);
+  }
+
+
+
+
 
 
 

@@ -53,7 +53,7 @@ public class AnimalDTO  {
 
     private String imagine;
 
-    private int isadopted;
+    private IsAdopted isadopted;
 
     private Image image;
 
@@ -81,6 +81,14 @@ public class AnimalDTO  {
             this.image=opt.get();
         }else{
             this.image=null;
+        }
+    }
+
+    public void setIsAdopted(Optional<IsAdopted> opt) {
+        if(opt.isPresent()){
+            this.isadopted=opt.get();
+        }else{
+            this.isadopted=null;
         }
     }
 

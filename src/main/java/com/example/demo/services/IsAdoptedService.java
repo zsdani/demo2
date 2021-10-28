@@ -1,9 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.dal.entities.Animal;
-import com.example.demo.dal.entities.EntityStatus;
-import com.example.demo.dal.entities.IsAdopted;
-import com.example.demo.dal.entities.Shelter;
+import com.example.demo.dal.entities.*;
 import com.example.demo.dal.repositories.AnimalRepository;
 import com.example.demo.dal.repositories.IsAdoptedRepository;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -48,29 +45,66 @@ public class IsAdoptedService {
 
 
 
+
+    public List<IsAdopted> listByshelteridandbool(long shelterid) {
+
+        return (List<IsAdopted>) isadoptedRepository.listByshelteridandbool(shelterid);
+    }
+
+
+
     public IsAdopted addIsAdopted(IsAdopted isadopted){
+        Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
+        animal.get().setIsadopted(1);
+        animalRepository.save(animal.get());
+        animal.get().setStatus(EntityStatus.DELETED);
         return isadoptedRepository.save(isadopted);
     }
 
 
-    public IsAdopted agreewithadopted(long id)  {
-        IsAdopted isadopted = isadoptedRepository.findIsAdoptedByid(id);
-        Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
+    public void adoptednotsure(long id)  {
+
+        Optional<Animal> animal=animalRepository.findById(id);
+
+
 
         animal.get().setStatus(EntityStatus.DELETED);
-        isadopted.setIsaoptedwithshelterpermission(true);
+        //animal.get().setIsadopted((int)isadopted.getId());
 
-        return isadoptedRepository.save(isadopted);
+        animalRepository.save(animal.get());
+
+
+    }
+
+    public void deleteIsAdopted(long id) throws DataNotFoundException {
+        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
+        Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
+        animal.get().setIsadopted(0);
+        animal.get().setStatus(EntityStatus.ACTIVE);
+        animalRepository.save(animal.get());
+        isadoptedRepository.delete(isadopted.get());
+    }
+
+    public void deleteIsAdopted2(long id) throws DataNotFoundException {
+        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
+        Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
+        animalRepository.delete(animal.get());
+        isadoptedRepository.delete(isadopted.get());
     }
 
 
-    public IsAdopted dissagreewithadopted(long id)  {
-        IsAdopted isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
-        Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
-        isadopted.setIsaoptedwithshelterpermission(true);
-        animal.get().setStatus(EntityStatus.DELETED);
 
-        return isadoptedRepository.save(isadopted);
+
+    public IsAdopted findIsAdoptedByAllatid(long allatid)  {
+
+        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(allatid);
+        //Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
+        //isadopted.setIsaoptedwithshelterpermission(true);
+        //animal.get().setStatus(EntityStatus.ACTIVE);
+
+        return isadoptedRepository.save(isadopted.get());
+
+
     }
 
 

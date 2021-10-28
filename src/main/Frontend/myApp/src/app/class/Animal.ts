@@ -18,6 +18,7 @@ export class Animal {
   gonadectomy = 0;
   size = 0;
   shelter: Shelter = new Shelter;
+  owner = '';
 
 
 

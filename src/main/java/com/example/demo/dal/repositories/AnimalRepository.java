@@ -11,16 +11,27 @@ import java.util.List;
 @Repository
 public interface AnimalRepository extends CrudRepository<Animal, Long> {
 
-    //List<Animal> findAllByAnimaltype_id(int animaltype);
+    @Query(value = "SELECT * FROM animals WHERE status = :status", nativeQuery = true)
+    List<Animal> listByStatus(@Param("status") String status);
 
     // JPQL
-    @Query(value = "SELECT * FROM animals WHERE animaltype_id = :animaltype_id", nativeQuery = true)
-    List<Animal> listByanimaltype_id(@Param("animaltype_id") int animaltype_id);
+    @Query(value = "SELECT * FROM animals WHERE animaltype_id = :animaltype_id AND status = :status", nativeQuery = true)
+    List<Animal> listByanimaltype_id(@Param("animaltype_id") int animaltype_id,
+                                     @Param("status") String status
+                                     );
+
+
+    @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id AND isadopted= 1", nativeQuery = true)
+    List<Animal> listByshelterandisadopted(@Param("shelter_id") long shelter_id);
 
     @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id", nativeQuery = true)
     List<Animal> listByshelter_id(@Param("shelter_id") int shelter_id);
 
 
+
+
+    //@Query(value = "SELECT * FROM animals WHERE STATUS = "ACTIVE" " , nativeQuery = true)
+    //List<Animal> findAllplus;
     //@Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id", nativeQuery = true)
     //List<Animal> listByanything(@Param("shelter_id") int shelter_id/*,@Param("animaltype_id") int animaltype_id,@Param("gender") int gender,@Param("size") int size,@Param("age") int age*/);
 

@@ -56,6 +56,7 @@ export class AnimalsComponent implements OnInit {
     this.valami = this.rout.snapshot.paramMap.get('animaltype_id');
     this.animalService.getAnimals(this.rout.snapshot.paramMap.get('animaltype_id')).subscribe((res: Animal[]) => {
        this.animals = res;
+       console.log(res)
 
      });
 
