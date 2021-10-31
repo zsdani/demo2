@@ -21,8 +21,10 @@ public interface AnimalRepository extends CrudRepository<Animal, Long> {
                                      );
 
 
-    @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id AND isadopted= 1", nativeQuery = true)
-    List<Animal> listByshelterandisadopted(@Param("shelter_id") long shelter_id);
+    @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id AND isadopted= :isadopted", nativeQuery = true)
+    List<Animal> listByshelterandisadopted(@Param("shelter_id") long shelter_id,
+                                           @Param("isadopted") int isadopted
+                                           );
 
     @Query(value = "SELECT * FROM animals WHERE shelter_id = :shelter_id", nativeQuery = true)
     List<Animal> listByshelter_id(@Param("shelter_id") int shelter_id);

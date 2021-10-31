@@ -55,9 +55,11 @@ public class IsAdoptedService {
 
     public IsAdopted addIsAdopted(IsAdopted isadopted){
         Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
-        animal.get().setIsadopted(1);
+        animal.get().setIsadopted(isadopted.getStatus());
+
+        if(isadopted.getStatus()==1){
+            animal.get().setStatus(EntityStatus.DELETED);}
         animalRepository.save(animal.get());
-        animal.get().setStatus(EntityStatus.DELETED);
         return isadoptedRepository.save(isadopted);
     }
 
@@ -86,10 +88,19 @@ public class IsAdoptedService {
     }
 
     public void deleteIsAdopted2(long id) throws DataNotFoundException {
+
         Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
         Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
-        animalRepository.delete(animal.get());
-        isadoptedRepository.delete(isadopted.get());
+        if(animal.get().getIsadopted()==1){
+            animalRepository.delete(animal.get());
+            isadoptedRepository.delete(isadopted.get());
+        }else {
+            animal.get().setIsadopted(3);
+            animal.get().setVirtual_owner(isadopted.get().getOwnerid());
+            animalRepository.save(animal.get());
+            isadoptedRepository.delete(isadopted.get());
+
+        }
     }
 
 

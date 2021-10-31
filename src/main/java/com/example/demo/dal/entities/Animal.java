@@ -17,7 +17,7 @@ public class Animal extends BaseEntity {
 
     private int animaltype_id;
 
-    private String virtual_owner; // int
+    private long virtual_owner; // int
 
     private String breed;
 

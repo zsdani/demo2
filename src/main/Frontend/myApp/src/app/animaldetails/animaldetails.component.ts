@@ -13,6 +13,7 @@ import {CalendarService} from '../Services/calendar.service';
 import {CalendarEvent} from 'angular-calendar';
 import {addHours} from 'date-fns';
 import {TobevirtualownerComponent} from '../tobevirtualowner/tobevirtualowner.component';
+import {User1} from "../class/User1";
 
 
 
@@ -24,7 +25,7 @@ import {TobevirtualownerComponent} from '../tobevirtualowner/tobevirtualowner.co
 export class AnimaldetailsComponent implements OnInit {
 
 
-
+  public virtualuser: User1 = new User1();
   animal: Animal = new Animal;
 
 
@@ -57,7 +58,14 @@ export class AnimaldetailsComponent implements OnInit {
     this.animaldetailsService.getAnimal(parseInt(localStorage.getItem('animalid')), this.animaldetailsService.text).subscribe((res: Animal) => {
       console.log(res);
       this.animal = res;
+      if(res.virtual_owner!=0){
+        this.auth.getOwnerbyid(res.virtual_owner).subscribe((res0: User1) => {
+          this.virtualuser = res0;
+        });
+      }
     });
+
+
 
 
   }

@@ -99,6 +99,36 @@ public class AnimalService implements SpecRepositroy {
     public Animal addAnimal(Animal animal) {
 
         animal.setStatus(EntityStatus.ACTIVE);
+        int x =animal.getAge();
+        switch (x) {
+            case 0:
+                animal.setAge(0);
+                break;
+            case 1:
+                animal.setAge(0);
+                break;
+            case 2:
+                animal.setAge(0);
+                break;
+            case 3:
+                animal.setAge(1);
+                break;
+            case 4:
+                animal.setAge(1);
+                break;
+            case 5:
+                animal.setAge(2);
+                break;
+            case 6:
+                animal.setAge(2);
+                break;
+            case 7:
+                animal.setAge(2);
+                break;
+            default:
+                animal.setAge(3);
+
+        }
 
         if (animal.getLifestory() == null ) {
             animal.setLifestory(animalProperties.getDefaultLifeStory());
@@ -142,11 +172,12 @@ public class AnimalService implements SpecRepositroy {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
-    public List<Animal> listByshelterandisadopted(long shelter_id) {
+    public List<Animal> listByshelterandisadopted(Paar paar) {
+        long shelter_id=paar.getShelter_id();
+        int isadopted= paar.getIsadopted();
 
 
-
-        return (List<Animal>) animalRepository.listByshelterandisadopted(shelter_id);
+        return (List<Animal>) animalRepository.listByshelterandisadopted(shelter_id, isadopted);
 
     }
 

@@ -37,6 +37,7 @@ public class IsAdoptedController {
 
     @GetMapping("/allatid")
     public ResponseEntity<IsAdopted> findIsAdoptedByAllatid(@RequestParam long allatid) throws DataNotFoundException {
+        System.out.println(allatid);
         return ResponseEntity.ok(isadoptedService.findIsAdoptedByAllatid(allatid));
     }
 

@@ -6,55 +6,86 @@
 
 
 
-{{animal.type.name==='macska' ? 'Szia, ha megszeretnél ismerni, akkor lentebb megtalálhatod az elérhetőségemet ;) ' : 'Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát ;)' }}
+<h1 style="display: inline;">{{animal.type.name==='macska' ? 'Szia, ha megszeretnél ismerni, akkor lentebb megtalálhatod az elérhetőségemet.  '  : 'Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát ^^ Csak regisztrálnod kell hozzá.' }} </h1>
 <br>
+
 <br>
 <table>
   <tbody>
+  <div class="DIV">
   <tr>
     <td class="kep">
       <img src="/assets/pic/{{animal.imagine}}" alt="image">
     </td>
+
     <td class="gombok">
-      <div class="buttpos">
+      <div class="valami1">
+
+      <div  >
         <button  class="button button1 " (click)="adopt()"  >Örökbe fogadom</button>
       </div>
+        <h3>
+          asfdghfdafsgfdsgdfdfsdgsdfsdfsdfsgdfbf
+        </h3>
+      <br>
+      <br>
+      <br>
 
-      Virtuális örökbe fogadás? Kattints a <a href="/tobevirtualowner" routerLink="/tobevirtualowner">linkre</a>  és elmagyarázom.
-      Ha tudod mi az,akkor meg a gombra.
-      <div class="buttpos">
+
+      <div class="buttpos" *ngIf="animal.isadopted==2 || animal.isadopted==3 ;  else elseBlock3">
+
+        Szerencsémre engem már virtuálisan örökbe fogadtak
+      </div>
+      <ng-template #elseBlock3>
         <button  class="button button1 " (click)="wirtualadopt()" >Virtuálisan örökbe fogadom</button>
+      </ng-template>
+        <h3>
+          Virtuális örökbe fogadás? Kattints a <a href="/tobevirtualowner" routerLink="/tobevirtualowner">linkre</a>  és elmagyarázom.
+        </h3>
       </div>
     </td>
+
   </tr>
+  <tr>
+    <td  colspan="2">
+      <br>
+      <h3>
+
+    Szia a nevem: {{animal.name}} és {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
+    {{animal.type.name}} vagyok.
+    A test méretem: {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'Nagy'}} és
+    {{animal.gonadectomy===0 ? 'nem vagyok ivartalanítva.' : 'ki vagyok ivartalanítva.'}}
+    Nem tudom hogy fontos-e de {{animal.breed}} {{animal.type.name}} vagyok.
+    A korom publikus: {{animal.age}} éves. {{animal.age>5 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}}
+    Betgségem:
+    {{animal.illnes==='nincs' ? 'Szerencsére nincs ;) ' : 'Sajnos van: '+ animal.illnes }}
+
+    <br>
+    Az élet történetem:
+    <br>
+    {{animal.lifestory}}
+    <br>
+    {{animal.virtual_owner!==0 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
+    {{animal.virtual_owner!==0 ? virtualuser.username : '' }}
+    {{animal.virtual_owner===0 ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
+    <br>
+    {{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: '+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
+    ' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
+      </h3>
+
+    </td>
+  </tr>
+    <tr>
+      <td  colspan="2">
+
+      </td>
+    </tr>
+
+  </div>
   </tbody>
 </table>
-
-Szia a nevem: {{animal.name}} és {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
-{{animal.type.name}} vagyok.
-A test méretem: {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'Nagy'}} és
-{{animal.gonadectomy===0 ? 'nem vagyok ivartalanítva.' : 'ki vagyok ivartalanítva.'}}
-Nem tudom hogy fontos-e de {{animal.breed}} {{animal.type.name}} vagyok.
-A korom publikus: {{animal.age}} éves. {{animal.age>5 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}}
-Betgségem:
-{{animal.illnes==='nincs' ? 'Szerencsére nincs ;) ' : 'Sajnos van: '+ animal.illnes }}
-
-<br>
-Az élet történetem:
-<br>
-{{animal.lifestory}}
-<br>
-{{animal.virtual_owner!==0 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
-{{animal.virtual_owner!==0 ? animal.virtual_owner : '' }}
-{{animal.virtual_owner===0 ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
-<br>
-{{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:'+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
-' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
-
-
-<br>
-
 <app-calendar></app-calendar>
+
 
 
 

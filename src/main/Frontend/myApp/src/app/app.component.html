@@ -1,23 +1,24 @@
 <body>
+
 <div class="sav">
   <div class="div" fxShow="false" fxShow.gt-sm>
     <button class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
 
     <!--<button class="mat-button" href="/animals" routerLink="/animals">Örökbefogadás</button> -->
 
-    <button class="mat-button" [matMenuTriggerFor]="animalMenu">Örökbefogadás</button>
+    <button  class="mat-button" [matMenuTriggerFor]="animalMenu">Örökbefogadás</button>
     <mat-menu #animalMenu="matMenu" yPosition="below">
       <button  (click)="goToCats(0)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Macskák</button>
       <button  (click)="goToDogs(1)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Kutyák</button>
     </mat-menu>
 
 
-    <button class="mat-button" [matMenuTriggerFor]="donationMenu">Támogatás</button>
+    <button  class="mat-button" [matMenuTriggerFor]="donationMenu">Támogatás</button>
       <mat-menu #donationMenu="matMenu" yPosition="below">
-        <button class="mat-menu-item">Pénz támogatás</button>
-        <button class="mat-menu-item">Étel támogatás</button>
-        <button class="mat-menu-item">Adó 1%</button>
-        <button class="mat-menu-item"  href="/tobevirtualowner" routerLink="/tobevirtualowner">Virtuális gazda szeretnék lenni</button>
+        <button  class="mat-menu-item">Pénz támogatás</button>
+        <button  class="mat-menu-item">Étel támogatás</button>
+        <button  class="mat-menu-item">Adó 1%</button>
+        <button  class="mat-menu-item"  href="/tobevirtualowner" routerLink="/tobevirtualowner">Virtuális gazda szeretnék lenni</button>
       </mat-menu>
 
     <button class="mat-button" [matMenuTriggerFor]="volunteeringMenu">Önkénteskedés</button>

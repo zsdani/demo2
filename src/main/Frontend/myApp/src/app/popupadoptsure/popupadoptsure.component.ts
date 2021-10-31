@@ -27,12 +27,12 @@ export class PopupadoptsureComponent implements OnInit {
     const PostData = {
       allatid: parseInt(localStorage.getItem('animalid')) ,
       ownerid: parseInt(localStorage.getItem('ownerID')),
-      shelterid: 2
+      status: 1
 
     };
     console.log(PostData);
     this.adoptedService.addadopted(PostData);
-    //this.adoptedService.adoptednotsure(PostData.allatid);
+
 
 
 

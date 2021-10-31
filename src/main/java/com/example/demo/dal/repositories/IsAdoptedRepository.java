@@ -22,8 +22,9 @@ public interface IsAdoptedRepository extends CrudRepository<IsAdopted, Long> {
 
      */
     IsAdopted findIsAdoptedByid(Long id);
-    Optional<IsAdopted> findIsAdoptedByallatid(Long allatid);
 
+
+    Optional<IsAdopted> findIsAdoptedByallatid(Long allatid);
     List<IsAdopted> findIsAdoptedAnimalByshelterid(Long shelterid);
 
     @Query(value = "SELECT * FROM isadopted WHERE shelterid = :shelterid AND isaoptedwithshelterpermission = true", nativeQuery = true)

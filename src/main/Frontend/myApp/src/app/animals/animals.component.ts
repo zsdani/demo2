@@ -34,6 +34,7 @@ export class AnimalsComponent implements OnInit {
   private gender = -1;
   public _x = 0;
   public  valami: string | null = '';
+  public show = true;
 
 
 
@@ -123,6 +124,10 @@ export class AnimalsComponent implements OnInit {
 
   get x(): number {
     return this._x;
+  }
+
+  clicksearch(){
+    this.show=!this.show;
   }
 
 

@@ -20,7 +20,8 @@ public class IsAdopted {
 
     private long allatid;
     private long ownerid;
-    private long shelterid;
+    private  long shelterid;
+    private int status;
     private boolean isaoptedwithshelterpermission = false;
 
 }

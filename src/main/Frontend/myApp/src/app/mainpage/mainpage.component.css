@@ -184,7 +184,30 @@ tr{
   width: 120px;
 }
 
+.thumbImage {
+  width: 800px;
+  height: 300px;
+  space: 4;
 
+
+}
+
+img{
+  border-radius: 100px 0px 0px 10px;
+
+}
+
+.DIV{
+  padding-top: 9px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 20px;
+  background: #ffddab;
+  border-radius: 15px;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
 
 
 

@@ -82,8 +82,8 @@ export class AnimalService {
 
   ///listadoptedbyshelterid
 
-  public getadoptedanimals(shelter_id: number): Observable<Animal[]> {
-    return this.http.post<Animal[]>(`${this.animalURL}/listadoptedbyshelterid`, shelter_id);
+  public getadoptedanimals(param: { shelter_id: number; isadopted: number }): Observable<Animal[]> {
+    return this.http.post<Animal[]>(`${this.animalURL}/listadoptedbyshelterid`, param);
   }
 
 

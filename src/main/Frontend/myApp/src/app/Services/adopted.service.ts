@@ -22,7 +22,7 @@ export class AdoptedService {
     private ns: NotificationService,
   ) { }
 
-  public addadopted(k: { allatid: number, ownerid: number }): void {
+  public addadopted(k: { allatid: number, ownerid: number, status: number }): void {
     this.http.post<IsAdopted>(`${this.URL}`, k).subscribe();
   }
 

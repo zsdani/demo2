@@ -51,6 +51,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ShelterpageComponent } from './shelterpage/shelterpage.component';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {NgImageSliderModule} from "ng-image-slider";
 
 
 
@@ -140,6 +141,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     MatSnackBarModule,
     CalendarCommonModule,
     CalendarModule,
+    NgImageSliderModule,
 
 
     CommonModule,

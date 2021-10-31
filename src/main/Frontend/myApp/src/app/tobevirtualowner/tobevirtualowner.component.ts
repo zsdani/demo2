@@ -9,6 +9,9 @@ import {Animal} from '../class/Animal';
 import {Shelter} from '../class/Shelter';
 import {ShelterService} from '../Services/shelter.service';
 import {AnimalService} from '../Services/animal.service';
+import {AdoptedService} from "../Services/adopted.service";
+import {User1} from "../class/User1";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -29,11 +32,14 @@ export class TobevirtualownerComponent implements OnInit {
 
 
 
+
   constructor(
     public auth: AuthService,
     public animaldetailservice: AnimaldetailsService,
     private  shelterService: ShelterService,
     private animalService: AnimalService,
+    private adoptedService: AdoptedService,
+    private snackBar: MatSnackBar,
 
 
 
@@ -91,6 +97,20 @@ export class TobevirtualownerComponent implements OnInit {
     this.selectedshelter = null;
     this.selectedanimal = null;
 
+  }
+  virtauladopt(){
+
+
+    const PostData = {
+      allatid: parseInt(localStorage.getItem('animalid')) ,
+      ownerid: parseInt(localStorage.getItem('ownerID')),
+      status: 2
+
+    };
+    console.log(PostData);
+    this.adoptedService.addadopted(PostData);
+    this.snackBar.open("Ne felejtsd el az utalás, különben nem sikeres a virtuális örökbefogadás")._dismissAfter(4000);
+    location.reload();
   }
 
 

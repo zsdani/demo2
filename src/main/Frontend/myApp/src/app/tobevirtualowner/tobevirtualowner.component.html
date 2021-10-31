@@ -96,9 +96,33 @@ Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet é
               akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{selectedanimal.name}}-nak a menhelyének ({{selectedanimal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
               Fontos, hogy közleményben add meg a kutyának a nevét!
               Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
+              <br>
+              <br>
+              <div *ngIf="selectedanimal===null || selectedanimal.isadopted===2 || selectedanimal.virtual_owner!==0 ;else elseblock5" >
+                <!--<button disabled class="button button1 " (click)="virtauladopt()"   >Virtuálisan Örökbe fogadom</button> -->
+                <div *ngIf="selectedanimal!==null && selectedanimal.isadopted===2 || selectedanimal.isadopted===3; else elseBlock6">
+                  Ez az állat már virtuálisan örökbe van fogadva
+                </div>
+                <ng-template #elseBlock6>
+                </ng-template>
+
+
+              </div>
+              <ng-template #elseblock5>
+                <button class="button button1 " (click)="virtauladopt()"   >Virtuálisan Örökbe fogadom</button>
+              </ng-template>
+
+
             </ng-template>
+
           </td>
-          <!--<button (click)="cancel()">Mégse</button>-->
+
+
+
+
+
+
+
 
         </tr>
         </tbody>
@@ -118,8 +142,12 @@ Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet é
             akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{animal.name}}-nak a menhelyének ({{animal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
             Fontos, hogy közleményben add meg a kutyának a nevét!
             Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
+            <br>
+            <br>
+            <button  class="button button1 "  (click)="virtauladopt()"  >Virtuálisan Örökbe fogadom</button>
           </td>
         </tr>
+
         </tbody>
       </table>
 

@@ -7,14 +7,27 @@
 
 
 
-    <h1 >Keresés szűrése:</h1>
-<table>
-  <tbody>
-  <tr>
-    <td>
-      Menhely:
+<h1 style="display: inline;" >Keresés szűrése:</h1>
+  <div *ngIf="show; else elseBlock2" style="display: inline;">
+  <button (click)="clicksearch()" class="button button1 " style=" padding: 0px 0px;">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
+  </div>
+  <ng-template #elseBlock2 style="display: inline;">
+    <button (click)="clicksearch()" class="button button1 "style=" padding: 0px 0px;">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+  </ng-template>
 
-      <mat-form-field appearance="fill">
+<div class="DIV"  *ngIf="show; else elseBlock">
+<table class="keresestable">
+  <tbody>
+
+  <tr>
+    <td class="hely">
+      Menhely:
+      <br>
+      <mat-form-field appearance="fill" style="width: 80%">
         <mat-label>Milyen menhelyen?</mat-label>
         <mat-select [(value)]="selectedshelter">
           <mat-option *ngFor="let shelter of shelterss" [value]="shelter.id" >
@@ -29,8 +42,8 @@
 
 
     <td>
-      Kora:
-      <mat-form-field appearance="fill">
+      Kora:<br>
+      <mat-form-field appearance="fill" style="width: 80%">
         <mat-label>Milyen korú?</mat-label>
         <mat-select [(value)]="selectedage">
           <mat-option value=-1>Nem fontos</mat-option>
@@ -47,8 +60,8 @@
 
     </td>
     <td>
-      Méret:
-      <mat-form-field appearance="fill">
+      Méret:<br>
+      <mat-form-field appearance="fill" style="width: 80%" >
         <mat-label>Milyen méretű?</mat-label>
         <mat-select [(value)]="selectedsize">
           <mat-option value=-1>Nem fontos</mat-option>
@@ -61,8 +74,8 @@
 
     </td>
     <td>
-      Neme:
-      <mat-form-field appearance="fill">
+      Neme:<br>
+      <mat-form-field appearance="fill" style="width: 80%" >
         <mat-label>Milyen nemű?</mat-label>
         <mat-select [(value)]="selectedgender">
           <mat-option value=-1>Nem fontos</mat-option>
@@ -74,9 +87,9 @@
 
 
     </td>
-    <td>      Ivartalanított:
+    <td>      Ivartalanított:<br>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" style="width: 80%">
         <mat-label>Ivartalanított?</mat-label>
         <mat-select [(value)]="selectedgonadectomy">
           <mat-option value=-1>Nem fontos</mat-option>
@@ -86,15 +99,27 @@
       </mat-form-field>
 
 
-    <td><button type="button" (click)="myFunction()">Keresés</button></td>
+    <td >
+    <button type="button" class="button button1 " (click)="myFunction()">Keresés</button>
+    </td>
   </tr>
+
+
   </tbody>
 </table>
+</div>
+<ng-template #elseBlock>
+
+</ng-template>
 
 
+
+<div  *ngIf="animals.length!==0; else elseBlock3">
 <table class="tabla" cellspacing="0" cellpadding="0">
-  <tbody >
-  <tr class="cella" *ngFor="let animal of animals"  >
+
+  <div class="DIV" *ngFor="let animal of animals" >
+  <tr class="cella"  >
+
     <td class="kep">
 
       <img src="/assets/pic/{{animal.imagine}}" alt="image">
@@ -112,9 +137,17 @@
         <button (click)="goToDetails(animal.id)" class="button button1 " href="/id" routerLink="/id">Részletek</button>
       </div>
     </td>
+
   </tr>
-  </tbody>
+  </div>
+
+
 </table>
+</div>
+<ng-template #elseBlock3>
+  Sajnos nincs megjeleníthető állatunk
+</ng-template>
+
 
 
 

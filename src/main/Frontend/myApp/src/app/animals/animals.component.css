@@ -1,44 +1,50 @@
-.tabla {
-  border: none;
-  content: "";
-  display: table;
-  clear: both;
-  table-align: center;
-  margin-left: auto;
-  margin-right: auto;
+.keresestable{
+
+}
+.hely{
+
+
 }
 
-tr{
+
+/* az allatok dolgook */
+.tabla {
+  margin-left: auto;
+  margin-right: auto;
 
 }
 .cella{
-  border-color: aqua;
-  border-left: dotted #111111;
+
 }
-
-
-
-
-
+.DIV{
+  padding-top: 9px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 20px;
+  background: #ffddab;
+  border-radius: 15px;
+}
 .kep{
 
-  width: 400px;
-  height: 300px;
-  color: blueviolet;
-  padding-bottom: 40px;
-
-
+}
+img{
+  border-radius: 10px 0px 0px 10px;
 
 }
 .adatok{
 
+  color: coral;
+  border-radius: 0px 10px 10px 0px;
   width: 450px;
+  background:#f5e9d7;
+
   font-size: 25px;
   float: right;
   padding-top: 30px;
   height: 300px;
-  color: coral;
-  background: antiquewhite;
+
+
 
 }
 .name{
@@ -71,11 +77,12 @@ li{
 }
 
 .button1 {
+  border-radius: 10px;
   background-color: antiquewhite;
   color: black;
   border: 2px solid coral;
 }
 
 .button1:hover {
-  background-color: coral;
+  background: #ffce87;
 }
