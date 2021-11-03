@@ -42,7 +42,7 @@ import { PopupadoptsureComponent } from './popupadoptsure/popupadoptsure.compone
 import { CalendarComponent } from './calendar/calendar.component';
 import {CalendarCommonModule, CalendarModule, DateAdapter} from 'angular-calendar';
 import {CommonModule} from '@angular/common';
-import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { DatePickerComponent } from './date-picker/date-picker.component';
@@ -114,51 +114,52 @@ import {NgImageSliderModule} from "ng-image-slider";
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatMenuModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatToolbarModule,
-    FormsModule,
-    MatButtonToggleModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatPasswordStrengthModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatSnackBarModule,
-    CalendarCommonModule,
-    CalendarModule,
-    NgImageSliderModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatToolbarModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatPasswordStrengthModule,
+        ReactiveFormsModule,
+        MatOptionModule,
+        MatTabsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatSnackBarModule,
+        CalendarCommonModule,
+        CalendarModule,
+        NgImageSliderModule,
 
 
-    CommonModule,
-    NgbModalModule,
-    FormsModule,
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
-    MatDatepickerModule,
-    MatNativeDateModule,
-    NgxMaterialTimepickerModule,
-    ImageCropperModule,
+        CommonModule,
+        NgbModalModule,
+        FormsModule,
+        FlatpickrModule.forRoot(),
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory,
+        }),
+        MatDatepickerModule,
+        MatNativeDateModule,
+        NgxMaterialTimepickerModule,
+        ImageCropperModule,
+        NgbRatingModule,
 
 
-  ],
+    ],
   providers: [
     AnimalService,
     AnimaldetailsService,

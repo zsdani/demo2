@@ -34,7 +34,7 @@ public class AnimalDTO  {
 
     private AnimalType type;
 
-    private long virtual_owner; // int
+    private IsAdopted virtual_owner; // int
 
     private String breed;
 
@@ -53,7 +53,7 @@ public class AnimalDTO  {
 
     private String imagine;
 
-    private int isadopted;
+    private IsAdopted isadopted;
 
     private Image image;
 
@@ -83,7 +83,7 @@ public class AnimalDTO  {
             this.image=null;
         }
     }
-/*
+
     public void setIsAdopted(Optional<IsAdopted> opt) {
         if(opt.isPresent()){
             this.isadopted=opt.get();
@@ -92,8 +92,16 @@ public class AnimalDTO  {
         }
     }
 
+    public void setVirtual_owner(Optional<IsAdopted> opt) {
+        if(opt.isPresent()){
+            this.virtual_owner=opt.get();
+        }else{
+            this.virtual_owner=null;
+        }
+    }
 
- */
+
+
 
 
 

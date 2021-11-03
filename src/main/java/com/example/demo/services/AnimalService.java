@@ -86,6 +86,12 @@ public class AnimalService implements SpecRepositroy {
         return  isadoptedRepository.findById((long) animal.getIsadopted() );
     }
 
+    public Optional<IsAdopted> findGoodVirtual (Animal animal) throws DataNotFoundException{
+
+        //return  shelterRepository.findById((long) animal.getShelter_id());
+        return  isadoptedRepository.findById((long) animal.getVirtual_owner()  );
+    }
+
     public Optional<Image> findGoodImage (Animal animal) throws DataNotFoundException{
 
         return  imageRepository.findById((long) animal.getImage());
@@ -172,14 +178,7 @@ public class AnimalService implements SpecRepositroy {
         return (List<Animal>) animalRepository.listByshelter_id(shelter_id);
 
     }
-    public List<Animal> listByshelterandisadopted(Paar paar) {
-        long shelter_id=paar.getShelter_id();
-        int isadopted= paar.getIsadopted();
 
-
-        return (List<Animal>) animalRepository.listByshelterandisadopted(shelter_id, isadopted);
-
-    }
 
     public  ArrayList<Animal> findspecanimal(specanimal spec){
 

@@ -29,6 +29,8 @@ export class TobevirtualownerComponent implements OnInit {
   public selectedshelter = 0;
   public selectedanimal: Animal = null;
   lehet = true;
+  public valami: string;
+
 
 
 
@@ -51,6 +53,12 @@ export class TobevirtualownerComponent implements OnInit {
     const tabCount = 2;
     this.aszam = localStorage.getItem('wirtualowneranimal');
     this.demo1TabIndex = parseInt(localStorage.getItem('kex')) % tabCount;
+
+    this.animalService.getanimalbyid(parseInt(localStorage.getItem('animalid'))).subscribe((res: Animal) => {
+      console.log(res.shelter.id);
+      this.valami = res.shelter.id + "";
+      localStorage.setItem('shelter_id', this.valami);
+    });
 
     if (localStorage.getItem('wirtualowneranimal') !== null) {
       this.animaldetailservice.getAnimal(parseInt(localStorage.getItem('wirtualowneranimal')), this.animaldetailservice.text).subscribe((res: Animal) => {
@@ -104,7 +112,8 @@ export class TobevirtualownerComponent implements OnInit {
     const PostData = {
       allatid: parseInt(localStorage.getItem('animalid')) ,
       ownerid: parseInt(localStorage.getItem('ownerID')),
-      status: 2
+      shelter_id: parseInt(localStorage.getItem('shelter_id')),
+      status2: 2
 
     };
     console.log(PostData);

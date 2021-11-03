@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Datee} from '../class/Datee';
 import {Shelter} from '../class/Shelter';
 import {NotificationService} from './notification.service';
+import {IsAdopted} from "../class/IsAdopted";
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,10 @@ export class AnimalService {
     return this.http.get<Animal[]>(`${this.animalURL}/shelter_id?shelter_id=${id}`);
   }
 
+  public getanimalbyid(id: number): Observable<Animal> {
+    return this.http.get<Animal>(`${this.animalURL}/id?id=${id}`);
+  }
+
 
 
 
@@ -82,8 +87,8 @@ export class AnimalService {
 
   ///listadoptedbyshelterid
 
-  public getadoptedanimals(param: { shelter_id: number; isadopted: number }): Observable<Animal[]> {
-    return this.http.post<Animal[]>(`${this.animalURL}/listadoptedbyshelterid`, param);
+  public getadoptedanimals(param: { shelter_id: number; status: number }): Observable<IsAdopted[]> {
+    return this.http.post<IsAdopted[]>(`${this.animalURL}/listadoptedbyshelterid`, param);
   }
 
 

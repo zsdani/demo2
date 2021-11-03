@@ -86,9 +86,16 @@ export class MainpageComponent implements OnInit {
   public sheltersi: Shelter [] = [];
   public animalsi: Animal [] = [];
 
+  public usersii: User1 [] = [];
+  public tombii: number [] = [];
+  public animalidii: number [] = [];
+  public owneridii: number [] = [];
+  public sheltersii: Shelter [] = [];
+  public animalsii: Animal [] = [];
+
   ngOnInit(): void {
 
-    //ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
+    // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
     this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
       this.theuser = res0;
     });
@@ -102,41 +109,46 @@ export class MainpageComponent implements OnInit {
           this.tomb[i] = res[i].shelterid;
         }
         for (let i = 0; i < this.tomb.length; i++) {
-          let PostData = {
+          const PostData = {
             shelter_id: this.tomb[i],
-            isadopted: 1,
+            status2: 1,
 
           };
-          this.animalsService.getadoptedanimals(PostData).subscribe((res2: Animal[]) => {
+          this.adoptedService.getadoptedanimals(PostData).subscribe((res2: IsAdopted[]) => {
+            console.log(res2);
             for (let j = 0; j < res2.length; j++) {
               console.log('menhelyesallatokakiknek a statuszuk 1');
               console.log(res2[j]);
-              this.animals.push(res2[j]);
-              this.animalid.push(res2[j].id);
-            }
+              this.animalid.push(res2[j].allatid);
+              this.ownerid.push(res2[j].ownerid);
+
+            console.log("allatidek");
+            console.log(this.animalid);
             for (let k = 0; k < this.animalid.length; k++) {
-              this.adoptedService.getbyallatid(this.animalid[k]).subscribe((res3: IsAdopted) => {
-                this.ownerid[k] = res3.ownerid;
-                console.log('allatok, akikket orokbe fogadtak az owner idje');
+              this.animalsService.getanimalbyid(this.animalid[k]).subscribe((res3: Animal) => {
+                console.log("allat:");
                 console.log(res3);
-                for (let l = 0; l < this.ownerid.length; l++) {
-                  this.authService.getOwnerbyid(this.ownerid[l]).subscribe((res4: User1) => {
-                    this.animals[l].owner = res4.username;
+                this.animals.push(res3);
+
+
+                this.authService.getOwnerbyid(this.ownerid[k]).subscribe((res4: User1) => {
+                    this.animals[k].owner = res4.username;
                     console.log('ownerke neve');
                     console.log(res4);
                   });
-                }
+
+
+
               });
             }
-
-
+            }
           });
         }
+
       });
 
 
-      //virtual
-
+      // virtual
       this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
         console.log('menhelyid:');
         console.log(res);
@@ -144,37 +156,92 @@ export class MainpageComponent implements OnInit {
           this.tombi[i] = res[i].shelterid;
         }
         for (let i = 0; i < this.tombi.length; i++) {
-          let PostDatai = {
+          const PostDatai = {
             shelter_id: this.tombi[i],
-            isadopted: 2,
+            status2: 2,
 
           };
-          this.animalsService.getadoptedanimals(PostDatai).subscribe((res2: Animal[]) => {
+          this.adoptedService.getadoptedanimals(PostDatai).subscribe((res2: IsAdopted[]) => {
+            console.log(res2);
             for (let j = 0; j < res2.length; j++) {
-              console.log('menhelyesallatokakiknek a statuszuk 2');
+              console.log('menhelyesallatokakiknek a statuszuk 1');
               console.log(res2[j]);
-              this.animalsi.push(res2[j]);
-              this.animalidi.push(res2[j].id);
-            }
-            for (let k = 0; k < this.animalidi.length; k++) {
-              this.adoptedService.getbyallatid(this.animalidi[k]).subscribe((res3: IsAdopted) => {
-                this.owneridi[k] = res3.ownerid;
-                console.log('allatok, akikket orokbe fogadtak az owner idje');
-                console.log(res3);
-                for (let l = 0; l < this.owneridi.length; l++) {
-                  this.authService.getOwnerbyid(this.owneridi[l]).subscribe((res4: User1) => {
-                    this.animalsi[l].owner = res4.username;
+              this.animalidi.push(res2[j].allatid);
+              this.owneridi.push(res2[j].ownerid);
+
+              console.log("allatidek");
+              console.log(this.animalidi);
+              for (let k = 0; k < this.animalidi.length; k++) {
+                this.animalsService.getanimalbyid(this.animalidi[k]).subscribe((res3: Animal) => {
+                  console.log("allat:");
+                  console.log(res3);
+                  this.animalsi.push(res3);
+
+
+                  this.authService.getOwnerbyid(this.owneridi[k]).subscribe((res4: User1) => {
+                    this.animalsi[k].owner = res4.username;
                     console.log('ownerke neve');
                     console.log(res4);
                   });
-                }
-              });
+
+
+
+                });
+              }
             }
-
-
           });
         }
+
       });
+
+      // Elfogadott virtuális ownerek
+      this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
+        console.log('menhelyid:');
+        console.log(res);
+        for (let i = 0; i < res.length; i++) {
+          this.tombii[i] = res[i].shelterid;
+        }
+        for (let i = 0; i < this.tombii.length; i++) {
+          const PostDataii = {
+            shelter_id: this.tombii[i],
+            status2: 3,
+
+          };
+          this.adoptedService.getadoptedanimals(PostDataii).subscribe((res2: IsAdopted[]) => {
+            console.log(res2);
+            for (let j = 0; j < res2.length; j++) {
+              console.log('menhelyesallatokakiknek a statuszuk 1');
+              console.log(res2[j]);
+              this.animalidii.push(res2[j].allatid);
+              this.owneridii.push(res2[j].ownerid);
+
+              console.log("allatidek");
+              console.log(this.animalidii);
+              for (let k = 0; k < this.animalidii.length; k++) {
+                this.animalsService.getanimalbyid(this.animalidii[k]).subscribe((res3: Animal) => {
+                  console.log("allat:");
+                  console.log(res3);
+                  this.animalsii.push(res3);
+
+
+                  this.authService.getOwnerbyid(this.owneridii[k]).subscribe((res4: User1) => {
+                    this.animalsii[k].owner = res4.username;
+                    console.log('ownerke neve');
+                    console.log(res4);
+                  });
+
+
+
+                });
+              }
+            }
+          });
+        }
+
+      });
+
+
+
 
 
 

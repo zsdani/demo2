@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.dal.entities.IsAdopted;
 import com.example.demo.dal.entities.Owner;
+import com.example.demo.dal.entities.Paar;
 import com.example.demo.dal.entities.Shelter;
 import com.example.demo.services.IsAdoptedService;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -25,21 +26,14 @@ public class IsAdoptedController {
         this.isadoptedService = isadoptedService;
     }
 
-    @GetMapping("/shelterid")
-    public ResponseEntity<List<IsAdopted>> findadoptedAnimalByShelterID(@RequestParam long shelterid) throws DataNotFoundException {
-        return ResponseEntity.ok(isadoptedService.findadoptedAnimalByShelterID(shelterid));
-    }
+
 
     @GetMapping("/id")
     public ResponseEntity<IsAdopted> findadoptedAnimalByid(@RequestParam long id) throws DataNotFoundException {
         return ResponseEntity.ok(isadoptedService.findIsAdoptedByid(id));
     }
 
-    @GetMapping("/allatid")
-    public ResponseEntity<IsAdopted> findIsAdoptedByAllatid(@RequestParam long allatid) throws DataNotFoundException {
-        System.out.println(allatid);
-        return ResponseEntity.ok(isadoptedService.findIsAdoptedByAllatid(allatid));
-    }
+
 
 
 
@@ -49,10 +43,7 @@ public class IsAdoptedController {
     }
 
 
-    @GetMapping("/all/shelterid")
-    public ResponseEntity<List<IsAdopted>> listByshelteridandbool(@RequestParam long shelterid) throws DataNotFoundException {
-        return ResponseEntity.ok(isadoptedService.listByshelteridandbool(shelterid) );
-    }
+
 
 
 
@@ -61,14 +52,16 @@ public class IsAdoptedController {
         return ResponseEntity.ok(isadoptedService.addIsAdopted(isadopted));
     }
 
-    @PostMapping("/adoptednotsure")
-    public void updateIsAdpotedgood(@RequestBody int id) throws DataNotFoundException{
-         isadoptedService.adoptednotsure(id);
+    @PostMapping("/listadoptedbyshelterid")
+    public ResponseEntity listadoptedbyshelterid(@RequestBody Paar paar) throws DataNotFoundException{
+        return ResponseEntity.ok(isadoptedService.listadoptedbyshelterid(paar));
     }
 
     @DeleteMapping("/id")
     public void deleteIsAdopted(@RequestParam long id) throws DataNotFoundException {
         isadoptedService.deleteIsAdopted(id);
+
+
     }
 
     @DeleteMapping("/2/id")

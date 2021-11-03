@@ -30,9 +30,6 @@ public class IsAdoptedService {
 
     }
 
-    public List<IsAdopted> findadoptedAnimalByShelterID (long shelteid){
-        return (List<IsAdopted>) isadoptedRepository.findIsAdoptedAnimalByshelterid(shelteid);
-    }
 
 
     public IsAdopted findIsAdoptedByid (long id){
@@ -46,49 +43,94 @@ public class IsAdoptedService {
 
 
 
-    public List<IsAdopted> listByshelteridandbool(long shelterid) {
-
-        return (List<IsAdopted>) isadoptedRepository.listByshelteridandbool(shelterid);
-    }
 
 
 
     public IsAdopted addIsAdopted(IsAdopted isadopted){
+        isadoptedRepository.save(isadopted);
+        //Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(isadopted.get().getAllatid());
         Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
-        animal.get().setIsadopted(isadopted.getStatus());
 
-        if(isadopted.getStatus()==1){
-            animal.get().setStatus(EntityStatus.DELETED);}
+
+        if(isadopted.getStatus2()==2) {
+            animal.get().setVirtual_owner(isadopted.getId());
+        }
+        if(isadopted.getStatus2()==1) {
+            animal.get().setIsadopted((int) isadopted.getId());
+            animal.get().setStatus(EntityStatus.DELETED);
+        }
+
+
+
         animalRepository.save(animal.get());
+
         return isadoptedRepository.save(isadopted);
     }
 
 
-    public void adoptednotsure(long id)  {
+    public List<IsAdopted>listadoptedbyshelterid(Paar paar)  {
 
-        Optional<Animal> animal=animalRepository.findById(id);
+        Long shelter_id = paar.getShelter_id();
+        int status2 = paar.getStatus2();
+        System.out.println(shelter_id);
+        System.out.println(status2);
 
 
-
-        animal.get().setStatus(EntityStatus.DELETED);
-        //animal.get().setIsadopted((int)isadopted.getId());
-
-        animalRepository.save(animal.get());
+        return isadoptedRepository.listadoptedbyshelterid(shelter_id,status2);
 
 
     }
 
     public void deleteIsAdopted(long id) throws DataNotFoundException {
-        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
+
+
+
+        Optional<IsAdopted> isadopted = isadoptedRepository.findById(id);
         Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
-        animal.get().setIsadopted(0);
-        animal.get().setStatus(EntityStatus.ACTIVE);
+        if(isadopted.get().getStatus2()==2){
+            animal.get().setVirtual_owner(0);
+            isadoptedRepository.delete(isadopted.get());
+        }
+        if(isadopted.get().getStatus2()==1){
+            animal.get().setStatus(EntityStatus.ACTIVE);
+            animal.get().setIsadopted(0);
+            isadoptedRepository.delete(isadopted.get());
+        }
+
+        if(isadopted.get().getStatus2()==3){
+            animal.get().setVirtual_owner(0);
+            isadoptedRepository.delete(isadopted.get());
+
+        }
+
         animalRepository.save(animal.get());
-        isadoptedRepository.delete(isadopted.get());
+
+
+
     }
 
     public void deleteIsAdopted2(long id) throws DataNotFoundException {
 
+        Optional<IsAdopted> isadopted = isadoptedRepository.findById(id);
+        Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
+        if(isadopted.get().getStatus2()==2){
+            isadopted.get().setStatus2(3);
+            isadoptedRepository.save(isadopted.get());
+        }
+        if(isadopted.get().getStatus2()==1){
+            long x=animal.get().getVirtual_owner();
+            Optional<IsAdopted> isadopted2 = isadoptedRepository.findById(x);
+            isadoptedRepository.delete(isadopted2.get());
+            isadoptedRepository.delete(isadopted.get());
+            animalRepository.delete(animal.get());
+        }
+
+
+
+        animalRepository.save(animal.get());
+
+
+        /*
         Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
         Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
         if(animal.get().getIsadopted()==1){
@@ -101,22 +143,14 @@ public class IsAdoptedService {
             isadoptedRepository.delete(isadopted.get());
 
         }
+
+         */
     }
 
 
 
 
-    public IsAdopted findIsAdoptedByAllatid(long allatid)  {
 
-        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(allatid);
-        //Optional<Animal> animal=animalRepository.findById(isadopted.getAllatid());
-        //isadopted.setIsaoptedwithshelterpermission(true);
-        //animal.get().setStatus(EntityStatus.ACTIVE);
-
-        return isadoptedRepository.save(isadopted.get());
-
-
-    }
 
 
 }

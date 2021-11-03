@@ -58,12 +58,12 @@
           {{animal.owner}}
       </div>
       <div class="cell" data-title="Status">
-        <button  (click)="accept(animal.id)"  style="background:greenyellow;">
+        <button  (click)="accept(animal.isadopted.id)"  style="background:greenyellow;">
           <mat-icon>check_circle</mat-icon>
         </button>
       </div>
       <div class="cell" data-title="Status" >
-        <button  (click)="refuse(animal.id)" style="background:red; " >
+        <button  (click)="refuse(animal.isadopted.id)" style="background:red; " >
           <mat-icon>highlight_off</mat-icon>
         </button>
       </div>
@@ -129,12 +129,12 @@
           {{animal.owner}}
         </div>
         <div class="cell" data-title="Status">
-          <button  (click)="accept(animal.id)"  style="background:greenyellow;">
+          <button  (click)="accept(animal.virtual_owner.id)"  style="background:greenyellow;">
             <mat-icon>check_circle</mat-icon>
           </button>
         </div>
         <div class="cell" data-title="Status" >
-          <button  (click)="refuse(animal.id)" style="background:red; " >
+          <button  (click)="refuse(animal.virtual_owner.id)" style="background:red; " >
             <mat-icon>highlight_off</mat-icon>
           </button>
         </div>
@@ -143,6 +143,66 @@
 
 
     </div>
+    </div>
+  </ng-template>
+<!-- Állandó virtuális gazdák  -->
+  <div  *ngIf="animalsii.length===0; else elseBlock22ii" >
+    Nincs egyik menhelye(i)dnél se elfogadott virtuális gazda
+  </div>
+  <ng-template #elseBlock22ii>
+
+    <div class="DIV">
+
+      <h1>Elfogadott virtuális örökbe fogadási kérelmek</h1>
+      <div class="table"  *ngFor="let animal of animalsii" >
+
+        <div class="row header green">
+          <div class="cell">
+            Név
+          </div>
+          <div class="cell">
+            Állat faj
+          </div>
+          <div class="cell">
+            Neme
+          </div>
+          <div class="cell">
+            Menhely neve
+          </div>
+          <div class="cell">
+            Örökbefogadó
+          </div>
+          <div class="cell">
+            Megvon
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="cell" data-title="Product">
+            {{animal.name}}
+          </div>
+          <div class="cell" data-title="Unit Price">
+            {{animal.type.name}}
+          </div>
+          <div class="cell" data-title="Quantity">
+            {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
+          </div>
+          <div class="cell" data-title="Date Sold">
+            {{animal.shelter.name}}
+          </div>
+          <div class="cell" data-title="Status">
+            {{animal.owner}}
+          </div>
+          <div class="cell" data-title="Status" >
+            <button  (click)="refuse(animal.virtual_owner.id)" style="background:red; " >
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </div>
+
+        </div>
+
+
+      </div>
     </div>
   </ng-template>
 

@@ -24,17 +24,20 @@
       <div  >
         <button  class="button button1 " (click)="adopt()"  >Örökbe fogadom</button>
       </div>
-        <h3>
-          asfdghfdafsgfdsgdfdfsdgsdfsdfsdfsgdfbf
-        </h3>
-      <br>
+        <div style="font-size: 11px">
+          Örökbefogadás és virtuális örökbefogadás  <a href="/tobevirtualowner" routerLink="/tobevirtualowner">szabályzat</a>
+        </div>
+
       <br>
       <br>
 
 
-      <div class="buttpos" *ngIf="animal.isadopted==2 || animal.isadopted==3 ;  else elseBlock3">
 
-        Szerencsémre engem már virtuálisan örökbe fogadtak
+      <div class="buttpos" *ngIf=" animal.virtual_owner!==null ;  else elseBlock3" style="font-size: 20px">
+        {{animal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
+        {{animal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
+        {{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}
+
       </div>
       <ng-template #elseBlock3>
         <button  class="button button1 " (click)="wirtualadopt()" >Virtuálisan örökbe fogadom</button>
@@ -64,10 +67,13 @@
     Az élet történetem:
     <br>
     {{animal.lifestory}}
-    <br>
-    {{animal.virtual_owner!==0 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
-    {{animal.virtual_owner!==0 ? virtualuser.username : '' }}
-    {{animal.virtual_owner===0 ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
+        <br>
+
+        a{{animal.virtual_owner.status2}}a
+    {{animal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
+    {{animal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
+    {{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}
+    {{animal.virtual_owner===null ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
     <br>
     {{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: '+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
     ' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
@@ -85,6 +91,8 @@
   </tbody>
 </table>
 <app-calendar></app-calendar>
+
+
 
 
 

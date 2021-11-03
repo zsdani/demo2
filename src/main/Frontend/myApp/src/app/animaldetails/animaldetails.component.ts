@@ -58,8 +58,8 @@ export class AnimaldetailsComponent implements OnInit {
     this.animaldetailsService.getAnimal(parseInt(localStorage.getItem('animalid')), this.animaldetailsService.text).subscribe((res: Animal) => {
       console.log(res);
       this.animal = res;
-      if(res.virtual_owner!=0){
-        this.auth.getOwnerbyid(res.virtual_owner).subscribe((res0: User1) => {
+      if(res.virtual_owner!=null ){
+        this.auth.getOwnerbyid(res.virtual_owner.ownerid).subscribe((res0: User1) => {
           this.virtualuser = res0;
         });
       }

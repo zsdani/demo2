@@ -43,22 +43,27 @@ public class AnimalController {
         animalDTO.setName(animal.getName());
         animalDTO.setAge(animal.getAge());
         animalDTO.setBreed(animal.getBreed());
-        animalDTO.setVirtual_owner(animal.getVirtual_owner());
+        //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+        try {
+            animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+        } catch (DataNotFoundException e) {
+            e.printStackTrace();
+        }
         animalDTO.setGender(animal.getGender());
         animalDTO.setLifestory(animal.getLifestory());
         animalDTO.setIllnes(animal.getIllnes());
         animalDTO.setGonadectomy(animal.getGonadectomy());
         animalDTO.setSize(animal.getSize());
         animalDTO.setImagine(animal.getImagine());
-        animalDTO.setIsadopted(animal.getIsadopted());
-        /*
+        //animalDTO.setIsadopted(animal.getIsadopted());
+
         try {
             animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
         } catch (DataNotFoundException e) {
             e.printStackTrace();
         }
 
-         */
+
         try {
             animalDTO.setShelter(animalService.findGoodShelter(animal));
         } catch (DataNotFoundException e) {
@@ -103,19 +108,24 @@ public class AnimalController {
             animalDTO.setName(animal.getName());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setGender(animal.getGender());
             animalDTO.setLifestory(animal.getLifestory());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
             } catch (DataNotFoundException e) {
@@ -146,7 +156,7 @@ public class AnimalController {
     public ResponseEntity<Animal> updateAnimal(@RequestBody Animal animal,@RequestParam long id) throws DataNotFoundException{
         return ResponseEntity.ok(animalService.updateAnimal(id, animal));
     }
-
+/*
     //na itt vege
     @PostMapping("/listadoptedbyshelterid")
     public ResponseEntity<List<AnimalDTO> > listByshelterandisadopted(@RequestBody Paar paar) {
@@ -164,19 +174,24 @@ public class AnimalController {
             animalDTO.setName(animal.getName());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
             animalDTO.setGender(animal.getGender());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
 
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
@@ -199,6 +214,8 @@ public class AnimalController {
         }).collect(Collectors.toList()));
     }
 
+ */
+
 
     @DeleteMapping
     public ResponseEntity<Animal> deleteAnimal(@RequestParam long id) throws DataNotFoundException {
@@ -219,19 +236,24 @@ public class AnimalController {
             animalDTO.setName(animal.getName());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
             animalDTO.setGender(animal.getGender());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
             } catch (DataNotFoundException e) {
@@ -267,19 +289,24 @@ public class AnimalController {
             animalDTO.setName(animal.getName());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
             animalDTO.setGender(animal.getGender());
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setLifestory(animal.getLifestory());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
 
             try {
                 animalDTO.setShelter(animalService.findGoodShelter(animal));
@@ -317,17 +344,22 @@ public class AnimalController {
             animalDTO.setName(animal.getName());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
             animalDTO.setGender(animal.getGender());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
 
             animalDTO.setLifestory(animal.getLifestory());
             try {
@@ -366,17 +398,23 @@ public class AnimalController {
             animalDTO.setImagine(animal.getImagine());
             animalDTO.setAge(animal.getAge());
             animalDTO.setBreed(animal.getBreed());
-            animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            //animalDTO.setVirtual_owner(animal.getVirtual_owner());
+            try {
+                animalDTO.setVirtual_owner(animalService.findGoodVirtual(animal));
+            } catch (DataNotFoundException e) {
+                e.printStackTrace();
+            }
+
             animalDTO.setGender(animal.getGender());
-            animalDTO.setIsadopted(animal.getIsadopted());
-            /*
+            //animalDTO.setIsadopted(animal.getIsadopted());
+
             try {
                 animalDTO.setIsAdopted(animalService.findGoodIsAdopted(animal));
             } catch (DataNotFoundException e) {
                 e.printStackTrace();
             }
 
-             */
+
 
             animalDTO.setLifestory(animal.getLifestory());
             try {
