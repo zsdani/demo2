@@ -112,14 +112,14 @@
 
 <div *ngIf="selectedhour!==0; else elseBlock">
   <h3>
-  <button class="setabutton" (click)="addEvent()">
+  <button  class="button button1 " (click)="addEvent()">
     Séta foglalás
   </button>
   <div class="clearfix"></div>
 </h3></div>
 <ng-template #elseBlock>
   <h3>
-  <button class="setabuttonNO" (click)="addEvent()" disabled>
+  <button style="cursor: not-allowed;"  class="button button1 "(click)="addEvent()" disabled>
     Séta foglalás
   </button>
   <div class="clearfix"></div>

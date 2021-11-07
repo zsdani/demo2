@@ -68,12 +68,18 @@
     <br>
     {{animal.lifestory}}
         <br>
+        <div *ngIf=" animal.virtual_owner!==null ;  else elseBlock4" style="font-size: 20px">
+          {{animal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
+          {{animal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
+          {{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}
 
-        a{{animal.virtual_owner.status2}}a
-    {{animal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
-    {{animal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
-    {{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}
-    {{animal.virtual_owner===null ? 'Ha nem vihetsz haza, de nagyon megkedveltél, akkor lehetsz az virtuális gazdám is' : '' }}
+        </div>
+        <ng-template #elseBlock4>
+          Ha nagyon megszerettél, de nem tudsz hazavinni, akkor lehetsz a virtuális gazdám
+        </ng-template>
+
+
+
     <br>
     {{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: '+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
     ' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
@@ -91,8 +97,8 @@
   </tbody>
 </table>
 <app-calendar></app-calendar>
-
-
+<hr>
+<app-comment></app-comment>
 
 
 

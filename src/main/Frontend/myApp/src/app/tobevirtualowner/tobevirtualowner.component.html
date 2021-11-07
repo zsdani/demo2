@@ -98,9 +98,9 @@ Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet é
               Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
               <br>
               <br>
-              <div *ngIf="selectedanimal===null || selectedanimal.isadopted.status===2  ;else elseblock5" >
+              <div *ngIf="selectedanimal===null || selectedanimal.isadopted.status2===2  ;else elseblock5" >
                 <!--<button disabled class="button button1 " (click)="virtauladopt()"   >Virtuálisan Örökbe fogadom</button> -->
-                <div *ngIf="selectedanimal!==null && selectedanimal.isadopted.status===2 || selectedanimal.isadopted.status===3; else elseBlock6">
+                <div *ngIf="selectedanimal!==null && selectedanimal.isadopted.status2===2 || selectedanimal.isadopted.status2===3; else elseBlock6">
                   Ez az állat már virtuálisan örökbe van fogadva
                 </div>
                 <ng-template #elseBlock6>

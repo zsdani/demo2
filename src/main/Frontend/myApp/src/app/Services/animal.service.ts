@@ -35,19 +35,12 @@ export class AnimalService {
  */
   addAnimal(animal: Animal): void {
 
-    console.log(animal);
     this.http.post<Animal>(`${this.animalURL}`, animal, httpOptions).subscribe(
       data => {
         console.log(data);
-
-        const PostData = {
-
-        };
-
       },
       error => {
         this.ns.show('HIBA! Állat létrehozás sikertelen!');
-        console.error(error);
       }
     );
   }
