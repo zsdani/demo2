@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -22,6 +25,14 @@ public class IsAdopted {
     private long ownerid;
     private  long shelter_id;
     private int status2;
-    private boolean isaoptedwithshelterpermission = false;
+    private boolean agreeordisagree = false;
+    private int status3;
+    private int seen;
+
+    @CreationTimestamp
+    protected LocalDateTime created;
+
+    @UpdateTimestamp
+    protected LocalDateTime updated;
 
 }

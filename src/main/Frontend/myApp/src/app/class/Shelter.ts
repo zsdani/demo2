@@ -43,6 +43,9 @@ export class Shelter {
   public postcode: string = '';
   public addres: string = '';
   public accoun_number: string='';
+  public stars=0;
+  public db=0;
+  public text: string='';
   constructor() {
   }
 

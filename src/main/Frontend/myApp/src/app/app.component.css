@@ -10,6 +10,7 @@
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  height: 10%;
 }
 
 .mat-button{
@@ -19,6 +20,7 @@
   text-align: center;
   padding: 20px 25px;
   text-decoration: none;
+  height: 100%;
 }
 .mat-button:hover {
   background-color: #111;
@@ -38,6 +40,7 @@
 }
 
 .mat-button-right{
+
   background-color: #333;
   float:right;
   font-family: 'Baloo Thambi',sans-serif;
@@ -54,13 +57,27 @@ body{
   min-height: 975px;
   height: auto;
 
+
 }
 
+.showdiv{
+  border-radius: 0px 0px 20px 20px;
+  border-style:  none solid solid solid;
+  border-width: 5px;
+  border-color: black;
+  position: fixed;
+  right: 5%;
+  top: 10%;
+  z-index: 999;
+  width: 300px;
+  height: 300px;
+  background: #ffddab;
 
-
+}
 
 .sav{
-  background: #F19F1F;
+
+  z-index: 0;
   width: 70%;
   margin: auto;
 
@@ -72,8 +89,8 @@ body{
 }
 
 .mat-button-right2{
+  height: 100%;
   background-color: #333;
-  height: 60px;
   float:right;
   font-family: 'Baloo Thambi',sans-serif;
   color: white;

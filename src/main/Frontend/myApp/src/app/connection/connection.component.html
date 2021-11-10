@@ -7,38 +7,108 @@
 
 
 
-<h4>Kérem válassza ki melyik menhely elérhetőségére kívánics?</h4>
-<table>
-  <tbody>
-  <tr>
-    <td>
-      <mat-form-field appearance="fill">
-        <mat-label>Menhely</mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option *ngFor="let shelter of shelters" [value]="shelter.id">
-            {{shelter.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+<h4 style="display: inline;">Kérem válassza ki melyik menhely elérhetőségére kívánics? </h4>
+<mat-form-field appearance="fill">
+  <mat-label>Menhely</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option *ngFor="let shelter of shelters" [value]="shelter.id" (click)="selectshleter()">
+      {{shelter.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<br>
+
+<hr>
+
+
+
+<table  >
+  <tbody >
+  <tr *ngIf=" selected!==-1 ;  else elseBlock3" >
+    <td >
+      <ul >
+
+        <li> A menhelyünk neve: {{shelter2.name}} </li>
+        <li> A telefonszámunk: {{shelter2.phonenumber}} </li>
+        <li> A település, ahol megtalálsz minket:
+          {{shelter2.city}} ({{shelter2.postcode}}) </li>
+        <li> A címünk: {{shelter2.addres}} </li>
+        <li> Telefonszámunk: {{shelter2.phonenumber}} </li>
+        <li> E-mail címünk: {{shelter2.e_mail}} </li>
+        <li> Bankszámlánk: {{shelter2.accoun_number}} </li>
+
+      </ul>
+
 
     </td>
     <td>
-      <ng-container *ngFor="let shelter of shelters">
-        <ul *ngIf="shelter.id==selected">
-          <li> {{shelter.id}} </li>
-          <li> {{shelter.name}} </li>
-          <li> {{shelter.phonenumber}} </li>
-          <li> {{shelter.addres}} </li>
-          <li> {{shelter.accoun_number}} </li>
-          <li> {{shelter.e_mail}} </li>
-        </ul>
-      </ng-container>
+      <div  style="word-wrap: break-word;">
+        {{shelter2.text}}
+      </div>
+
+
+
+
+
 
 
     </td>
   </tr>
+  <ng-template #elseBlock3>
+
+  </ng-template>
   </tbody>
 </table>
+<div style="width: 80%;">
+<div *ngIf=" selected!==-1 ;  else elseBlock4"  >
+  <mat-tab-group >
+    <mat-tab label="Értékelésünk">
+      Ilyen értékelésünk van:
+      <div style="text-align: center">
+
+
+        <ngb-rating [max]="5" [readonly]="true" [(rate)]="currentRate" style="font-size: 30px"></ngb-rating>
+        <div *ngIf=" currentRate==0 ;  else elseBlock22">Még senki nem értékelt minket. Értékelj minket te elsőnek!</div>
+        <ng-template #elseBlock22></ng-template>
+
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Értékelj!">
+      Értékeld a menhelyünket ^^
+      <div style="text-align: center">
+
+        <ngb-rating [max]="5" [(rate)]="yourrate" style="font-size: 30px"></ngb-rating>
+        <pre>A te értéked: <b>{{yourrate}}</b></pre>
+
+        <div *ngIf= "yourrate!==0;else elseBlock">
+          <h3>
+            <button class="button button1 " (click)="vote(shelter2.id,yourrate)"  mat-button >Küldés</button>
+            <div class="clearfix"></div>
+          </h3>
+        </div>
+        <ng-template #elseBlock>
+          <h3>
+            <button class="button button1 " style="  cursor: not-allowed;"  mat-button disabled>Küldés</button>
+            <div class="clearfix"></div>
+          </h3>
+        </ng-template>
+
+
+      </div>
+
+    </mat-tab>
+
+
+
+  </mat-tab-group>
+</div>
+<ng-template #elseBlock4>
+
+</ng-template>
+</div>
+
+
 
 
 

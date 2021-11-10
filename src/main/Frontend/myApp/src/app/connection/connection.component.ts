@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Animal} from "../class/Animal";
-import {AnimalService} from "../Services/animal.service";
-import {Shelter} from "../class/Shelter";
-import {ShelterService} from "../Services/shelter.service";
+import {Animal} from '../class/Animal';
+import {AnimalService} from '../Services/animal.service';
+import {Shelter} from '../class/Shelter';
+import {ShelterService} from '../Services/shelter.service';
 
 @Component({
   selector: 'app-connection',
@@ -13,8 +13,12 @@ export class ConnectionComponent implements OnInit {
 
   public shelters: Shelter[] = [];
 
-  selected: number=-1;
+  currentRate = 0;
+  yourrate=0;
+
+  selected = -1;
   public shelter: Shelter | undefined;
+  public  shelter2: Shelter;
 
 
   constructor(
@@ -22,12 +26,30 @@ export class ConnectionComponent implements OnInit {
 
   ) { }
 
-  public async  ngOnInit(): Promise<void> {
+  public  ngOnInit(): void  {
 
-    this.shelterService.getShelters().subscribe((res: Shelter[])=>{
-      this.shelters =res;
+    this.shelterService.getShelters().subscribe((res: Shelter[]) => {
+      this.shelters = res;
+
+
 
     });
+
+  }
+
+  selectshleter(){
+    this.shelterService.getShelter(this.selected).subscribe((res2: Shelter) => {
+      this.shelter2 = res2;
+      console.log(this.shelter2);
+      if(res2.db===0){this.currentRate=0;}else {
+        this.currentRate = res2.stars / res2.db;
+      }
+    });
+
+  }
+  vote(shelterid: number,yourvote: number){
+    this.shelterService.addVote(shelterid, yourvote);
+    location.reload();
 
   }
 

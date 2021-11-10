@@ -1,0 +1,38 @@
+
+<div class="fodiv">
+  <br>
+  <div style="font-size: 20px; display: inline; margin: 10px"><u>Értesítések</u></div>
+  <button class="button button1 "  mat-button (click)="deletenotifications()" >Értesítések törlése</button>
+  <br>
+<div class="DIVnot" *ngFor="let isadopted of isadopteds" >
+  <div *ngIf="isadopted.status2===1 && isadopted.status3===0 ">
+    Ezt az állat örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
+  </div>
+  <div *ngIf="isadopted.status2===2 && isadopted.status3===0 ">
+    Ezt az állat virtuális örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
+  </div>
+  <div *ngIf="isadopted.status2===3 && isadopted.status3===3">
+    Sikeresen virtuálisan örökbe fogadtad ezt az állatot:
+  </div>
+  <div *ngIf="isadopted.status2===5 && isadopted.status3===2">
+    El lett utasítva a virtuális örökbefogadásod, ennél az állatnál:
+  </div>
+  <div *ngIf="isadopted.status2===5 && isadopted.status3===1">
+    El lett utasítva az örökbefogadásod, ennél az állatnál:
+  </div>
+  <div *ngIf="isadopted.status2===5 && isadopted.status3===3">
+    Le lett mondva a virtuális örökbefogadásod, ennél az állatnál:
+  </div>
+  <div *ngIf="isadopted.status2===5 && isadopted.status3===7">
+    El lett fogadva az örökbefogadásod, ennél az állatnál:
+  </div>
+  <div *ngIf="isadopted.status2===5 && isadopted.status3===10">
+    El lett törölve a virtuális örökbefogadásod, mert valaki örökbefogadta az állatot:
+  </div>
+  {{isadopted.allatname}}
+  <div><span class="text3">{{isadopted.updated[0]}}{{isadopted.updated[1]}}{{isadopted.updated[2]}}{{isadopted.updated[3]}}{{isadopted.updated[4]}}{{isadopted.updated[5]}}{{isadopted.updated[6]}}{{isadopted.updated[7]}}{{isadopted.updated[8]}}{{isadopted.updated[9]}} {{isadopted.updated[11]}}{{isadopted.updated[12]}}{{isadopted.updated[13]}}{{isadopted.updated[14]}}{{isadopted.updated[15]}}{{isadopted.updated[16]}}{{isadopted.updated[17]}}{{isadopted.updated[18]}}</span></div>
+
+</div>
+
+</div>
+

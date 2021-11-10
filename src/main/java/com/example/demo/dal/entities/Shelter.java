@@ -26,4 +26,10 @@ public class Shelter extends BaseEntity {
 
     private String accoun_number;
 
+    private int stars;
+
+    private int db;
+
+    private String text;
+
 }

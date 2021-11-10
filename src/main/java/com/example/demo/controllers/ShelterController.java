@@ -42,6 +42,11 @@ public class ShelterController {
         return ResponseEntity.ok(shelterService.addShelter(shelter));
     }
 
+    @PostMapping("/vote/id")
+    public ResponseEntity<Shelter> vote(@RequestBody int yourvote,@RequestParam long id) throws DataNotFoundException {
+        return ResponseEntity.ok(shelterService.vote(yourvote,id));
+    }
+
     @PutMapping
     public ResponseEntity<Shelter> updateShelter(@RequestBody Shelter shelter,@RequestParam long id) throws DataNotFoundException{
         return ResponseEntity.ok(shelterService.updateShelter(id, shelter));

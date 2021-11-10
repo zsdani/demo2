@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from "@angular/router";
-import {AuthService} from "./Services/auth.service";
+import {Router} from '@angular/router';
+import {AuthService} from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +11,31 @@ export class AppComponent {
 
   title = 'myApp';
   constructor(
-    private router:Router,
+    private router: Router,
     public auth: AuthService,
     ) {
   }
 
+  show = false;
+
   goToDogs(animalytype_id: number){
 
-    this.router.navigateByUrl('http://localhost:8080/api/animal/0', {skipLocationChange: true}).then(()=>
-    this.router.navigate(["animal", animalytype_id ]));
+    this.router.navigateByUrl('http://localhost:8080/api/animal/0', {skipLocationChange: true}).then(() =>
+    this.router.navigate(['animal', animalytype_id ]));
 
 
   }
 
   goToCats(animalytype_id: number){
 
-    this.router.navigateByUrl('http://localhost:8080/api/animal/1', {skipLocationChange: true}).then(()=>
-      this.router.navigate(["animal", animalytype_id]));
+    this.router.navigateByUrl('http://localhost:8080/api/animal/1', {skipLocationChange: true}).then(() =>
+      this.router.navigate(['animal', animalytype_id]));
+  }
+
+  notificationopen(){
+    this.show = !this.show;
+    console.log(this.show);
+
   }
 
 

@@ -57,6 +57,14 @@ public class IsAdoptedController {
         return ResponseEntity.ok(isadoptedService.listadoptedbyshelterid(paar));
     }
 
+
+    @PostMapping("/getadoptedanimalsbyowner")
+    public ResponseEntity getadoptedanimalsbyowner(@RequestBody long ownerid) throws DataNotFoundException{
+        return ResponseEntity.ok(isadoptedService.getadoptedanimalsbyowner(ownerid));
+    }
+
+
+
     @DeleteMapping("/id")
     public void deleteIsAdopted(@RequestParam long id) throws DataNotFoundException {
         isadoptedService.deleteIsAdopted(id);
@@ -69,6 +77,14 @@ public class IsAdoptedController {
         isadoptedService.deleteIsAdopted2(id);
     }
 
+
+    @PostMapping("/seennoti")
+    public void seennoti(@RequestBody long ownerid)  {
+        System.out.println("itt1");
+        isadoptedService.seennoti(ownerid);
+
+
+    }
 
 
 

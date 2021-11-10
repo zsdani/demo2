@@ -1,29 +1,37 @@
-.mat-form-field{
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  background: #F19F1F;
-}
+.DIVnot{
+  margin: 15px;
+  padding: 15px;
+  background: #f5e9d7;
+  border-radius: 20px;
 
-tr{
-  border-style: dot-dash;
-  border-color: #333333;
+
+}
+.fodiv{
+  overflow-y: auto;
+
+  max-height: 300px;
 
 }
 
 .button {
   border: none;
   color: antiquewhite;
-  padding: 16px 32px;
+  padding: 8px 16px;
+  float: right;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
 .button1 {
+  position: relative;
+  right: 10px;
+  top: -12px;
+
   border-radius: 10px;
   background-color: antiquewhite;
   color: black;

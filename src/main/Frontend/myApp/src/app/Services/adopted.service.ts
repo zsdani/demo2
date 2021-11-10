@@ -29,6 +29,10 @@ export class AdoptedService {
   public getadoptedanimals(param: { shelter_id: number; status2: number }): Observable<IsAdopted[]> {
     return this.http.post<IsAdopted[]>(`${this.URL}/listadoptedbyshelterid`, param);
   }
+
+  public getadoptedanimalsbyowner(ownerid: number): Observable<IsAdopted[]> {
+    return this.http.post<IsAdopted[]>(`${this.URL}/getadoptedanimalsbyowner`, ownerid);
+  }
 /*
   public adoptednotsure(allatid: number): void {
     this.http.post<IsAdopted>(`${this.URL}/adoptednotsure`, allatid).subscribe();
@@ -46,6 +50,12 @@ export class AdoptedService {
 
   public acceptadopted(id: number): void {
     this.http.delete(`${this.URL}/2/id?id=${id}` , httpOptions).subscribe();
+  }
+
+  public deletebyowner(owner: number): void {
+    this.http.post(`${this.URL}/seennoti`, owner).subscribe();
+    console.log("haha")
+
   }
 
 

@@ -67,6 +67,23 @@ public class IsAdoptedService {
         return isadoptedRepository.save(isadopted);
     }
 
+    public List<IsAdopted>getadoptedanimalsbyowner(long ownerid){
+        return isadoptedRepository.findIsAdoptedByownerid(ownerid,0);
+
+    }
+
+    public void seennoti(long ownerid){
+        System.out.println("itt");
+
+        List<IsAdopted> list =isadoptedRepository.findIsAdoptedByownerid(ownerid,0);
+        System.out.println(list);
+        for(int i=0; i<list.size();i++){
+            list.get(i).setSeen(1);
+            isadoptedRepository.save(list.get(i));
+        }
+        System.out.println(list);
+    }
+
 
     public List<IsAdopted>listadoptedbyshelterid(Paar paar)  {
 
@@ -89,17 +106,30 @@ public class IsAdoptedService {
         Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
         if(isadopted.get().getStatus2()==2){
             animal.get().setVirtual_owner(0);
-            isadoptedRepository.delete(isadopted.get());
+            isadopted.get().setStatus3(2);
+            isadopted.get().setStatus2(5);
+            isadopted.get().setSeen(0);
+            isadopted.get().setAgreeordisagree(false);
+            //isadoptedRepository.delete(isadopted.get());
         }
         if(isadopted.get().getStatus2()==1){
             animal.get().setStatus(EntityStatus.ACTIVE);
             animal.get().setIsadopted(0);
-            isadoptedRepository.delete(isadopted.get());
+            isadopted.get().setStatus3(1);
+            isadopted.get().setStatus2(5);
+
+            isadopted.get().setSeen(0);
+            isadopted.get().setAgreeordisagree(false);
+            //isadoptedRepository.delete(isadopted.get());
         }
 
         if(isadopted.get().getStatus2()==3){
             animal.get().setVirtual_owner(0);
-            isadoptedRepository.delete(isadopted.get());
+            isadopted.get().setStatus2(5);
+            isadopted.get().setStatus3(3);
+            isadopted.get().setSeen(0);
+            isadopted.get().setAgreeordisagree(false);
+            //isadoptedRepository.delete(isadopted.get());
 
         }
 
@@ -115,14 +145,27 @@ public class IsAdoptedService {
         Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
         if(isadopted.get().getStatus2()==2){
             isadopted.get().setStatus2(3);
+            isadopted.get().setStatus3(3);
+            isadopted.get().setSeen(0);
+            isadopted.get().setAgreeordisagree(true);
             isadoptedRepository.save(isadopted.get());
         }
         if(isadopted.get().getStatus2()==1){
             long x=animal.get().getVirtual_owner();
             Optional<IsAdopted> isadopted2 = isadoptedRepository.findById(x);
-            isadoptedRepository.delete(isadopted2.get());
-            isadoptedRepository.delete(isadopted.get());
-            animalRepository.delete(animal.get());
+            //isadoptedRepository.delete(isadopted2.get());
+            //isadoptedRepository.delete(isadopted.get());
+            isadopted.get().setStatus2(5);
+            isadopted.get().setStatus3(7);
+            isadopted.get().setSeen(0);
+            isadopted.get().setAgreeordisagree(true);
+            isadopted2.get().setStatus2(5);
+            isadopted2.get().setStatus3(10);
+            isadopted2.get().setSeen(0);
+            isadopted2.get().setAgreeordisagree(false);
+
+
+            animal.get().setStatus(EntityStatus.DELETED);
         }
 
 

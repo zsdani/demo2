@@ -23,6 +23,17 @@ export class ShelterService {
   ) {
   }
 
+  public addVote(shelterid:number, yourvote: number){
+    this.http.post(`${this.shelterURL}/vote/id?id=${shelterid}`, yourvote, httpOptions).subscribe(
+      data => {
+        this.ns.show('Sikeres értékelés');
+      },
+      error => {
+        this.ns.show('HIBA! Az értékelés közben');
+      }
+    );
+  }
+
 
 
   public getShelters(): Observable<Shelter[]> {

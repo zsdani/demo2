@@ -1,4 +1,5 @@
 <body>
+<div style="position: relative;">
 
 <div class="sav">
   <div class="div" fxShow="false" fxShow.gt-sm>
@@ -30,13 +31,12 @@
 
     <button class="mat-button" href="/connection" routerLink="/connection">Elérhetőségeink</button>
 
-    <button  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock2" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
+    <button  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock1" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
       Menhelyem
     </button>
-    <ng-template #elseBlock2>
+    <ng-template #elseBlock1>
 
     </ng-template>
-
 
 
 
@@ -48,28 +48,40 @@
           <mat-icon>account_circle</mat-icon>
           <span>Profilom</span>
         </button>
-        <button mat-menu-item >
-          <mat-icon>pets</mat-icon>
-          <span>Regisztrálás
-            menhelyként</span>
-
-        </button>
         <button mat-menu-item (click)=auth.logout()>
           <mat-icon>logout</mat-icon>
           <span>Kijelentkezés</span>
         </button>
       </mat-menu>
 
-
-
-
     <ng-template #elseBlock>
     <button  class="mat-button-right" href="/login" routerLink="/login">Bejelentekzes/Regisztráció</button>
+    </ng-template>
+
+    <button *ngIf="auth.isLogin$.value; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
+      <mat-icon>announcement</mat-icon>
+    </button>
+    <ng-template #elseBlock2>
+
     </ng-template>
 
   </div>
 
 
-<router-outlet></router-outlet>
+
+
+
+
+  <router-outlet style="position: static; text-align: center"></router-outlet>
+</div>
+
+  <div *ngIf="show; else elseBlock3" class="showdiv">
+    <app-notification></app-notification>
+
+
+  </div >
+  <ng-template #elseBlock3>
+  </ng-template>
+
 </div>
 </body>

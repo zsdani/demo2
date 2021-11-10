@@ -37,6 +37,16 @@ public class ShelterService {
                 .orElseThrow(() -> new DataNotFoundException("Shelter by id " + id + " not found!"));
     }
 
+    public Shelter vote(int yourvote, long shelterid) throws DataNotFoundException{
+        Shelter shelter = findShelterById(shelterid);
+        shelter.setDb(shelter.getDb()+1);
+        shelter.setStars(shelter.getStars()+yourvote);
+
+
+        return shelterRepository.save(shelter);
+
+    }
+
     public Shelter addShelter(Shelter shelter) {
 
         shelter.setStatus(EntityStatus.ACTIVE);
@@ -64,6 +74,9 @@ public class ShelterService {
             tmp.get().setE_mail(shelter.getE_mail());
             tmp.get().setPhonenumber(shelter.getPhonenumber());
             tmp.get().setAccoun_number(shelter.getAccoun_number());
+            tmp.get().setStars(shelter.getStars());
+            tmp.get().setDb(shelter.getDb());
+            tmp.get().setText(shelter.getText());
 
 
 
