@@ -1,8 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dal.dto.AppUserDto;
-import com.example.demo.dal.entities.EntityStatus;
-import com.example.demo.dal.entities.Comment;
+import com.example.demo.dal.entities.*;
 import com.example.demo.dal.repositories.CommentRepository;
 import com.example.demo.security.JwtTokenManager;
 import com.example.demo.services.exceptions.DataNotFoundException;
@@ -32,10 +31,41 @@ public class CommentService {
         return commentRepository.findCommentByallatid(allatid);
     }
 
+    public Comment findCommentById (long id){
+        return commentRepository.findCommentById(id);
+    }
+
+
+
+    public Comment updateComment(long id, Comment comment) throws DataNotFoundException{
+
+        Optional<Comment> tmp = commentRepository.findById(id);
+        if(commentRepository.existsById(id)){
+            tmp.get().setComment(comment.getComment());
+
+        }
+
+        return commentRepository.save(tmp.get());
+    }
+
+
+
     public Comment addComment(Comment comment) {
         comment.setStatus(EntityStatus.ACTIVE);
         return commentRepository.save(comment);
     }
+
+
+
+    public void deleteComment(long id) throws DataNotFoundException {
+        Comment comment = commentRepository.findCommentById(id);
+
+
+        commentRepository.delete(comment);
+
+    }
+
+
     /*
 
     public List<AppUserDto> findAllComments() {

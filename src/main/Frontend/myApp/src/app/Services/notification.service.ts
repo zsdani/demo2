@@ -14,4 +14,12 @@ export class NotificationService {
     // @ts-ignore
     this.snackBar.open(message, null, config);
   }
+
+  public reloadd(): void{
+
+
+
+  }
+
+
 }

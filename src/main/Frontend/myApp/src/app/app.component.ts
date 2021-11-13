@@ -1,42 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './Services/auth.service';
+import {AdoptedService} from './Services/adopted.service';
+import {IsAdopted} from './class/IsAdopted';
+import {OwnerShelter} from './class/OwnerShelter';
+import {ShelterService} from './Services/shelter.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'myApp';
   constructor(
-    private router: Router,
-    public auth: AuthService,
-    ) {
+
+    ) {}
+
+    ngOnInit(): void {
   }
 
-  show = false;
-
-  goToDogs(animalytype_id: number){
-
-    this.router.navigateByUrl('http://localhost:8080/api/animal/0', {skipLocationChange: true}).then(() =>
-    this.router.navigate(['animal', animalytype_id ]));
 
 
-  }
 
-  goToCats(animalytype_id: number){
 
-    this.router.navigateByUrl('http://localhost:8080/api/animal/1', {skipLocationChange: true}).then(() =>
-      this.router.navigate(['animal', animalytype_id]));
-  }
 
-  notificationopen(){
-    this.show = !this.show;
-    console.log(this.show);
 
-  }
+
 
 
 

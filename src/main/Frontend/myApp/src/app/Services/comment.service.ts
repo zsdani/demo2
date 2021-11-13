@@ -31,5 +31,19 @@ export class CommentService {
     return this.http.get<Commente[]>(`${this.URL}/all/allatid?allatid=${allatid}`);
   }
 
+  public deleteComment(id: number): void {
+    this.http.delete(`${this.URL}/del/id?id=${id}`).subscribe();
+  }
+
+  public getComment(id: number): Observable<Commente>{
+    return this.http.get<Commente>(`${this.URL}/id?id=${id}`);
+  }
+  public updateComment(id: number, comment: Commente): void {
+    console.log(id);
+    console.log(comment);
+    this.http.put<Commente>(`${this.URL}/up/id?id=${id}`, comment).subscribe();
+
+  }
+
 
 }

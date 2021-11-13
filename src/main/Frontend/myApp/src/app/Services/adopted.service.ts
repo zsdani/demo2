@@ -54,7 +54,7 @@ export class AdoptedService {
 
   public deletebyowner(owner: number): void {
     this.http.post(`${this.URL}/seennoti`, owner).subscribe();
-    console.log("haha")
+
 
   }
 

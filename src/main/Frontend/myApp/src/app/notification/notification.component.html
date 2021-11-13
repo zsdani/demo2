@@ -1,8 +1,9 @@
 
 <div class="fodiv">
   <br>
-  <div style="font-size: 20px; display: inline; margin: 10px"><u>Értesítések</u></div>
-  <button class="button button1 "  mat-button (click)="deletenotifications()" >Értesítések törlése</button>
+  <div style="font-size: 20px; display: inline; padding-left: 5px;"> <u>Értesítések:</u></div>
+  <button *ngIf="isadopteds.length!==0; else elseBlock0 " class="button button1 "  mat-button (click)="deletenotifications()" >Értesítések törlése</button>
+  <ng-template #elseBlock0> Nincs számodra új értesítés</ng-template>
   <br>
 <div class="DIVnot" *ngFor="let isadopted of isadopteds" >
   <div *ngIf="isadopted.status2===1 && isadopted.status3===0 ">
@@ -30,6 +31,7 @@
     El lett törölve a virtuális örökbefogadásod, mert valaki örökbefogadta az állatot:
   </div>
   {{isadopted.allatname}}
+  {{isadopteds.length}}
   <div><span class="text3">{{isadopted.updated[0]}}{{isadopted.updated[1]}}{{isadopted.updated[2]}}{{isadopted.updated[3]}}{{isadopted.updated[4]}}{{isadopted.updated[5]}}{{isadopted.updated[6]}}{{isadopted.updated[7]}}{{isadopted.updated[8]}}{{isadopted.updated[9]}} {{isadopted.updated[11]}}{{isadopted.updated[12]}}{{isadopted.updated[13]}}{{isadopted.updated[14]}}{{isadopted.updated[15]}}{{isadopted.updated[16]}}{{isadopted.updated[17]}}{{isadopted.updated[18]}}</span></div>
 
 </div>

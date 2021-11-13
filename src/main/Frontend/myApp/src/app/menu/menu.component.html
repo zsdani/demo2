@@ -1,0 +1,106 @@
+<div style="position: relative;">
+
+  <div class="sav">
+    <div class="div" fxShow="false" fxShow.gt-sm>
+
+
+      <div *ngIf="auth.isADMIN$.getValue() && auth.isLogin$.value && isadoptedsadopted.length!==0 || isadoptedsvirtual.length!==0; else elseBlock0">
+        <button    class="mat-button" href="/mainpage" routerLink="/mainpage"><div style="padding-right: 15px" matBadge="!"  matBadgePosition="below after" matBadgeOverlap=true matBadgeColor="warn">Kezdőoldal</div> </button>
+      </div>
+      <ng-template #elseBlock0>
+        <button    class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
+      </ng-template>
+
+
+
+
+
+      <button  class="mat-button" [matMenuTriggerFor]="animalMenu">Örökbefogadás</button>
+      <mat-menu #animalMenu="matMenu" yPosition="below">
+        <button  (click)="goToCats(0)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Macskák</button>
+        <button  (click)="goToDogs(1)" class="mat-menu-item" href="animal/:animaltype_id" routerLink="animal/:animaltype_id">Kutyák</button>
+      </mat-menu>
+
+
+      <button  class="mat-button" [matMenuTriggerFor]="donationMenu">Támogatás</button>
+      <mat-menu #donationMenu="matMenu" yPosition="below">
+        <button  class="mat-menu-item">Pénz támogatás</button>
+        <button  class="mat-menu-item">Étel támogatás</button>
+        <button  class="mat-menu-item">Adó 1%</button>
+        <button  class="mat-menu-item"  href="/tobevirtualowner" routerLink="/tobevirtualowner">Virtuális gazda szeretnék lenni</button>
+      </mat-menu>
+
+      <button class="mat-button" [matMenuTriggerFor]="volunteeringMenu">Önkénteskedés</button>
+      <mat-menu #volunteeringMenu="matMenu" xPosition="before">
+        <button class="mat-menu-item">Sétáltaltás</button>
+        <button class="mat-menu-item">Szépségápolás</button>
+        <button class="mat-menu-item">Gondozás</button>
+      </mat-menu>
+
+      <button class="mat-button" href="/connection" routerLink="/connection">Elérhetőségeink</button>
+
+      <button  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock1" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
+        Menhelyem
+      </button>
+      <ng-template #elseBlock1>
+
+      </ng-template>
+
+
+
+      <button *ngIf="auth.isLogin$.value; else elseBlock" class="mat-button-right2" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Profilom</span>
+        </button>
+        <button mat-menu-item (click)=auth.logout()>
+          <mat-icon>logout</mat-icon>
+          <span>Kijelentkezés</span>
+        </button>
+      </mat-menu>
+
+      <ng-template #elseBlock>
+        <button  class="mat-button-right" href="/login" routerLink="/login">Bejelentekzes/Regisztráció</button>
+      </ng-template>
+
+
+
+
+
+      <button *ngIf="auth.isADMIN$.getValue()===false && auth.isLogin$.value; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
+        <div *ngIf="isadopteds.length!==0; else elseBlock3">
+          {{isadopteds.length}}
+          <mat-icon matBadge="!" matBadgeColor="warn">announcement</mat-icon>
+        </div>
+        <ng-template #elseBlock3>
+          {{isadopteds.length}}
+          <mat-icon>announcement</mat-icon>
+        </ng-template>
+
+      </button>
+      <ng-template #elseBlock2>
+
+      </ng-template>
+
+    </div>
+
+
+
+
+
+
+    <router-outlet style="position: static; text-align: center"></router-outlet>
+  </div>
+
+  <div *ngIf="show; else elseBlock3" class="showdiv">
+    <app-notification></app-notification>
+
+
+  </div >
+  <ng-template #elseBlock3>
+  </ng-template>
+
+</div>

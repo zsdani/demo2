@@ -95,6 +95,8 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
     this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
       this.theuser = res0;

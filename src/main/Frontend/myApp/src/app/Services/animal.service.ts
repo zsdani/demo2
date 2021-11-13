@@ -72,6 +72,8 @@ export class AnimalService {
 
 
 
+
+
   // tslint:disable-next-line:max-line-length
   public getspecanimals(param: { age: number, size: number, animaltype: number, gender: number; shelter_id: number, gonadectomy: number } ): Observable<Animal[]> {
     return this.http.post<Animal[]>(`${this.animalURL}/findspec`, param);

@@ -194,7 +194,7 @@ export class ShelterpageComponent implements OnInit {
     location.reload();
 
 
-}
+  }
 
 
 

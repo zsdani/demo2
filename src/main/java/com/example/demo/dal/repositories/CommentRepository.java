@@ -14,7 +14,7 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
 
     List<Comment> findCommentByallatid(long allatid);
-    //Optional<Owner> findOwnerByUsername(String username);
+    Comment findCommentById(long id);
 
 
 }

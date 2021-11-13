@@ -38,14 +38,60 @@
 
 <div *ngIf= "commentes.length!==0;else elseBlock5" >
 <div  class="d-flex justify-content-center py-2" *ngFor="let commente of commentes" >
-  <div class="second py-2 px-2"> <span class="text1">{{commente.comment}}</span>
-    <div class="d-flex justify-content-between py-1 pt-2">
-      <div><i class="fa fa-user"></i><span class="text2">{{commente.username}} </span>  </div>
-      <div><span class="text3">{{commente.created[0]}}{{commente.created[1]}}{{commente.created[2]}}{{commente.created[3]}}{{commente.created[4]}}{{commente.created[5]}}{{commente.created[6]}}{{commente.created[7]}}{{commente.created[8]}}{{commente.created[9]}} {{commente.created[11]}}{{commente.created[12]}}{{commente.created[13]}}{{commente.created[14]}}{{commente.created[15]}}{{commente.created[16]}}{{commente.created[17]}}{{commente.created[18]}}</span><span class="thumbup"><i class="fa fa-calendar"></i></span></div>
+  <div *ngIf="show3 && commente.id=== thenumber; else elseBlock11" style="text-align: center">
+
+    <form  [formGroup]="commentFormchange" class="example-form"  (ngSubmit)="changeComment(commentFormchange)">
+      <div class="d-flex justify-content-center py-2" >
+      <mat-form-field appearance="fill" style="width: 400px;">
+        <mat-label>Módosítsd a kommentedet</mat-label>
+        <textarea matInput formControlName="comment"></textarea>
+      </mat-form-field>
+      </div>
+
+      <div *ngIf= "commentFormchange.valid;else elseBlock">
+        <h3>
+          <button class="button button1 "  mat-button >Módosítás</button>
+          <div class="clearfix"></div>
+        </h3>
+      </div>
+      <ng-template #elseBlock>
+        <h3>
+          <button class="button button1 " style="  cursor: not-allowed;"  mat-button disabled>Módosítás</button>
+          <div class="clearfix"></div>
+        </h3>
+      </ng-template>
+    </form>
+
+
+
+
+
+  </div>
+  <ng-template #elseBlock11>
+    <div class="second py-2 px-2"> <span class="text1">{{commente.comment}}</span>
+      <div class="d-flex justify-content-between py-1 pt-2">
+        <div >
+          <i class="fa fa-user"></i>
+          <span  class="text2">{{commente.username}} </span>
+          <div *ngIf="user.role==='ADMIN'; else elseBlock1">
+            <div *ngFor="let animal of adminanimals" >
+              <div style="display: inline;" *ngIf=" animal.id===commente.allatid " ><i (click)="delete(commente.id)"  class="fa fa-trash" style="padding-right: 5px"></i></div>
+            </div>
+          </div>
+          <ng-template #elseBlock1>
+            <div style="display: inline;" *ngIf=" commente.ownerid===user.id " ><i (click)="delete(commente.id)" class="fa fa-trash" style="padding-right: 5px"></i> <i (click)="wantedit(commente.id)" class='fas fa-pen'></i></div>
+          </ng-template>
+        </div>
+        <div><span class="text3">{{commente.updated[0]}}{{commente.updated[1]}}{{commente.updated[2]}}{{commente.updated[3]}}{{commente.updated[4]}}{{commente.updated[5]}}{{commente.updated[6]}}{{commente.updated[7]}}{{commente.updated[8]}}{{commente.updated[9]}} {{commente.updated[11]}}{{commente.updated[12]}}{{commente.updated[13]}}{{commente.updated[14]}}{{commente.updated[15]}}{{commente.updated[16]}}{{commente.updated[17]}}{{commente.updated[18]}}</span><span class="thumbup"><i class="fa fa-calendar"></i></span></div>
+      </div>
     </div>
+  </ng-template>
+
+
+
   </div>
 </div>
-</div>
+
   <ng-template #elseBlock5 >
     <br>
     Még senki nem írt kommentet. Légy te az első!

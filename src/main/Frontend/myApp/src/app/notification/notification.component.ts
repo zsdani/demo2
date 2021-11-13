@@ -7,6 +7,7 @@ import {User1} from '../class/User1';
 import {IsAdopted} from '../class/IsAdopted';
 import {Animal} from '../class/Animal';
 import {Shelter} from '../class/Shelter';
+import {NotificationService} from "../Services/notification.service";
 
 @Component({
   selector: 'app-notification',
@@ -31,10 +32,12 @@ export class NotificationComponent implements OnInit {
     public animalsService: AnimalService,
     public adoptedService: AdoptedService,
     public authService: AuthService,
+    public notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
     this.adoptedService.getadoptedanimalsbyowner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: IsAdopted[]) => {
+      localStorage.setItem('db', String(res.length));
       for (let i = 0; i < res.length; i++) {
         this.animalid[i] = res[i].allatid;
 
@@ -57,6 +60,9 @@ export class NotificationComponent implements OnInit {
   deletenotifications(){
     this.adoptedService.deletebyowner(parseInt(localStorage.getItem('ownerID')));
     location.reload();
+
   }
+
+
 
 }

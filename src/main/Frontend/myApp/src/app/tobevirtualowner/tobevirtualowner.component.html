@@ -92,23 +92,20 @@ Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet é
             </div>
             <ng-template #elseBlock4>
               <br>
-              Ha nincsenek kérdéseid és biztosan virtuálisan örökbe akarod fogadni ezt az állatot ({{selectedanimal.name}}), <br>
-              akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{selectedanimal.name}}-nak a menhelyének ({{selectedanimal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
-              Fontos, hogy közleményben add meg a kutyának a nevét!
-              Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
+
               <br>
               <br>
-              <div *ngIf="selectedanimal===null || selectedanimal.isadopted.status2===2  ;else elseblock5" >
-                <!--<button disabled class="button button1 " (click)="virtauladopt()"   >Virtuálisan Örökbe fogadom</button> -->
-                <div *ngIf="selectedanimal!==null && selectedanimal.isadopted.status2===2 || selectedanimal.isadopted.status2===3; else elseBlock6">
-                  Ez az állat már virtuálisan örökbe van fogadva
-                </div>
-                <ng-template #elseBlock6>
-                </ng-template>
+              <div *ngIf="selectedanimal.virtual_owner!==null  ;else elseblock5" >
+
+                Már van virtuális gazdám ^^
 
 
               </div>
               <ng-template #elseblock5>
+                Ha nincsenek kérdéseid és biztosan virtuálisan örökbe akarod fogadni ezt az állatot ({{selectedanimal.name}}), <br>
+                akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{selectedanimal.name}}-nak a menhelyének ({{selectedanimal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
+                Fontos, hogy közleményben add meg a kutyának a nevét!
+                Türelmedet kérjük, mert pár nap kell az átfutáshoz, így ahoz is kell pár nap, hogy a neved megjelenjen, mint Virtuális Gazda
                 <button class="button button1 " (click)="virtauladopt()"   >Virtuálisan Örökbe fogadom</button>
               </ng-template>
 

@@ -3,10 +3,14 @@
 <br>
 <p>mainpage works!</p>
 
-{{this.theuser.username}}
-{{this.theuser.role}}
 
-<div   *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock2" >
+
+{{this.theuser.username}} <br>
+{{this.theuser.role}} <br>
+admin:{{auth.isADMIN$.getValue()}} <br>
+bejelentkezve:{{auth.isLogin$.value}} <br>
+
+<div   *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2" >
   <div  *ngIf="animals.length===0; else elseBlock22" >
     Nincs egyik menhelye(i)dnél örökbefogadás
   </div>

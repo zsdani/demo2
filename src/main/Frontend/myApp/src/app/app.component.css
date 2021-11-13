@@ -1,57 +1,4 @@
-.div{
-  text-align: center;
-  vertical-align: middle;
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  height: 10%;
-}
 
-.mat-button{
-  vertical-align: middle;
-  font-family: 'Baloo Thambi',sans-serif;
-  color: white;
-  text-align: center;
-  padding: 20px 25px;
-  text-decoration: none;
-  height: 100%;
-}
-.mat-button:hover {
-  background-color: #111;
-}
-
-.mat-menu-item {
-
-  font-family: 'Baloo Thambi',sans-serif;
-  color: white;
-  text-align: end;
-  padding: 5px 25px;
-  text-decoration: none;
-  background-color: #333;
-}
-.mat-menu-item:hover {
-  background-color: #111;
-}
-
-.mat-button-right{
-
-  background-color: #333;
-  float:right;
-  font-family: 'Baloo Thambi',sans-serif;
-  color: white;
-  text-align: center;
-  padding: 20px 25px;
-  text-decoration: none;
-}
-.mat-button-right:hover {
-  background-color: #111;
-}
 body{
   background: #F19F1F;
   min-height: 975px;
@@ -60,44 +7,7 @@ body{
 
 }
 
-.showdiv{
-  border-radius: 0px 0px 20px 20px;
-  border-style:  none solid solid solid;
-  border-width: 5px;
-  border-color: black;
-  position: fixed;
-  right: 5%;
-  top: 10%;
-  z-index: 999;
-  width: 300px;
-  height: 300px;
-  background: #ffddab;
 
-}
-
-.sav{
-
-  z-index: 0;
-  width: 70%;
-  margin: auto;
-
-
-}
-
-.mat-button-right2:hover {
-  background-color: #111;
-}
-
-.mat-button-right2{
-  height: 100%;
-  background-color: #333;
-  float:right;
-  font-family: 'Baloo Thambi',sans-serif;
-  color: white;
-  text-align: center;
-  padding: 20px 25px;
-  text-decoration: none;
-}
 
 
 

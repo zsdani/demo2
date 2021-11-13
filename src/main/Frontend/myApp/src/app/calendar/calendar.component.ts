@@ -201,7 +201,7 @@ export class CalendarComponent implements OnInit {
 
     if (this.auth.isLogin$.value) {
       this.calendarService.addevent(PostData);
-      location.reload();
+      this.ngOnInit();
 
     }
     else{this.dialog.open(PopupadoptComponent); }

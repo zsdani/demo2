@@ -9,7 +9,9 @@ import {NotificationService} from './notification.service';
 import {User1} from '../class/User1';
 import {Shelter} from '../class/Shelter';
 import {token} from 'flatpickr/dist/utils/formatting';
-import {Animal} from "../class/Animal";
+import {Animal} from '../class/Animal';
+import {MenuComponent} from '../menu/menu.component';
+import {MenuService} from './menu.service';
 
 
 
@@ -40,7 +42,7 @@ export class AuthService {
   private _OwnerID: number;
   private _OwnerRole: string;
 
-  isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  isLogin$ = new BehaviorSubject<boolean>(true);
   isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
 
 
@@ -54,13 +56,18 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private ns: NotificationService
+    private ns: NotificationService,
+    private  menuService: MenuService,
+
   ) {
+
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.isLogin$.asObservable();
   }
+
+
 
 
 
@@ -98,12 +105,21 @@ export class AuthService {
 
 
         this.isLogin$.next(true);
+        console.log(this.parseJwt(data).role);
         if (this.parseJwt(data).role === 'ADMIN'){
           this.isADMIN$.next(true);
+        }else{
+          this.isADMIN$.next(false);
         }
+
+
 
         this.ns.show('Sikeres bejelentkezés!');
         this.router.navigate(['/mainpage']);
+
+
+
+
 
       },
 
@@ -122,6 +138,15 @@ export class AuthService {
         localStorage.setItem('ownerRole', data.role);
       }
     );
+
+
+
+
+
+
+
+
+
 
 
   }
@@ -150,11 +175,24 @@ export class AuthService {
     console.log(this.isLogin$.value);
     this.router.navigate(['/mainpage']);
 
+
+
   }
 
 
   protected hasToken(): boolean {
-    return !!localStorage.getItem('Token');
+    console.log(!localStorage.getItem('Token'));
+    console.log(!!localStorage.getItem('Token'));
+    let k = true;
+    if (localStorage.getItem('ownerRole') === 'ADMIN'){
+      k = true;
+    }else{
+      k = false;
+    }
+
+
+
+    return k;
   }
 
   public parseJwt(token): any  {
