@@ -58,6 +58,7 @@ import { NgbdRatingBasicComponent } from './ngbd-rating-basic/ngbd-rating-basic.
 import { NotificationComponent } from './notification/notification.component';
 import {MatBadge, MatBadgeModule} from '@angular/material/badge';
 import { MenuComponent } from './menu/menu.component';
+import { FilterPipe } from './Pipes/filter.pipe';
 
 
 
@@ -110,6 +111,7 @@ import { MenuComponent } from './menu/menu.component';
     NgbdRatingBasicComponent,
     NotificationComponent,
     MenuComponent,
+    FilterPipe,
 
 
 

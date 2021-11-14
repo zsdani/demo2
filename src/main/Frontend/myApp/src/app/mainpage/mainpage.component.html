@@ -11,10 +11,189 @@ admin:{{auth.isADMIN$.getValue()}} <br>
 bejelentkezve:{{auth.isLogin$.value}} <br>
 
 <div   *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2" >
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Állat neve</mat-label>
+      <input type="text"
+             placeholder="Kezd el begépeni a keresett állat nevét"
+             aria-label="Kezd el begépeni a keresett állat nevét"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="search(option)">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <!--
+  <div class="content" role="main">
+    <div class="card">
+      <div class="form-group">
+        <label for="search-text">Search Text</label>
+        <input type="email" class="form-control" id="search-text" aria-describedby="search-text"
+               [(ngModel)]="searchText" placeholder="Enter text to search"
+               autofocus>
+      </div>
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item" *ngFor="let c of characters | appFilter: searchText">
+          {{c}}
+        </li>
+      </ul>
+    </div>
+  </div>
+-->
+
+
+
+
+
+
+
+
+  <div *ngIf="show" class="DIV">
+
+    <div class="table" *ngFor="let thesearchanimal of thesearchanimals"  >
+      <div  class="cell">
+        <h1 style="text-align: center">{{thesearchanimal.thestatus===1 ? 'Örökbefogadási kérelem:' : '' }}
+          {{thesearchanimal.thestatus===2 ? 'Virtuális örökbe fogadási kérelem:' : '' }}
+          {{thesearchanimal.thestatus===3 ? 'Elfogadott virtuális örökbe fogadási kérelem:' : '' }}</h1>
+      </div>
+
+      <div class="row header green">
+        <div class="cell">
+          Név
+        </div>
+        <div class="cell">
+          Állat faj
+        </div>
+        <div class="cell">
+          Neme
+        </div>
+        <div class="cell">
+          Menhely neve
+        </div>
+        <div class="cell">
+          Örökbefogadó
+        </div>
+        <div class="cell" *ngIf="thesearchanimal.thestatus!==3; else elseBlock0">
+          Elfogadás
+        </div>
+        <ng-template #elseBlock0>
+        </ng-template>
+        <div class="cell">
+          Elutasítás
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="cell" data-title="Product">
+          {{thesearchanimal.name}}
+        </div>
+        <div class="cell" data-title="Unit Price">
+          {{thesearchanimal.type.name}}
+        </div>
+        <div class="cell" data-title="Quantity">
+          {{thesearchanimal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
+        </div>
+        <div class="cell" data-title="Date Sold">
+          {{thesearchanimal.shelter.name}}
+        </div>
+        <div class="cell" data-title="Status">
+          {{thesearchanimal.owner}}
+        </div>
+        <div class="cell" data-title="Status" *ngIf="thesearchanimal.thestatus!==3">
+
+          <div *ngIf="thesearchanimal.thestatus===1">
+            <button  (click)="accept(thesearchanimal.isadopted.id)"  style="background:greenyellow;">
+              <mat-icon>check_circle</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="thesearchanimal.thestatus===2">
+            <button  (click)="accept(thesearchanimal.virtual_owner.id)"  style="background:greenyellow;">
+              <mat-icon>check_circle</mat-icon>
+            </button>
+          </div>
+
+
+
+
+        </div>
+        <div class="cell" data-title="Status" >
+
+          <div *ngIf="thesearchanimal.thestatus===1">
+            <button  (click)="refuse(thesearchanimal.isadopted.id)" style="background:red; " >
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="thesearchanimal.thestatus===2">
+            <button  (click)="refuse(thesearchanimal.virtual_owner.id)" style="background:red; " >
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="thesearchanimal.thestatus===3">
+            <button  (click)="refuse(thesearchanimal.virtual_owner.id)" style="background:red; " >
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
   <div  *ngIf="animals.length===0; else elseBlock22" >
-    Nincs egyik menhelye(i)dnél örökbefogadás
+    Nincs egyik menhelye(i)dnél örökbefogadás kérelem
   </div>
   <ng-template #elseBlock22>
+
+
+
+
+
+<!--
+    <div class="content" role="main">
+      <div class="card">
+        <div class="form-group">
+          <label for="search-text">Search Text</label>
+          <input type="email" class="form-control" id="search-text" aria-describedby="search-text"
+                 [(ngModel)]="searchText" placeholder="Enter text to search"
+                 autofocus>
+        </div>
+        <ul class="list-group list-group-flush">
+
+          <li class="list-group-item" *ngFor="let c of characters | appFilter: searchText">
+            {{c}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+     -->
+
+
+
+
+
 
     <div class="DIV">
       <h1>Örökbe fogadási kérelmek</h1>
@@ -83,7 +262,7 @@ bejelentkezve:{{auth.isLogin$.value}} <br>
 
 
   <div  *ngIf="animalsi.length===0; else elseBlock22i" >
-    Nincs egyik menhelye(i)dnél virtuálisörökbefogadás
+    Nincs egyik menhelye(i)dnél virtuálisörökbefogadási kérelem
   </div>
   <ng-template #elseBlock22i>
 

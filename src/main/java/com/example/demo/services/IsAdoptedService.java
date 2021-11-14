@@ -36,6 +36,10 @@ public class IsAdoptedService {
         return (IsAdopted) isadoptedRepository.findIsAdoptedByid(id);
     }
 
+    public List<IsAdopted> findIsAdoptedByallatid (long allatid){
+        return  isadoptedRepository.findIsAdoptedByallatid(allatid);
+    }
+
     public List<IsAdopted> findAllIsAdopted() {
         return (List<IsAdopted>) isadoptedRepository.findAll();
     }

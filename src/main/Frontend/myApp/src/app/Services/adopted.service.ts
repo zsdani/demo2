@@ -33,6 +33,10 @@ export class AdoptedService {
   public getadoptedanimalsbyowner(ownerid: number): Observable<IsAdopted[]> {
     return this.http.post<IsAdopted[]>(`${this.URL}/getadoptedanimalsbyowner`, ownerid);
   }
+
+  public getadoptedbyallatid(allatid: number ): Observable<IsAdopted[]> {
+    return this.http.get<IsAdopted[]>(`${this.URL}/allatid?allatid=${allatid}`);
+  }
 /*
   public adoptednotsure(allatid: number): void {
     this.http.post<IsAdopted>(`${this.URL}/adoptednotsure`, allatid).subscribe();

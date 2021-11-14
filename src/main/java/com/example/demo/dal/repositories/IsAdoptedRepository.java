@@ -34,6 +34,11 @@ public interface IsAdoptedRepository extends CrudRepository<IsAdopted, Long> {
                                                @Param("status2") int status2
     );
 
+    @Query(value = "SELECT * FROM isadopted WHERE allatid = :allatid AND  (status2 = 1 OR status2 = 2 OR status2 = 3)", nativeQuery = true)
+    List<IsAdopted> findIsAdoptedByallatid(@Param("allatid") long allatid
+
+    );
+
 
 
 

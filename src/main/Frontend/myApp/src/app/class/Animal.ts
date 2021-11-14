@@ -21,6 +21,7 @@ export class Animal {
   shelter: Shelter = new Shelter();
   isadopted: IsAdopted = new IsAdopted();
   owner = '';
+  thestatus=0;
 
 
 
