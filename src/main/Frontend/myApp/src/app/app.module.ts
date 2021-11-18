@@ -54,7 +54,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {NgImageSliderModule} from 'ng-image-slider';
 
 import { CommentComponent } from './comment/comment.component';
-import { NgbdRatingBasicComponent } from './ngbd-rating-basic/ngbd-rating-basic.component';
+
 import { NotificationComponent } from './notification/notification.component';
 import {MatBadge, MatBadgeModule} from '@angular/material/badge';
 import { MenuComponent } from './menu/menu.component';
@@ -108,7 +108,7 @@ import { FilterPipe } from './Pipes/filter.pipe';
     TimepickerComponent,
     ShelterpageComponent,
     CommentComponent,
-    NgbdRatingBasicComponent,
+
     NotificationComponent,
     MenuComponent,
     FilterPipe,

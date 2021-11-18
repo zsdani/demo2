@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Router} from '@angular/router';
 import {User} from '../class/User';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, pipe} from 'rxjs';
 
 import {NotificationService} from './notification.service';
 import {User1} from '../class/User1';
@@ -92,7 +92,8 @@ export class AuthService {
 
   login(user: User): void {
 
-    this.http.post(`${this.authUrl}/login`, user, {responseType: 'text'}).subscribe(
+    this.http
+      .post(`${this.authUrl}/login`, user, {responseType: 'text'}).subscribe(
 
       data => {
 
@@ -129,6 +130,7 @@ export class AuthService {
         console.error(error);
       }
     );
+
 
 
     this.http.get<User1>(`${this.authUrl}/username?username=${user.username}`).subscribe(

@@ -128,6 +128,8 @@ export class MainpageComponent implements OnInit {
 
 
 
+
+
     // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
     this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
       this.theuser = res0;
@@ -220,56 +222,66 @@ export class MainpageComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           this.tombi[i] = res[i].shelterid;
         }
-        for (let i = 0; i < this.tombi.length; i++) {
+        for (let i = 0; i < this.tomb.length; i++) {
           const PostDatai = {
             shelter_id: this.tombi[i],
             status2: 2,
 
           };
           this.adoptedService.getadoptedanimals(PostDatai).subscribe((res2: IsAdopted[]) => {
-            // console.log(res2);
+            console.log(res2);
             for (let j = 0; j < res2.length; j++) {
-              // console.log('menhelyesallatokakiknek a statuszuk 2');
-              // console.log(res2[j]);
+              console.log('menhelyesallatokakiknek a statuszuk 1');
+              console.log(res2[j]);
 
               this.animalidi.push(res2[j].allatid);
               this.owneridi.push(res2[j].ownerid);
 
-              // console.log('allatidek');
-              // console.log(this.animalidi);
-              // console.log(this.animalidi.length);
 
-              for (let k = j; k < this.animalidi.length; k++) {
+              console.log(this.animalidi);
+              console.log(this.animalidi.length);
+            }
+            if (i === this.tombi.length - 1) {
+
+
+
+
+              for (let k = 0; k < this.animalidi.length; k++) {
+
                 this.animalsService.getanimalbyid(this.animalidi[k]).subscribe((res3: Animal) => {
-                  // console.log(this.animalidi[k] + ' ' + k);
-                  // console.log('allati:');
-                  // console.log(res3);
+                  console.log(this.animalidi[k] + ' ' + k);
+                  console.log('allat:');
+                  console.log(res3);
                   this.animalsi.push(res3);
 
 
                   this.characters.push(res3.name + ' (' + res3.shelter.name + ')');
-                  this.map1.set(  res3.name + ' (' + res3.shelter.name + ')', res3.id );
+                  this.map1.set(res3.name + ' (' + res3.shelter.name + ')', res3.id);
                   this.options.push(res3.name + ' (' + res3.shelter.name + ')');
 
 
                   this.authService.getOwnerbyid(this.owneridi[k]).subscribe((res4: User1) => {
                     this.animalsi[k].owner = res4.username;
-                    // console.log('ownerke nevei');
-                    // console.log(res4);
+                    console.log('ownerke neve');
+                    console.log(res4);
                   });
+
+
                 });
 
+
               }
-
-
-
-
-
-
+            }else{
             }
-          });
 
+
+
+
+          });
         }
+
+
+
 
       });
 
@@ -287,38 +299,58 @@ export class MainpageComponent implements OnInit {
 
           };
           this.adoptedService.getadoptedanimals(PostDataii).subscribe((res2: IsAdopted[]) => {
-            // console.log(res2);
+            console.log(res2);
             for (let j = 0; j < res2.length; j++) {
-              // console.log('menhelyesallatokakiknek a statuszuk 3');
-              // console.log(res2[j]);
+              console.log('menhelyesallatokakiknek a statuszuk 1');
+              console.log(res2[j]);
+
               this.animalidii.push(res2[j].allatid);
               this.owneridii.push(res2[j].ownerid);
 
-              // console.log('allatidek');
-              // console.log(this.animalidii);
+
+              console.log(this.animalidii);
+              console.log(this.animalidii.length);
+            }
+            if (i === this.tombii.length - 1) {
+
+
+
+
               for (let k = 0; k < this.animalidii.length; k++) {
+
                 this.animalsService.getanimalbyid(this.animalidii[k]).subscribe((res3: Animal) => {
-                  // console.log('allat:');
-                  // console.log(res3);
+                  console.log(this.animalidii[k] + ' ' + k);
+                  console.log('allat:');
+                  console.log(res3);
                   this.animalsii.push(res3);
+
+
                   this.characters.push(res3.name + ' (' + res3.shelter.name + ')');
-                  this.map1.set(  res3.name + ' (' + res3.shelter.name + ')', res3.id );
+                  this.map1.set(res3.name + ' (' + res3.shelter.name + ')', res3.id);
                   this.options.push(res3.name + ' (' + res3.shelter.name + ')');
 
 
                   this.authService.getOwnerbyid(this.owneridii[k]).subscribe((res4: User1) => {
                     this.animalsii[k].owner = res4.username;
-                    // console.log('ownerke neve');
-                    // console.log(res4);
+                    console.log('ownerke neve');
+                    console.log(res4);
                   });
 
 
-
                 });
+
+
               }
+            }else{
             }
+
+
+
+
           });
         }
+
+
 
 
       });
@@ -399,6 +431,15 @@ export class MainpageComponent implements OnInit {
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+/*
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
+
+ */
 
 
 }

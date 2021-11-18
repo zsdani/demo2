@@ -1,14 +1,17 @@
 <br>
 <br>
 <br>
-<p>mainpage works!</p>
+<br>
+<br>
 
 
-
+<!--
 {{this.theuser.username}} <br>
 {{this.theuser.role}} <br>
 admin:{{auth.isADMIN$.getValue()}} <br>
 bejelentkezve:{{auth.isLogin$.value}} <br>
+
+-->
 
 <div   *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2" >
 
@@ -396,6 +399,8 @@ bejelentkezve:{{auth.isLogin$.value}} <br>
 </div>
 
 <ng-template #elseBlock2>
+
+  <h1>Üdvözlünk a Mancs weboldalon!</h1>
   <div style="width: 100%; height: 100%; text-align:center;margin:0; padding:0; ">
     <ng-image-slider #nav
                      [images]="imageObject"

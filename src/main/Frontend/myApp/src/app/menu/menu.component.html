@@ -3,17 +3,17 @@
   <div class="sav">
     <div class="div" fxShow="false" fxShow.gt-sm>
 
-
-      <div *ngIf="auth.isADMIN$.getValue() && auth.isLogin$.value && isadoptedsadopted.length!==0 || isadoptedsvirtual.length!==0; else elseBlock0">
+<!--
+      <div *ngIf="auth.isADMIN$.getValue() && auth.isLogin$.value && (isadoptedsadopted.length!==0 || isadoptedsvirtual.length!==0); else elseBlock0">
         <button    class="mat-button" href="/mainpage" routerLink="/mainpage"><div style="padding-right: 15px" matBadge="!"  matBadgePosition="below after" matBadgeOverlap=true matBadgeColor="warn">Kezdőoldal</div> </button>
       </div>
       <ng-template #elseBlock0>
         <button    class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
       </ng-template>
+-->
 
 
-
-
+      <button    class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
 
       <button  class="mat-button" [matMenuTriggerFor]="animalMenu">Örökbefogadás</button>
       <mat-menu #animalMenu="matMenu" yPosition="below">
@@ -68,8 +68,10 @@
 
 
 
-
-
+      <button *ngIf="auth.isADMIN$.getValue()===false && auth.isLogin$.value; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
+        <mat-icon>announcement</mat-icon>
+      </button>
+<!--
       <button *ngIf="auth.isADMIN$.getValue()===false && auth.isLogin$.value; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
         <div *ngIf="isadopteds.length!==0; else elseBlock3">
           {{isadopteds.length}}
@@ -81,9 +83,11 @@
         </ng-template>
 
       </button>
+      -->
       <ng-template #elseBlock2>
 
       </ng-template>
+
 
     </div>
 
