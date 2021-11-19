@@ -42,7 +42,7 @@ export class AuthService {
   private _OwnerID: number;
   private _OwnerRole: string;
 
-  isLogin$ = new BehaviorSubject<boolean>(true);
+  isLogin$ = new BehaviorSubject<boolean>(this.hasToken2());
   isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
 
 
@@ -183,10 +183,21 @@ export class AuthService {
 
 
   protected hasToken(): boolean {
-    console.log(!localStorage.getItem('Token'));
-    console.log(!!localStorage.getItem('Token'));
     let k = true;
     if (localStorage.getItem('ownerRole') === 'ADMIN'){
+      k = true;
+    }else{
+      k = false;
+    }
+
+
+
+    return k;
+  }
+
+  protected hasToken2(): boolean {
+    let k = true;
+    if (localStorage.getItem('ownerID') !== null ){
       k = true;
     }else{
       k = false;

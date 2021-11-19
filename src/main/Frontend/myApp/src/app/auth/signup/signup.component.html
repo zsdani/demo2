@@ -59,13 +59,15 @@
     <mat-error>Megadott jelszavak nem azonosak!</mat-error>
   </mat-form-field>
   <div *ngIf="password.value.length > 0">
-    <mat-label>Jelszó erőssége:</mat-label>
+    <mat-label>Jelszónak meg kell feleni ezeknek a pontokank:</mat-label>
     <mat-password-strength
       #passwordStrength
       [password]="password.value"
     >
     </mat-password-strength>
+
     <mat-password-strength-info
+
       [passwordComponent]="passwordStrength"
       lowerCaseCriteriaMsg="legalább egy kisbetűt tartalmaznia kell"
       upperCaseCriteriaMsg="legalább egy nagybetűt tartalmaznia kell"
@@ -74,6 +76,7 @@
       minCharsCriteriaMsg="legalább 8 karakter hosszú legyen"
     >
     </mat-password-strength-info>
+
   </div>
   <br>
   <button>
