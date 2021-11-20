@@ -212,6 +212,9 @@ public class AnimalService implements SpecRepositroy {
         for(int i=0; i<list.size();i++){
 
             int db2=0;
+            if(list.get(i).getStatus()==EntityStatus.DELETED){
+                db2++;
+            }
             if(list.get(i).getAnimaltype_id()!=spec.getAnimaltype()){
                 db2++;
             }
@@ -246,10 +249,7 @@ public class AnimalService implements SpecRepositroy {
 
         }
 
-        for(int i=0;i<resultlist.size();i++){
-            System.out.println(i+":");
-            System.out.println(resultlist.get(i));
-        }
+
 
         return resultlist;
 

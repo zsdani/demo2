@@ -8,7 +8,7 @@
       formControlName="username"
       required
     >
-    <mat-error>Adja meg a regisztráció során használt Felhasználónevét</mat-error>
+    <mat-error>Kitöltés kötelező! Minimum karakter szám: 4</mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
@@ -21,7 +21,10 @@
       required
     >
 
-    <mat-error>Jelszó kitöltése kötelező!</mat-error>
+    <mat-error>Jelszó kitöltése kötelező!<br>
+      Szabályoknak megfelelően.
+
+    </mat-error>
   </mat-form-field>
   <br>
   <button

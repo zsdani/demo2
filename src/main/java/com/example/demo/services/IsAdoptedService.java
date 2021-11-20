@@ -155,6 +155,9 @@ public class IsAdoptedService {
             isadoptedRepository.save(isadopted.get());
         }
         if(isadopted.get().getStatus2()==1){
+
+            System.out.println(animal.get().getVirtual_owner());
+
             long x=animal.get().getVirtual_owner();
             Optional<IsAdopted> isadopted2 = isadoptedRepository.findById(x);
             //isadoptedRepository.delete(isadopted2.get());
@@ -162,14 +165,22 @@ public class IsAdoptedService {
             isadopted.get().setStatus2(5);
             isadopted.get().setStatus3(7);
             isadopted.get().setSeen(0);
-            isadopted.get().setAgreeordisagree(true);
-            isadopted2.get().setStatus2(5);
-            isadopted2.get().setStatus3(10);
-            isadopted2.get().setSeen(0);
-            isadopted2.get().setAgreeordisagree(false);
+            if(x!=0) {
+                isadopted2.get().setStatus2(5);
+                isadopted2.get().setStatus3(10);
+                isadopted2.get().setSeen(0);
+                isadopted2.get().setAgreeordisagree(false);
+                isadoptedRepository.save(isadopted2.get());
+            }
+
 
 
             animal.get().setStatus(EntityStatus.DELETED);
+            isadoptedRepository.save(isadopted.get());
+
+            //animalRepository.delete(animal.get());
+
+
         }
 
 
@@ -177,21 +188,9 @@ public class IsAdoptedService {
         animalRepository.save(animal.get());
 
 
-        /*
-        Optional<IsAdopted> isadopted = isadoptedRepository.findIsAdoptedByallatid(id);
-        Optional<Animal> animal=animalRepository.findById(isadopted.get().getAllatid());
-        if(animal.get().getIsadopted()==1){
-            animalRepository.delete(animal.get());
-            isadoptedRepository.delete(isadopted.get());
-        }else {
-            animal.get().setIsadopted(3);
-            animal.get().setVirtual_owner(isadopted.get().getOwnerid());
-            animalRepository.save(animal.get());
-            isadoptedRepository.delete(isadopted.get());
 
-        }
 
-         */
+
     }
 
 
