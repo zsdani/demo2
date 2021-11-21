@@ -11,43 +11,80 @@ admin:{{auth.isADMIN$.getValue()}} <br>
 bejelentkezve:{{auth.isLogin$.value}} <br>
 
 -->
+<div *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2">
+<table style="width: 100%;">
+  <tbody>
+  <tr   >
+    <td style="width: 70%">
+      <h1 style="text-align: left">Használd a keresés funkciót, ha egy bizonyos állatot keresel</h1>
 
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Állat neve</mat-label>
+            <input type="text"
+                   style="display: inline;"
+                   placeholder="Kezd el begépeni a keresett állat nevét"
+                   aria-label="Kezd el begépeni a keresett állat nevét"
+                   matInput
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto"
+
+            >
+
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="search(option)">
+                {{option}}
+
+              </mat-option>
+            </mat-autocomplete>
+
+          </mat-form-field>
+
+        </form>
+
+    </td>
+    <td style="text-align: left">
+
+        <button (click)="deletesearch()" class="button button1 ">
+          Keresés törlése
+        </button>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+<!--
 <div   *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2" >
-
+  <h1 style="text-align: left">Használd a keresés funkciót, ha egy bizonyos állatot keresel</h1>
+  <div style="display: inline;">
   <form class="example-form">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Állat neve</mat-label>
       <input type="text"
+             style="display: inline;"
              placeholder="Kezd el begépeni a keresett állat nevét"
              aria-label="Kezd el begépeni a keresett állat nevét"
              matInput
              [formControl]="myControl"
-             [matAutocomplete]="auto">
+             [matAutocomplete]="auto"
+
+      >
+
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="search(option)">
           {{option}}
+
         </mat-option>
       </mat-autocomplete>
+
     </mat-form-field>
+
   </form>
-
-  <!--
-  <div class="content" role="main">
-    <div class="card">
-      <div class="form-group">
-        <label for="search-text">Search Text</label>
-        <input type="email" class="form-control" id="search-text" aria-describedby="search-text"
-               [(ngModel)]="searchText" placeholder="Enter text to search"
-               autofocus>
-      </div>
-      <ul class="list-group list-group-flush">
-
-        <li class="list-group-item" *ngFor="let c of characters | appFilter: searchText">
-          {{c}}
-        </li>
-      </ul>
-    </div>
   </div>
+  <div style="display: inline;">
+    asd
+  </div>
+
 -->
 
 
@@ -57,7 +94,9 @@ bejelentkezve:{{auth.isLogin$.value}} <br>
 
 
 
-  <div *ngIf="show" class="DIV">
+  <div *ngIf="show">
+    <h1 style="text-align: left">Keresésed eredménye:</h1>
+  <div  class="DIV">
 
     <div class="table" *ngFor="let thesearchanimal of thesearchanimals"  >
       <div  class="cell">
@@ -154,13 +193,14 @@ bejelentkezve:{{auth.isLogin$.value}} <br>
     </div>
 
   </div>
+</div>
 
 
 
 
 
 
-
+<h1 style="text-align: left">Menhelye(i)d összes kérelme:</h1>
 
   <div  *ngIf="animals.length===0; else elseBlock22" >
     Nincs egyik menhelye(i)dnél örökbefogadás kérelem

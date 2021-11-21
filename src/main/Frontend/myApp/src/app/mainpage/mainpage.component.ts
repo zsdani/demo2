@@ -426,6 +426,13 @@ export class MainpageComponent implements OnInit {
 
   }
 
+  deletesearch(){
+    //this.options=null;
+    location.reload();
+
+
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 

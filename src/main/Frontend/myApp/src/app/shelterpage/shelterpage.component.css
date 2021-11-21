@@ -84,6 +84,7 @@ div{
   background-color: antiquewhite;
   color: black;
   border: 2px solid coral;
+  border-radius: 10px;
 }
 
 .button1:hover {
@@ -92,8 +93,7 @@ div{
 
 table{
   width: 158%;
-  border: #2b2b2b;
-  border-style: dotted;
+
 
 }
 
@@ -116,10 +116,7 @@ table{
 
 }
 
-tr{
-  border: aqua;
-  border-style: dotted;
-}
+
 
 .row {
   display: table-row;

@@ -1,9 +1,10 @@
-<p>shelterpage works!</p>
-<p>shelterpage works!</p>
-<p>shelterpage works!</p>
+<br>
+<br>
+<br>
 
-<div *ngIf="shelters2.length===0; else elseBlock">
-  <form  [formGroup]="shelterForm" class="example-form"  (ngSubmit)="addShelter(shelterForm)">
+<div style="text-align: center" *ngIf="shelters2.length===0; else elseBlock" >
+
+  <form  [formGroup]="shelterForm" class="example-form"   (ngSubmit)="addShelter(shelterForm)">
 
     <table class="example-full-width" ><tr>
       <td><mat-form-field class="example-full-width" appearance="fill">
@@ -72,12 +73,12 @@
 
     <div *ngIf= "shelterForm.valid; else elseBlock">
       <h3>
-        <button mat-button >Létrehozás</button>
+        <button   class="button button1 ">Létrehozás</button>
         <div class="clearfix"></div>
       </h3></div>
     <ng-template #elseBlock>
       <h3>
-        <button mat-button disabled>Létrehozás</button>
+        <button style="cursor: not-allowed;"  class="button button1 " disabled>Létrehozás</button>
         <div class="clearfix"></div>
       </h3>
     </ng-template>
@@ -85,10 +86,11 @@
 
   </form>
 
+
 </div>
 <ng-template #elseBlock>
 
-  <button (click)="toggle()" id="bt">
+  <button (click)="toggle()" id="bt" class="button button1 ">
     {{buttonName}}
   </button>
 
@@ -162,12 +164,12 @@
 
       <div *ngIf= "shelterForm.valid; else elseBlock">
         <h3>
-          <button mat-button >Létrehozás</button>
+          <button class="button button1 ">Létrehozás</button>
           <div class="clearfix"></div>
         </h3></div>
       <ng-template #elseBlock>
         <h3>
-          <button mat-button disabled>Létrehozás</button>
+          <button style="cursor: not-allowed;" class="button button1 " disabled>Létrehozás</button>
           <div class="clearfix"></div>
         </h3>
       </ng-template>
@@ -393,7 +395,18 @@
         </tr>
       </table>
       <div class="buttpos">
-        <button  class="button button1 "  >Létrehozás</button>
+
+        <div *ngIf= "animalForm.valid; else elseBlock33">
+          <h3>
+            <button   class="button button1 ">Létrehozás</button>
+            <div class="clearfix"></div>
+          </h3></div>
+        <ng-template #elseBlock33>
+          <h3>
+            <button style="cursor: not-allowed;"  class="button button1 " disabled>Létrehozás</button>
+            <div class="clearfix"></div>
+          </h3>
+        </ng-template>
       </div>
 
 
@@ -484,12 +497,12 @@
 
       <div *ngIf= "shelterForm2.valid; else elseBlock">
         <h3>
-          <button mat-button >Módosítás</button>
+          <button mat-button class="button button1 " >Módosítás</button>
           <div class="clearfix"></div>
         </h3></div>
       <ng-template #elseBlock>
         <h3>
-          <button mat-button disabled>Módosítás</button>
+          <button style="cursor: not-allowed;" disabled class="button button1 ">Módosítás</button>
           <div class="clearfix"></div>
         </h3>
       </ng-template>
@@ -499,7 +512,7 @@
 
 
 
-    <button (click)="cancel()" >
+    <button class="button button1 " (click)="cancel()" >
       Mégse
     </button>
   </div>
