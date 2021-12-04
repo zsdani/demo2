@@ -36,8 +36,7 @@ public class OwnerShelterController {
 
     @PostMapping
     public ResponseEntity createOwnderShelter(@RequestBody OwnerShelter ownershelter)  {
-        System.out.println("from Controller");
-        System.out.println(ownershelter);
+
         return ResponseEntity.ok(ownershelterService.addOwnerShelter(ownershelter));
     }
 

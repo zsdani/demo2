@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface OwnerShelterRepository extends CrudRepository<OwnerShelter, Long> {
 
-    List<OwnerShelter> findOwnerShelterByOwnerid(Integer allatid);
+    List<OwnerShelter> findOwnerShelterByOwnerid(Integer ownerid);
 
 
 }

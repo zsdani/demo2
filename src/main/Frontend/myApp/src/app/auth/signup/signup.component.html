@@ -1,3 +1,4 @@
+<br>
 <form [formGroup]="signupForm" fxLayoutAlign="stretch" fxLayout="column" (ngSubmit)="signup(signupForm)" [ngClass]="{'up': password.value.length > 0}" novalidate>
   <mat-form-field>
     <input
@@ -10,6 +11,7 @@
     >
     <mat-error>Mező kitöltése kötelező, minimum karakterszám: 4!</mat-error>
   </mat-form-field>
+  <br>
   <br>
 
 
@@ -24,6 +26,7 @@
   </mat-form-field>
 
   <br>
+  <br>
   <mat-form-field hintLabel="Megfelelő formátum: pl valami@valami.valami">
     <input
       matInput
@@ -34,6 +37,7 @@
     >
     <mat-error>Adjon meg egy érvényes E-mail címet!</mat-error>
   </mat-form-field>
+  <br>
   <br>
   <br>
   <mat-form-field>
@@ -48,6 +52,7 @@
     >
     <mat-error>Feltételeknek megfelelő jelszó megadása kötelező!</mat-error>
   </mat-form-field>
+  <br>
   <br>
   <mat-form-field>
     <input
@@ -79,7 +84,7 @@
 
   </div>
   <br>
-  <button>
+  <button class="button button1 ">
     Regisztráció
   </button>
 </form>

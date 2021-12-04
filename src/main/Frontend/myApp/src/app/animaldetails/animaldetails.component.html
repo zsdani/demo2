@@ -1,13 +1,15 @@
-<br>
+
 <link href="https://unpkg.com/bootstrap-css-only@4.4.1/css/bootstrap.min.css" rel="stylesheet">
-<br>
 
 
 
-<h1 style="display: inline;">{{animal.type.name==='macska' ? 'Szia, ha megszeretnél ismerni, akkor lentebb megtalálhatod az elérhetőségemet.  '  : 'Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát ^^ Csak regisztrálnod kell hozzá.' }} </h1>
-<br>
 
-<br>
+
+
+<p class="bubble speech">
+  {{animal.type.name==='macska' ? 'Szia, ha megszeretnél ismerni, akkor lentebb megtalálhatod az elérhetőségemet.  '  : 'Szia, ha meg szeretnél ismerni jobban, akkor lejjeb megtalálod az időbosztásomat és beszoríthatunk egy sétát. Csak regisztrálnod kell hozzá.' }}
+</p>
+
 <table>
   <tbody>
   <div class="DIV">
@@ -54,22 +56,21 @@
 
     Szia a nevem: {{animal.name}} és {{animal.type.name==='macska' ? animal.gender === 0 ? 'kandúr' : 'nőstény' : animal.gender === 0 ? 'kan' : 'szuka'}}
     {{animal.type.name}} vagyok.
-    A test méretem: {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'Nagy'}} és
-    {{animal.gonadectomy===0 ? 'nem vagyok ivartalanítva.' : 'ki vagyok ivartalanítva.'}}
+    A test méretem {{animal.size===0 ? 'kicsi' : animal.size===1 ? 'közepes' : 'nagy'}} és
+    {{animal.gonadectomy===0 ? 'nem vagyok ivartalanítva.' : ' ivartalanítva vagyok.'}}
     Nem tudom hogy fontos-e de {{animal.breed}} {{animal.type.name}} vagyok.
-    A korom publikus: {{animal.age}} éves. {{animal.age>5 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}}
-    Betgségem:
-    {{animal.illnes==='nincs' ? 'Szerencsére nincs ;) ' : 'Sajnos van: '+ animal.illnes }}
+    A korom publikus: {{animal.age}} éves. {{animal.age>6 ? 'Tudom öreg, de cserébe sokkal nyugodtabb vagyok, mint a fiatalabbak.': ''}} {{animal.age===0 ? 'Mivel még az egy évet sem értem el.': ''}}
+    Betgségem,
+    {{animal.illnes==='nincs' || animal.illnes==='Nincs'  ? ' szerencsére nincs. ' : ' sajnos van: '+ animal.illnes }}
 
     <br>
     Az élet történetem:
-    <br>
-    {{animal.lifestory}}
+    {{ animal.lifestory}}
         <br>
-        <div *ngIf=" animal.virtual_owner!==null ;  else elseBlock4" style="font-size: 20px">
+        <div *ngIf=" animal.virtual_owner!==null ;  else elseBlock4" >
           {{animal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
           {{animal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van virtuális gazdám:' : '' }}
-          {{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}
+          <u>{{animal.virtual_owner.status2===3 ? virtualuser.username : '' }}</u>
 
         </div>
         <ng-template #elseBlock4>
@@ -79,8 +80,8 @@
 
 
     <br>
-    {{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: '+ animal.shelter.name+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni:' +animal.shelter.name+' és akár sétálni is\n'+
-    ' elmehetünk, csak görgess lentebb és egyeztessünk időpontot :)' }}
+        {{animal.type.name==='macska' ? 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: '+ animal.shelter.name +'('+animal.shelter.city+')'+'.' : 'Majd elfelejtettem, ha személyesen is megismernél, akkor itt tudunk találkozni: ' +animal.shelter.name+' és akár sétálni is\n'+
+    ' elmehetünk, csak görgess lentebb és egyeztessünk időpontot!' }}
       </h3>
 
     </td>

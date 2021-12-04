@@ -1,14 +1,13 @@
 <br>
 <br>
-<br>
-<br>
+
 <mat-tab-group [(selectedIndex)]="demo1TabIndex" mat-align-tabs="center">
   <mat-tab label="Gyakori kérdések">
 
 
 <br>
-<h1>VIRTUÁLIS GAZDA gyakori kérdések</h1>
-
+<h1>VIRTUÁLIS GAZDA gyakori kérdések / Szabályok</h1>
+    <h2>VIRTUÁLIS GAZDA gyakori kérdések</h2>
 <h3>Mikor érdemes Virtuális gazdinak állni?</h3>
 <ul>
   <li>Szereted egy kis kedvencet, de még nem érzed késznek magad arra, hogy otthont adj egynek?</li>
@@ -53,6 +52,14 @@ Ha a kutyát időközben örökbe fogadják, Te leszel az első, akit értesíte
 A VIRTUÁLIS GAZDA NEVÉT közzétesszük a kiválasztott kutya részletek oldalon.
 
 (Nem utolsó sorban pedig az első utalás beérkezését követően oklevelet és ajándékot is küldünk Neked.)
+    <br>
+    <br>
+    <h2>Szabályok:</h2>
+    Örökbefogadásod nem feltétlen jelent biztos örökbefogadást/virtuális örökbefogadást a menhely dönthet úgy, hogy nem adja meg Önnek a jogot,
+    mert nem a kérvény beadásán kívül az ügy érdekében nem történt előre lépés a beadáson kívül. Pl személyes vagy telefonos megkeresése az adott menhelyet.
+    Ez csak egy kérvény beadásást jelenti, tehát ezt a kérvényt el is fogadhatják, de el is utasíthatják.
+    Elképzelhető, hogy az adott állatot, a weboldalon az örökbe fogadó nem fogadta örökbe, de telefonos megbeszélés alapján már valaki örökbe fogadta, csak még ezt a rendszerben nem lett frissítve a menhely által.
+    Ebben az esetben szíves elnézésüket kérjük már előre is a kellemetlenségért. Köszönjük.
   </mat-tab>
   <mat-tab *ngIf="auth.isLogin$.value; else elseBlock" label="Virtuális örökbefogadás" >
 
@@ -134,7 +141,7 @@ A VIRTUÁLIS GAZDA NEVÉT közzétesszük a kiválasztott kutya részletek oldal
           <td>
             <img src="/assets/pic/{{animal.imagine}}" alt="image">
           </td>
-          <td>
+          <td style="padding-left: 15px;">
             Ha nincsenek kérdéseid és biztosan virtuálisan örökbe akarod fogadni ezt az állatot ({{animal.name}}), <br>
             akkor nincs más dolgod, mint hogy utald a megfelelő összeget {{animal.name}}-nak a menhelyének ({{animal.shelter.name}})  számlájára, aminek száma: {{animal.shelter.accoun_number}}
             Fontos, hogy közleményben add meg a kutyának a nevét!

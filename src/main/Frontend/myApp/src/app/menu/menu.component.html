@@ -1,8 +1,8 @@
 <div style="position: relative;">
 
-  <div class="sav">
+  <div class="sav" >
 
-    <div class="div" fxShow="false" fxShow.gt-sm>
+    <div class="div" fxShow="false" fxShow.gt-sm style="position: center;">
 
 <!--
       <div *ngIf="auth.isADMIN$.getValue() && auth.isLogin$.value && (isadoptedsadopted.length!==0 || isadoptedsvirtual.length!==0); else elseBlock0">
@@ -30,12 +30,14 @@
         <button  class="mat-menu-item"  href="/tobevirtualowner" routerLink="/tobevirtualowner">Virtuális gazda szeretnék lenni</button>
       </mat-menu>
 
+      <!--
       <button class="mat-button" [matMenuTriggerFor]="volunteeringMenu">Önkénteskedés</button>
       <mat-menu #volunteeringMenu="matMenu" xPosition="before">
         <button class="mat-menu-item">Sétáltaltás</button>
         <button class="mat-menu-item">Szépségápolás</button>
         <button class="mat-menu-item">Gondozás</button>
       </mat-menu>
+      -->
 
       <button class="mat-button" href="/connection" routerLink="/connection">Elérhetőségeink</button>
 

@@ -3,11 +3,13 @@
 <br>
 <br>
 
-<p>*valami tájékoztató szöveg*</p>
+<p>Ezen az oldalon megtudhatod a menhelyekkel kapcsolatos összesn információt. Ehhez csak ki kell választanod a számodra fontos menhelyet a listából.<br>
+  Van lehetőség a menhelyek értékelésére is.
+</p>
 
 
 
-<h4 style="display: inline;">Kérem válassza ki melyik menhely elérhetőségére kívánics? </h4>
+<h4 style="display: inline;">Kérem válasszon ki egy menhelyet. </h4>
 <mat-form-field appearance="fill">
   <mat-label>Menhely</mat-label>
   <mat-select [(value)]="selected">
@@ -59,15 +61,15 @@
   </ng-template>
   </tbody>
 </table>
-<div style="width: 80%;">
+<div style="width: 100%; text-align: center; " >
 <div *ngIf=" selected!==-1 ;  else elseBlock4"  >
-  <mat-tab-group >
-    <mat-tab label="Értékelésünk">
+  <mat-tab-group  >
+    <mat-tab label="Értékelésünk" >
       Ilyen értékelésünk van:
-      <div style="text-align: center">
+      <div style="text-align: center; overflow: hidden;">
 
 
-        <ngb-rating [max]="5" [readonly]="true" [(rate)]="currentRate" style="font-size: 30px"></ngb-rating>
+        <ngb-rating [max]="5" [readonly]="true" [(rate)]="currentRate" style="font-size: 30px;"></ngb-rating>
         <div *ngIf=" currentRate==0 ;  else elseBlock22">Még senki nem értékelt minket. Értékelj minket te elsőnek!</div>
         <ng-template #elseBlock22></ng-template>
 
@@ -75,7 +77,7 @@
 
     </mat-tab>
     <mat-tab label="Értékelj!">
-      Értékeld a menhelyünket ^^
+      Értékeld a menhelyünket, ha volt tapasztalatod velünk.
       <div style="text-align: center">
 
         <ngb-rating [max]="5" [(rate)]="yourrate" style="font-size: 30px"></ngb-rating>

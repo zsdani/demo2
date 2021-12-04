@@ -88,7 +88,7 @@ public class IsAdoptedController {
 
     @PostMapping("/seennoti")
     public void seennoti(@RequestBody long ownerid)  {
-        System.out.println("itt1");
+
         isadoptedService.seennoti(ownerid);
 
 

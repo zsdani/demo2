@@ -7,10 +7,10 @@
   <br>
 <div class="DIVnot" *ngFor="let isadopted of isadopteds" >
   <div *ngIf="isadopted.status2===1 && isadopted.status3===0 ">
-    Ezt az állat örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
+    Ez az állat örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
   </div>
   <div *ngIf="isadopted.status2===2 && isadopted.status3===0 ">
-    Ezt az állat virtuális örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
+    Ez az állat virtuális örökbefogadás elbírálásra vár, mivel beadtad a kérelmet.
   </div>
   <div *ngIf="isadopted.status2===3 && isadopted.status3===3">
     Sikeresen virtuálisan örökbe fogadtad ezt az állatot:

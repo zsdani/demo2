@@ -55,8 +55,8 @@ export class MainpageComponent implements OnInit {
 
     },
     {
-      image: '/assets/pic/kutya.jpg',
-      thumbImage: '/assets/pic/kutya.jpg',
+      image: '/assets/pic/cat12.jpg',
+      thumbImage: '/assets/pic/cat12.jpg',
 
     }
     ,
@@ -67,8 +67,8 @@ export class MainpageComponent implements OnInit {
     },
     {
       imageSize: {width: '800px', height: '300px', space: 4},
-      image: '/assets/pic/kutya.jpg',
-      thumbImage: '/assets/pic/kutya.jpg',
+      image: '/assets/pic/cat11.jpg',
+      thumbImage: '/assets/pic/cat11.jpg',
 
 
     }
@@ -142,19 +142,19 @@ export class MainpageComponent implements OnInit {
 
 
       this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
-        // console.log('menhelyid:');
-        // console.log(res);
-        for (let i = 0; i < res.length; i++) {
+         console.log('menhelyid:');
+         console.log(res);
+         for (let i = 0; i < res.length; i++) {
           this.tomb[i] = res[i].shelterid;
         }
-        for (let i = 0; i < this.tomb.length; i++) {
+         for (let i = 0; i < this.tomb.length; i++) {
           const PostData = {
             shelter_id: this.tomb[i],
             status2: 1,
 
           };
           this.adoptedService.getadoptedanimals(PostData).subscribe((res2: IsAdopted[]) => {
-            console.log(res2);
+
             for (let j = 0; j < res2.length; j++) {
               console.log('menhelyesallatokakiknek a statuszuk 1');
               console.log(res2[j]);
@@ -162,9 +162,6 @@ export class MainpageComponent implements OnInit {
               this.animalid.push(res2[j].allatid);
               this.ownerid.push(res2[j].ownerid);
 
-
-              console.log(this.animalid);
-              console.log(this.animalid.length);
             }
             if (i === this.tomb.length - 1) {
 
@@ -222,7 +219,7 @@ export class MainpageComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           this.tombi[i] = res[i].shelterid;
         }
-        for (let i = 0; i < this.tomb.length; i++) {
+        for (let i = 0; i < this.tombi.length; i++) {
           const PostDatai = {
             shelter_id: this.tombi[i],
             status2: 2,
@@ -231,16 +228,18 @@ export class MainpageComponent implements OnInit {
           this.adoptedService.getadoptedanimals(PostDatai).subscribe((res2: IsAdopted[]) => {
             console.log(res2);
             for (let j = 0; j < res2.length; j++) {
-              console.log('menhelyesallatokakiknek a statuszuk 1');
+              console.log('menhelyesallatokakiknek a statuszuk 2');
               console.log(res2[j]);
 
               this.animalidi.push(res2[j].allatid);
               this.owneridi.push(res2[j].ownerid);
 
 
-              console.log(this.animalidi);
+              console.log(this.animalidi[j]);
               console.log(this.animalidi.length);
+
             }
+
             if (i === this.tombi.length - 1) {
 
 
@@ -271,6 +270,8 @@ export class MainpageComponent implements OnInit {
 
 
               }
+              console.log('0 vagy 1 ?');
+              console.log(this.animalsi);
             }else{
             }
 
@@ -301,7 +302,7 @@ export class MainpageComponent implements OnInit {
           this.adoptedService.getadoptedanimals(PostDataii).subscribe((res2: IsAdopted[]) => {
             console.log(res2);
             for (let j = 0; j < res2.length; j++) {
-              console.log('menhelyesallatokakiknek a statuszuk 1');
+              console.log('menhelyesallatokakiknek a statuszuk 3');
               console.log(res2[j]);
 
               this.animalidii.push(res2[j].allatid);
@@ -371,6 +372,7 @@ export class MainpageComponent implements OnInit {
 
   accept(id: number){
     this.adoptedService.acceptadopted(id);
+    this.delay(10000);
     location.reload();
   }
 
@@ -379,6 +381,12 @@ export class MainpageComponent implements OnInit {
     location.reload();
 
   }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+
 
   search(value: string){
 
@@ -427,7 +435,7 @@ export class MainpageComponent implements OnInit {
   }
 
   deletesearch(){
-    //this.options=null;
+    // this.options=null;
     location.reload();
 
 

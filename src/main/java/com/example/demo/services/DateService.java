@@ -34,28 +34,17 @@ public class DateService {
     }
 
     public boolean DateCheck(Date date){
-
-
         List<Date> list=dateRepository.findDateByAllatid(date.getAllatid());
         for (int i = 0; i < list.size(); i++) {
-
-
             String[] split=date.getDate().split(":");
             String[] split2=list.get(i).getDate().split(":",6);
-
-
             if(split[0].substring(0,10).compareTo(split2[0].substring(0,10))==0){
-
-
                 String[] splitTime = date.getHour().split(":");
                 String[] splitTimei = list.get(i).getHour().split(":");
                 int firstNumber = Integer.parseInt(splitTime[0]);
                 int secondNumber = Integer.parseInt(splitTime[1]);
                 int firstNumberi = Integer.parseInt(splitTimei[0]);
                 int secondNumberi = Integer.parseInt(splitTimei[1]);
-
-
-
                 if(firstNumber==firstNumberi){
                     return false;
                 }
@@ -65,8 +54,6 @@ public class DateService {
                 if(firstNumber+1==firstNumberi && secondNumber>secondNumberi){
                     return false;
                 }
-
-
             }
 
         }

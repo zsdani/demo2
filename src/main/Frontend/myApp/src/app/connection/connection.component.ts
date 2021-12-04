@@ -3,6 +3,12 @@ import {Animal} from '../class/Animal';
 import {AnimalService} from '../Services/animal.service';
 import {Shelter} from '../class/Shelter';
 import {ShelterService} from '../Services/shelter.service';
+import {PopupadoptsureComponent} from "../popupadoptsure/popupadoptsure.component";
+import {PopupadoptComponent} from "../popupadopt/popupadopt.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
+import {AnimaldetailsService} from "../Services/animaldetails.service";
+import {AuthService} from "../Services/auth.service";
 
 @Component({
   selector: 'app-connection',
@@ -22,7 +28,9 @@ export class ConnectionComponent implements OnInit {
 
 
   constructor(
-    private shelterService: ShelterService
+    private shelterService: ShelterService,
+    public dialog: MatDialog,
+    public auth: AuthService,
 
   ) { }
 
@@ -48,8 +56,12 @@ export class ConnectionComponent implements OnInit {
 
   }
   vote(shelterid: number,yourvote: number){
-    this.shelterService.addVote(shelterid, yourvote);
-    location.reload();
+    if (this.auth.isLogin$.value)
+    {
+
+      this.shelterService.addVote(shelterid, yourvote);
+    }
+    else{this.dialog.open(PopupadoptComponent); }
 
   }
 
