@@ -14,6 +14,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
+import {forEach} from 'lodash';
 
 @Component({
   selector: 'app-mainpage',
@@ -113,6 +114,8 @@ export class MainpageComponent implements OnInit {
   public sheltersi: Shelter [] = [];
   public animalsi: Animal [] = [];
 
+  public THETOMB: OwnerShelter [] = [];
+
   show: boolean;
 
   public usersii: User1 [] = [];
@@ -124,11 +127,132 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
+    this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
+      this.theuser = res0;
+    });
+
+    if (localStorage.getItem('ownerRole') === 'ADMIN') {
+
+
+
+
+      this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
+        console.log('menhelyidid:');
+        this.THETOMB = res;
+        for (let i = 0; i < res.length; i++) {
+          this.tomb[i] = res[i].shelterid;
+          console.log(this.tomb[i]);
+          this.adoptedService.getadoptedanimals(res[i].shelterid).subscribe((res2: IsAdopted[]) => {
+            console.log('size: ' + res2.length);
+            for (let j = 0; j < res2.length; j++) {
+              console.log(res2[j].status2);
+              if (res2[j].status2 === 1){this.animalid.push(res2[j].allatid); this.ownerid.push(res2[j].ownerid); console.log('beletettem 1.'); }
+              if (res2[j].status2 === 2){this.animalidi.push(res2[j].allatid); this.owneridi.push(res2[j].ownerid) ; console.log('beletettem 2.'); }
+              if (res2[j].status2 === 3){this.animalidii.push(res2[j].allatid); this.owneridii.push(res2[j].ownerid) ; console.log('beletettem 3.'); }
+
+
+
+
+            }
+
+            if (i === this.THETOMB.length - 1) {
+              console.log(this.animalid);
+              console.log(this.animalidi);
+              console.log(this.animalidii);
+              for (let k = 0; k < this.animalid.length; k++) {
+                this.animalsService.getanimalbyid(this.animalid[k]).subscribe((res3: Animal) => {
+                  console.log(this.animalid[k] + ' ' + k);
+                  console.log('allat:');
+                  console.log(res3);
+                  this.animals.push(res3);
+
+
+                  this.characters.push(res3.name + ' (' + res3.shelter.name + ')');
+                  this.map1.set(res3.name + ' (' + res3.shelter.name + ')', res3.id);
+                  this.options.push(res3.name + ' (' + res3.shelter.name + ')');
+
+                  this.authService.getOwnerbyid(this.ownerid[k]).subscribe((res4: User1) => {
+                    this.animals[k].owner = res4.username;
+                    console.log('ownerke neve');
+                    console.log(res4);
+                  });
+
+                });
+
+              }
+
+              for (let k = 0; k < this.animalidi.length; k++) {
+
+                this.animalsService.getanimalbyid(this.animalidi[k]).subscribe((res3: Animal) => {
+                  console.log(this.animalidi[k] + ' ' + k);
+                  console.log('allat:');
+                  console.log(res3);
+                  this.animalsi.push(res3);
+
+
+                  this.characters.push(res3.name + ' (' + res3.shelter.name + ')');
+                  this.map1.set(res3.name + ' (' + res3.shelter.name + ')', res3.id);
+                  this.options.push(res3.name + ' (' + res3.shelter.name + ')');
+
+                  this.authService.getOwnerbyid(this.owneridi[k]).subscribe((res4: User1) => {
+                    this.animalsi[k].owner = res4.username;
+                    console.log('ownerke neve');
+                    console.log(res4);
+                  });
+
+                });
+
+              }
+
+              for (let k = 0; k < this.animalidii.length; k++) {
+
+                this.animalsService.getanimalbyid(this.animalidii[k]).subscribe((res3: Animal) => {
+                  console.log(this.animalidii[k] + ' ' + k);
+                  console.log('allat:');
+                  console.log(res3);
+                  this.animalsii.push(res3);
+
+
+                  this.characters.push(res3.name + ' (' + res3.shelter.name + ')');
+                  this.map1.set(res3.name + ' (' + res3.shelter.name + ')', res3.id);
+                  this.options.push(res3.name + ' (' + res3.shelter.name + ')');
+
+
+                  this.authService.getOwnerbyid(this.owneridii[k]).subscribe((res4: User1) => {
+                    this.animalsii[k].owner = res4.username;
+                    console.log('ownerke neve');
+                    console.log(res4);
+                  });
+
+
+                });
+
+
+              }
+
+
+            }
+
+
+          });
 
 
 
 
 
+
+
+
+
+        }
+
+      });
+    }
+
+
+
+/*
 
     // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
     this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
@@ -362,6 +486,8 @@ export class MainpageComponent implements OnInit {
 
 
     }
+
+ */
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),

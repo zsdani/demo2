@@ -49,7 +49,7 @@ export class MenuComponent implements OnInit {
 
       });
     }
-
+/*
     if (localStorage.getItem('ownerRole') === 'ADMIN') {
       this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
         for (let i = 0; i < res.length; i++) {
@@ -90,6 +90,8 @@ export class MenuComponent implements OnInit {
 
       });
     }
+
+ */
   }
 
   goToDogs(animalytype_id: number){

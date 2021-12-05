@@ -80,7 +80,7 @@ class IsAdoptedRepositoryTest {
         isAdoptedRepository.save(isAdopted2);
         isAdoptedRepository.save(isAdopted3);
 
-        List<IsAdopted> result1 = isAdoptedRepository.listadoptedbyshelterid(5L,0);
+        List<IsAdopted> result1 = isAdoptedRepository.listadoptedbyshelterid(5L);
 
 
         assertThat(result1)

@@ -88,7 +88,7 @@ public class IsAdoptedService {
         System.out.println(list);
     }
 
-
+/*
     public List<IsAdopted>listadoptedbyshelterid(Paar paar)  {
 
         Long shelter_id = paar.getShelter_id();
@@ -98,6 +98,16 @@ public class IsAdoptedService {
 
 
         return isadoptedRepository.listadoptedbyshelterid(shelter_id,status2);
+
+
+    }
+
+ */
+// 2.D
+    public List<IsAdopted>listadoptedbyshelterid(long shelter_id)  {
+
+
+        return isadoptedRepository.listadoptedbyshelterid(shelter_id);
 
 
     }

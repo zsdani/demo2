@@ -13,6 +13,8 @@ import {Animal} from '../class/Animal';
 import {MenuComponent} from '../menu/menu.component';
 import {MenuService} from './menu.service';
 
+import jwt_decode from 'jwt-decode';
+
 
 
 export const httpOptions = {
@@ -42,8 +44,10 @@ export class AuthService {
   private _OwnerID: number;
   private _OwnerRole: string;
 
-  isLogin$ = new BehaviorSubject<boolean>(this.hasToken2());
-  isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
+  public isLogin$ = new BehaviorSubject<boolean>(this.hasToken2());
+  public isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
+  _isLogin$ = this.isLogin$.asObservable();
+  _isADMIN$ = this.isADMIN$.asObservable();
 
 
 
@@ -60,6 +64,8 @@ export class AuthService {
     private  menuService: MenuService,
 
   ) {
+    const token = localStorage.getItem('Token');
+    this.isLogin$.next(!!token);
 
   }
 
@@ -104,9 +110,12 @@ export class AuthService {
         this._OwnerID = parseInt(this.parseJwt(data).id);
         this._OwnerRole = this.parseJwt(data).role;
 
+        console.log(this._OwnerID);
+        console.log(this._OwnerRole);
+
 
         this.isLogin$.next(true);
-        console.log(this.parseJwt(data).role);
+        // console.log(this.parseJwt(data).role);
         if (this.parseJwt(data).role === 'ADMIN'){
           this.isADMIN$.next(true);
         }else{
@@ -181,9 +190,15 @@ export class AuthService {
 
   }
 
+  protected orihasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
 
   protected hasToken(): boolean {
     let k = true;
+    console.log(this._OwnerID);
+    console.log(this._OwnerRole);
     if (localStorage.getItem('ownerRole') === 'ADMIN'){
       k = true;
     }else{
@@ -219,6 +234,15 @@ export class AuthService {
 
 
     return JSON.parse(jsonPayload);
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+      return jwt_decode(token);
+    }
+    catch (Error){
+      return null;
+    }
   }
 
 

@@ -28,10 +28,17 @@ public interface IsAdoptedRepository extends CrudRepository<IsAdopted, Long> {
     List<IsAdopted> findIsAdoptedByownerid(@Param("ownerid") long ownerid,
                                            @Param("seen") int seen
     );
-
+/*
     @Query(value = "SELECT * FROM isadopted WHERE shelter_id = :shelter_id AND status2 = :status2", nativeQuery = true)
     List<IsAdopted> listadoptedbyshelterid(@Param("shelter_id") long shelter_id,
                                                @Param("status2") int status2
+    );
+
+ */
+
+    @Query(value = "SELECT * FROM isadopted WHERE shelter_id = :shelter_id AND (status2 = 1 OR status2 = 2 OR status2 = 3)", nativeQuery = true)
+    List<IsAdopted> listadoptedbyshelterid(@Param("shelter_id") long shelter_id
+
     );
 
     @Query(value = "SELECT * FROM isadopted WHERE allatid = :allatid AND  (status2 = 1 OR status2 = 2 OR status2 = 3)", nativeQuery = true)

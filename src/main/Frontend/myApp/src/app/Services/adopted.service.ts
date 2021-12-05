@@ -25,9 +25,15 @@ export class AdoptedService {
   public addadopted(k: { allatid: number, ownerid: number }): void {
     this.http.post<IsAdopted>(`${this.URL}`, k).subscribe();
   }
-
+/*
   public getadoptedanimals(param: { shelter_id: number; status2: number }): Observable<IsAdopted[]> {
     return this.http.post<IsAdopted[]>(`${this.URL}/listadoptedbyshelterid`, param);
+  }
+
+ */
+//2.d
+  public getadoptedanimals( shelter_id: number): Observable<IsAdopted[]> {
+    return this.http.post<IsAdopted[]>(`${this.URL}/listadoptedbyshelterid`, shelter_id);
   }
 
   public getadoptedanimalsbyowner(ownerid: number): Observable<IsAdopted[]> {

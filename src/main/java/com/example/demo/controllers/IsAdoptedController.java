@@ -59,11 +59,26 @@ public class IsAdoptedController {
     public ResponseEntity createIsAdopted(@RequestBody IsAdopted isadopted)  {
         return ResponseEntity.ok(isadoptedService.addIsAdopted(isadopted));
     }
-
+/*
     @PostMapping("/listadoptedbyshelterid")
     public ResponseEntity listadoptedbyshelterid(@RequestBody Paar paar) throws DataNotFoundException{
         return ResponseEntity.ok(isadoptedService.listadoptedbyshelterid(paar));
     }
+
+ */
+    // 2.D
+    @PostMapping("/listadoptedbyshelterid")
+    public ResponseEntity listadoptedbyshelterid(@RequestBody long shelter_id) throws DataNotFoundException{
+        return ResponseEntity.ok(isadoptedService.listadoptedbyshelterid(shelter_id));
+    }
+//3.
+    /*
+    @PostMapping("/asd")
+    public ResponseEntity listadoptedbyshelterid(@RequestBody long shelter_id) throws DataNotFoundException{
+        return ResponseEntity.ok(isadoptedService.listadoptedbyshelterid(shelter_id));
+    }
+
+     */
 
 
     @PostMapping("/getadoptedanimalsbyowner")
