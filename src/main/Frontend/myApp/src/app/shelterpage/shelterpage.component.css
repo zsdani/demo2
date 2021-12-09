@@ -184,3 +184,25 @@ table{
   text-align: right;
 }
 
+.alert {
+  padding: 20px;
+  background-color: indianred;
+  color: white;
+}
+
+.closebtn {
+
+  color: white;
+
+
+  float: right;
+  font-size: 30px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+

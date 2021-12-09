@@ -26,7 +26,7 @@ class OwnerShelterRepositoryTest {
 
     @Test
     void findOwnerShelterByOwnerid() {
-        /*
+
 
         OwnerShelter ownerShelter1 = new OwnerShelter(1L,2,10);
         OwnerShelter ownerShelter2 = new OwnerShelter(2L,2,11);
@@ -52,7 +52,7 @@ class OwnerShelterRepositoryTest {
                 .hasSize(1)
                 .contains(ownerShelter4, ownerShelter2);
 
-         */
+
 
 
 

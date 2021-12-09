@@ -30,7 +30,7 @@ export class FileuploadService {
     console.log(picc);
     this.http.post(`${this.filesURL}/upload`, picc).subscribe(
       data => {
-        this.ns.show('Sikedresadasdasd');
+        this.ns.show('Sikeres állat létrehozás');
 
       },
       error => {

@@ -90,11 +90,12 @@ export class FileuploadComponent implements OnInit {
     const fd = new FormData();
 
     let isImageSaved;
+    console.log(this.selectedFile.type);
     if (!_.includes(allowed_types, this.selectedFile.type)) {
       this.imageError = 'Only Images are allowed ( JPG | PNG )';
       isImageSaved = false;
     }
-    console.log();
+
     this._filename = this.selectedFile.name;
 
     fd.append('file', this.selectedFile, this.selectedFile.name);

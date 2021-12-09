@@ -71,6 +71,11 @@ export class AuthService {
 
   isLoggedIn(): Observable<boolean> {
     return this.isLogin$.asObservable();
+    //return !!localStorage.getItem('Token');
+  }
+
+  isAdmin(): Observable<boolean>{
+    return this.isADMIN$.asObservable();
   }
 
 
@@ -179,6 +184,7 @@ export class AuthService {
     localStorage.removeItem('ownerRole');
     this.isLogin$.next(false);
     this.isADMIN$.next(false);
+
 
     this._OwnerID = -1;
 

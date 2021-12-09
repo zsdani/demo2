@@ -9,7 +9,7 @@
 
 
 <h1 style="display: inline;" >Keresés szűrése:</h1>
-  <div *ngIf="show; else elseBlock2" style="display: inline;">
+  <div *ngIf="show; else elseBlock2" style="display: inline;  ">
   <button (click)="clicksearch()" class="button button1 " style=" padding: 0px 0px;">
     <mat-icon>keyboard_arrow_up</mat-icon>
   </button>
@@ -20,7 +20,7 @@
     </button>
   </ng-template>
 
-<div class="DIV"  *ngIf="show; else elseBlock">
+<div class="DIV" style=" width: 100%;"  *ngIf="show; else elseBlock">
 <table class="keresestable">
   <tbody>
 

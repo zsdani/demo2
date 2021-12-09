@@ -279,7 +279,7 @@
             <div>
               <div >
                 Válassz ki egy képet kérlek <br>
-                <input formControlName="imagine" type="file"(change)="onFileSelected($event)">
+                <input formControlName="imagine"  type="file"(change)="onFileSelected($event)" [accept]="allowed_types">
               </div>
               <div >
                 <div >
@@ -300,6 +300,12 @@
 
                   >Nincs kép
                   </image-cropper>
+                  <div *ngIf="show4">
+                  <div class="alert" >
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>{{imageError}}</strong>
+                  </div>
+                  </div>
 
                 </div>
                 <div style=" padding-top: 100px;">

@@ -104,6 +104,7 @@ export class ShelterpageComponent implements OnInit {
   public buttonName: any = 'Új menhely létrehozása';
   public show2 = false;
   public show3 = false;
+  public show4 = false;
   public shelterid: number;
   public fileupload: FileuploadComponent;
   public name: string;
@@ -119,6 +120,9 @@ export class ShelterpageComponent implements OnInit {
   private _filename = '';
   imageError = '';
   isImageSaved = true;
+
+  requiredFileType = 'image/png';
+  allowed_types = ['image/png', 'image/jpeg', 'image/jpg'];
 
   imageUrl: string | ArrayBuffer =
     'https://bulma.io/images/placeholders/480x480.png';
@@ -167,13 +171,25 @@ export class ShelterpageComponent implements OnInit {
     this.imageChangedEvent = event;
     this.selectedFile = (event.target.files[0] as File);
 
+    const allowed_types = ['image/png', 'image/jpeg', 'image/jpg'];
 
-    const reader = new FileReader();
-    reader.readAsDataURL(this.selectedFile);
+    this.imageError = '';
+    if (!_.includes(allowed_types, this.selectedFile.type)) {
+      this.imageError = 'Csak png,jpeg és jpg formátum megengedett.';
+      this.selectedFile = null;
+      this.imageChangedEvent = null;
+      this.show4=true;
+    }else {
 
-    reader.onload = event => {
-      this.imageUrl = reader.result;
-    };
+
+
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedFile);
+
+      reader.onload = event => {
+        this.imageUrl = reader.result;
+      };
+    }
 
 
 
@@ -220,6 +236,7 @@ addShelter(form: FormGroup) {
     const fd = new FormData();
 
     let isImageSaved;
+    console.log(this.selectedFile.type);
     if (!_.includes(allowed_types, this.selectedFile.type)) {
       this.imageError = 'Only Images are allowed ( JPG | PNG )';
       isImageSaved = false;
@@ -237,7 +254,7 @@ addShelter(form: FormGroup) {
       this.animalForm.reset();
     }
     else {
-      this.ns.show('HIBA! Adatok nem megfelelőek2!');
+      this.ns.show('HIBA! Adatok nem megfelelőek!');
 
 
     }
