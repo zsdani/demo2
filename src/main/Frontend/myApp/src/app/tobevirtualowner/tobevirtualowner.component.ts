@@ -111,7 +111,7 @@ export class TobevirtualownerComponent implements OnInit {
 
     const PostData = {
       allatid: parseInt(localStorage.getItem('animalid')) ,
-      ownerid: parseInt(localStorage.getItem('ownerID')),
+      ownerid: this.auth.user.id,
       shelter_id: parseInt(localStorage.getItem('shelter_id')),
       status2: 2
 

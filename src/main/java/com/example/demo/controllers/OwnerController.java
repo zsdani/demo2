@@ -7,6 +7,7 @@ import com.example.demo.services.OwnerService;
 import com.example.demo.services.exceptions.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class OwnerController {
         return ResponseEntity.ok(ownerService.findOwnerByUsername(username));
     }
 
+    @Secured("ADMIN")
     @GetMapping
     public ResponseEntity<List<AppUserDto>> findAllOwners() throws DataNotFoundException {
         return ResponseEntity.ok(ownerService.findAllOwners());

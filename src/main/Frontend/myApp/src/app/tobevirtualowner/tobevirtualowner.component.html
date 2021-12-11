@@ -61,7 +61,7 @@ A VIRTUÁLIS GAZDA NEVÉT közzétesszük a kiválasztott kutya részletek oldal
     Elképzelhető, hogy az adott állatot, a weboldalon az örökbe fogadó nem fogadta örökbe, de telefonos megbeszélés alapján már valaki örökbe fogadta, csak még ezt a rendszerben nem lett frissítve a menhely által.
     Ebben az esetben szíves elnézésüket kérjük már előre is a kellemetlenségért. Köszönjük.
   </mat-tab>
-  <mat-tab *ngIf="auth.isLogin$.value; else elseBlock" label="Virtuális örökbefogadás" >
+  <mat-tab *ngIf="auth.isLoggedIn(); else elseBlock" label="Virtuális örökbefogadás" >
 
     <div *ngIf="aszam===null; else elseBlock2">
 

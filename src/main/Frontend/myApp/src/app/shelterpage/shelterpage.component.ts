@@ -16,6 +16,7 @@ import {FileuploadService} from '../Services/fileupload.service';
 import * as _ from 'lodash';
 import {base64ToFile, ImageCroppedEvent} from 'ngx-image-cropper';
 import {Observer} from 'rxjs';
+import {AuthService} from "../Services/auth.service";
 
 const RegExpValidator = {
   digit: RegExp(/^(?=.*?[0-9])/),
@@ -31,6 +32,7 @@ export class ShelterpageComponent implements OnInit {
 
 
   constructor(
+    public auth: AuthService,
     private formBuilder: FormBuilder,
     private shelterService: ShelterService,
     private ns: NotificationService,
@@ -139,7 +141,7 @@ export class ShelterpageComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
+    this.shelterService.getaSheltertoOwner(this.auth.user.id).subscribe((res: OwnerShelter[]) => {
       console.log(res);
       this.tomb = res;
       console.log(this.tomb);

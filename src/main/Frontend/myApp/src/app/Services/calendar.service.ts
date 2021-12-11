@@ -30,17 +30,12 @@ export class CalendarService {
 
 
 
-
-
-
-
-
   public deleteevent(index: string | number): Observable<Datee> {
     const header = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('Token')}`,
+      Token: `${localStorage.getItem('Token')}`,
     });
     // tslint:disable-next-line:no-unused-expression
-    return this.http.delete<Datee>(`${this.url}/delete/id?id=${index}`);
+    return this.http.delete<Datee>(`${this.url}/delete/id?id=${index}`, {headers: header});
   }
 
 
@@ -48,9 +43,11 @@ export class CalendarService {
 
 
   public addevent(k: { allatid: number, ownerid: number, date: Date; hour: number }): void{
+    const header = new HttpHeaders({
+      Token: `${localStorage.getItem('Token')}`,
+    });
 
-
-    this.http.post<Datee>(`${this.url}`, k).subscribe(
+    this.http.post<Datee>(`${this.url}`, k, {headers: header}).subscribe(
       data => {
 
         this.ns.show('Sikeres séta foglalás');

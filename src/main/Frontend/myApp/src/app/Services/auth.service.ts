@@ -14,6 +14,7 @@ import {MenuComponent} from '../menu/menu.component';
 import {MenuService} from './menu.service';
 
 import jwt_decode from 'jwt-decode';
+import {Jwt} from '../class/Jwt';
 
 
 
@@ -28,6 +29,10 @@ export const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  get getIsadmin$(): Observable<boolean> {
+
+    return this.Isadmin$;
+  }
   get OwnerRole(): string {
     return this._OwnerRole;
   }
@@ -44,10 +49,22 @@ export class AuthService {
   private _OwnerID: number;
   private _OwnerRole: string;
 
-  public isLogin$ = new BehaviorSubject<boolean>(this.hasToken2());
+  public isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
   public isADMIN$ = new BehaviorSubject<boolean>(this.hasToken());
+
+  private  _LogedIn$ = new BehaviorSubject<boolean>(false);
+  public LogedIn$ = this._LogedIn$.asObservable();
+
+  private  _IsAdmin$ = new BehaviorSubject<boolean>(false);
+  private Isadmin$ = this._IsAdmin$.asObservable();
+
+  user!: Jwt;
+  role = '';
+
+
   _isLogin$ = this.isLogin$.asObservable();
   _isADMIN$ = this.isADMIN$.asObservable();
+
 
 
 
@@ -65,13 +82,25 @@ export class AuthService {
 
   ) {
     const token = localStorage.getItem('Token');
-    this.isLogin$.next(!!token);
+    this._LogedIn$.next(!!token);
+
+
+    if (!!token){
+      if (this.getUser(token).role === 'ADMIN'){this._IsAdmin$.next(true); } else {this._IsAdmin$.next(false); }
+      this.user = this.getUser(token);
+      // this.role = this.getUser(token).role;
+      // console.log(this.role);
+    } else  {
+      this.user = new Jwt();
+    }
+
+
+
 
   }
 
-  isLoggedIn(): Observable<boolean> {
-    return this.isLogin$.asObservable();
-    //return !!localStorage.getItem('Token');
+  isLoggedIn(): boolean {
+     return !!localStorage.getItem('Token');
   }
 
   isAdmin(): Observable<boolean>{
@@ -109,23 +138,34 @@ export class AuthService {
       data => {
 
         localStorage.setItem('Token', data);
+        this.user = this.getUser(data);
+        if (this.user.role === 'ADMIN') {
+          this._IsAdmin$.next(true);
+        } else {
+          this._IsAdmin$.next(false);
+        }
 
 
-        // tslint:disable-next-line:no-unused-expression radix
-        this._OwnerID = parseInt(this.parseJwt(data).id);
-        this._OwnerRole = this.parseJwt(data).role;
-
-        console.log(this._OwnerID);
-        console.log(this._OwnerRole);
 
 
-        this.isLogin$.next(true);
-        // console.log(this.parseJwt(data).role);
+
+
+
+
+
+        this._LogedIn$.next(true);
+
+
+        // this.isLogin$.next(true);
+        /*
+        console.log(this.parseJwt(data).role);
         if (this.parseJwt(data).role === 'ADMIN'){
           this.isADMIN$.next(true);
         }else{
           this.isADMIN$.next(false);
         }
+
+         */
 
 
 
@@ -146,15 +186,17 @@ export class AuthService {
     );
 
 
-
+/*
     this.http.get<User1>(`${this.authUrl}/username?username=${user.username}`).subscribe(
       data => {
         localStorage.setItem('ownerID', String(data.id));
 
         localStorage.setItem('ownerRole', data.role);
       }
-    );
 
+
+    );
+ */
 
 
 
@@ -167,8 +209,17 @@ export class AuthService {
 
   }
 
+  private getUser(token: string): Jwt{
+    console.log(JSON.parse(atob(token.split('.')[1])));
+    return JSON.parse(atob(token.split('.')[1]))as Jwt;
+  }
+
   public getOwnerbyid(id: number): Observable<User1> {
-    return this.http.get<User1>(`${this.authUrl}/id?id=${id}`);
+    const header = new HttpHeaders({
+      Token: `${localStorage.getItem('Token')}`,
+    });
+
+    return this.http.get<User1>(`${this.authUrl}/id?id=${id}`, {headers: header});
   }
 
 
@@ -185,49 +236,32 @@ export class AuthService {
     this.isLogin$.next(false);
     this.isADMIN$.next(false);
 
+    this._LogedIn$.next(false);
+    this._IsAdmin$.next(false);
+
+    this.role = '';
+
 
     this._OwnerID = -1;
 
     this.ns.show('Sikeres kijelentkezés!');
     console.log(this.isLogin$.value);
     this.router.navigate(['/mainpage']);
+    this.user = new Jwt();
+
 
 
 
   }
-
-  protected orihasToken(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
 
   protected hasToken(): boolean {
-    let k = true;
-    console.log(this._OwnerID);
-    console.log(this._OwnerRole);
-    if (localStorage.getItem('ownerRole') === 'ADMIN'){
-      k = true;
-    }else{
-      k = false;
-    }
-
-
-
-    return k;
+    return !!localStorage.getItem('Token');
   }
 
-  protected hasToken2(): boolean {
-    let k = true;
-    if (localStorage.getItem('ownerID') !== null ){
-      k = true;
-    }else{
-      k = false;
-    }
 
 
 
-    return k;
-  }
+
 
   public parseJwt(token): any  {
     const base64Url = token.split('.')[1];

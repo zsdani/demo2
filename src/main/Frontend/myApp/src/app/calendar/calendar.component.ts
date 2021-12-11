@@ -143,7 +143,7 @@ export class CalendarComponent implements OnInit {
         const hour = +a[0];
 
 
-        if (this.date3[i].ownerid === parseInt(localStorage.getItem('ownerID'))){
+        if (this.date3[i].ownerid === this.auth.user.id){
           this.actions3 = this.actions;
         } else{
           this.actions3 = this.actions2;
@@ -197,7 +197,7 @@ export class CalendarComponent implements OnInit {
   addEvent() {
     const PostData = {
       allatid: this.animaldetailsService.num ,
-      ownerid: parseInt(localStorage.getItem('ownerID')),
+      ownerid: this.auth.user.id,
       date: this.selectedday,
       hour: this.selectedhour
 

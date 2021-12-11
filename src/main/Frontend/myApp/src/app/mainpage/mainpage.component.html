@@ -11,7 +11,7 @@ admin:{{auth.isADMIN$.getValue()}} <br>
 bejelentkezve:{{auth.isLogin$.value}} <br>
 
 -->
-<div *ngIf="auth.isLogin$.value && this.theuser.role==='ADMIN'; else elseBlock2">
+<div *ngIf="auth.user.role==='ADMIN'; else elseBlock2">
 <table style="width: 100%;">
   <tbody>
   <tr   >

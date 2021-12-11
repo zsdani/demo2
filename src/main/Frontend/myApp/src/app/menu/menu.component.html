@@ -40,8 +40,7 @@
       -->
 
       <button class="mat-button" href="/connection" routerLink="/connection">Elérhetőségeink</button>
-
-      <button  *ngIf="auth.isLogin$.value && auth.isADMIN$.value; else elseBlock1" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
+      <button *ngIf=" auth.user.role==='ADMIN' && auth.LogedIn$ | async; else elseBlock1" class="mat-button" href="/shelterpage" routerLink="/shelterpage">
         Menhelyem
       </button>
       <ng-template #elseBlock1>
@@ -50,7 +49,7 @@
 
 
 
-      <button *ngIf="auth.isLogin$.value; else elseBlock" class="mat-button-right2" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <button *ngIf="auth.LogedIn$ | async; else elseBlock" class="mat-button-right2" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
@@ -70,7 +69,7 @@
 
 
 
-      <button *ngIf="auth.isADMIN$.getValue()===false && auth.isLogin$.value; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
+      <button *ngIf="auth.user.role==='USER' && auth.LogedIn$ | async; else elseBlock2" class="mat-button-right2"  aria-label="Example icon-button with a menu" (click)="notificationopen()">
         <mat-icon>announcement</mat-icon>
       </button>
 <!--

@@ -36,7 +36,7 @@ export class NotificationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.adoptedService.getadoptedanimalsbyowner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: IsAdopted[]) => {
+    this.adoptedService.getadoptedanimalsbyowner(this.auth.user.id).subscribe((res: IsAdopted[]) => {
       localStorage.setItem('db', String(res.length));
       for (let i = 0; i < res.length; i++) {
         this.animalid[i] = res[i].allatid;
@@ -58,7 +58,7 @@ export class NotificationComponent implements OnInit {
   }
 
   deletenotifications(){
-    this.adoptedService.deletebyowner(parseInt(localStorage.getItem('ownerID')));
+    this.adoptedService.deletebyowner(this.auth.user.id);
     location.reload();
 
   }

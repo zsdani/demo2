@@ -128,25 +128,25 @@ export class MainpageComponent implements OnInit {
   ngOnInit(): void {
 
     // ez csak hogy tudjam melyik felhasználóval vagyok épp bejelentekzve
-    this.auth.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res0: User1) => {
-      this.theuser = res0;
-    });
+    //this.auth.getOwnerbyid(this.auth.user.id).subscribe((res0: User1) => {
+    //  this.theuser = res0;
+    //});
 
-    if (localStorage.getItem('ownerRole') === 'ADMIN') {
-
-
+    if (this.auth.user.role === 'ADMIN') {
 
 
-      this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
-        console.log('menhelyidid:');
+
+
+      this.shelterService.getaSheltertoOwner(this.auth.user.id).subscribe((res: OwnerShelter[]) => {
+        //console.log('menhelyidid:');
         this.THETOMB = res;
         for (let i = 0; i < res.length; i++) {
           this.tomb[i] = res[i].shelterid;
-          console.log(this.tomb[i]);
+          //console.log(this.tomb[i]);
           this.adoptedService.getadoptedanimals(res[i].shelterid).subscribe((res2: IsAdopted[]) => {
-            console.log('size: ' + res2.length);
+            //console.log('size: ' + res2.length);
             for (let j = 0; j < res2.length; j++) {
-              console.log(res2[j].status2);
+              //console.log(res2[j].status2);
               if (res2[j].status2 === 1){this.animalid.push(res2[j].allatid); this.ownerid.push(res2[j].ownerid); console.log('beletettem 1.'); }
               if (res2[j].status2 === 2){this.animalidi.push(res2[j].allatid); this.owneridi.push(res2[j].ownerid) ; console.log('beletettem 2.'); }
               if (res2[j].status2 === 3){this.animalidii.push(res2[j].allatid); this.owneridii.push(res2[j].ownerid) ; console.log('beletettem 3.'); }
@@ -157,14 +157,14 @@ export class MainpageComponent implements OnInit {
             }
 
             if (i === this.THETOMB.length - 1) {
-              console.log(this.animalid);
-              console.log(this.animalidi);
-              console.log(this.animalidii);
+              console.log(this.ownerid);
+              console.log(this.owneridi);
+              console.log(this.owneridii);
               for (let k = 0; k < this.animalid.length; k++) {
                 this.animalsService.getanimalbyid(this.animalid[k]).subscribe((res3: Animal) => {
-                  console.log(this.animalid[k] + ' ' + k);
-                  console.log('allat:');
-                  console.log(res3);
+                  //console.log(this.animalid[k] + ' ' + k);
+                  //console.log('allat:');
+                  //console.log(res3);
                   this.animals.push(res3);
 
 

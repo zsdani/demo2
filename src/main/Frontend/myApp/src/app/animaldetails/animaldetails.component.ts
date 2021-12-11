@@ -13,7 +13,7 @@ import {CalendarService} from '../Services/calendar.service';
 import {CalendarEvent} from 'angular-calendar';
 import {addHours} from 'date-fns';
 import {TobevirtualownerComponent} from '../tobevirtualowner/tobevirtualowner.component';
-import {User1} from "../class/User1";
+import {User1} from '../class/User1';
 
 
 
@@ -58,7 +58,8 @@ export class AnimaldetailsComponent implements OnInit {
     this.animaldetailsService.getAnimal(parseInt(localStorage.getItem('animalid')), this.animaldetailsService.text).subscribe((res: Animal) => {
       console.log(res);
       this.animal = res;
-      if(res.virtual_owner!=null ){
+      console.log('virtualowner: ' + res.virtual_owner);
+      if (res.virtual_owner != null ){
         this.auth.getOwnerbyid(res.virtual_owner.ownerid).subscribe((res0: User1) => {
           this.virtualuser = res0;
         });
@@ -71,7 +72,8 @@ export class AnimaldetailsComponent implements OnInit {
   }
 
   adopt() {
-    if (this.auth.isLogin$.value)
+    // console.log(this.auth.isLogin$);
+    if (this.auth.isLoggedIn())
     {
 
       this.dialog.open(PopupadoptsureComponent);
@@ -81,7 +83,7 @@ export class AnimaldetailsComponent implements OnInit {
 
 
   wirtualadopt(){
-    if (this.auth.isLogin$.value)
+    if (this.auth.isLoggedIn())
     {
       localStorage.setItem('kex', '1');
       localStorage.setItem('wirtualowneranimal', (localStorage.getItem('animalid')) );

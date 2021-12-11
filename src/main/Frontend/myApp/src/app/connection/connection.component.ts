@@ -56,7 +56,7 @@ export class ConnectionComponent implements OnInit {
 
   }
   vote(shelterid: number,yourvote: number){
-    if (this.auth.isLogin$.value)
+    if (this.auth.isLoggedIn())
     {
 
       this.shelterService.addVote(shelterid, yourvote);

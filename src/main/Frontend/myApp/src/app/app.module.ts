@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnimalsComponent } from './animals/animals.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AnimalService} from './Services/animal.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
@@ -59,6 +59,7 @@ import { NotificationComponent } from './notification/notification.component';
 import {MatBadge, MatBadgeModule} from '@angular/material/badge';
 import { MenuComponent } from './menu/menu.component';
 import { FilterPipe } from './Pipes/filter.pipe';
+import {AuthInterceptor} from "./auth.interceptor";
 
 
 
@@ -183,6 +184,11 @@ import { FilterPipe } from './Pipes/filter.pipe';
     NotificationService,
     {provide: MAT_DATE_LOCALE, useValue: 'hu-HU'},
     ImageCropperModule,
+    //{
+    //  provide: HTTP_INTERCEPTORS,
+    //  useClass: AuthInterceptor,
+    //  multi: true
+    //},
 
 
 

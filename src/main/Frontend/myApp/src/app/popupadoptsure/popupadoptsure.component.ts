@@ -4,6 +4,7 @@ import {trackDuration} from "@angular/compiler-cli/ngcc/src/entry_point_finder/u
 import {AnimalService} from "../Services/animal.service";
 import {AdoptedService} from "../Services/adopted.service";
 import {Animal} from "../class/Animal";
+import {AuthService} from "../Services/auth.service";
 
 @Component({
   selector: 'app-popupadoptsure',
@@ -17,6 +18,7 @@ export class PopupadoptsureComponent implements OnInit {
   constructor(private snackBar: MatSnackBar,
               private adoptedService: AdoptedService,
               private animalService: AnimalService,
+              private auth: AuthService,
 
               ) { }
 
@@ -34,7 +36,7 @@ export class PopupadoptsureComponent implements OnInit {
     this.snackBar.open(message)._dismissAfter(3000);
     const PostData = {
       allatid: parseInt(localStorage.getItem('animalid')) ,
-      ownerid: parseInt(localStorage.getItem('ownerID')),
+      ownerid: this.auth.user.id,
       shelter_id: parseInt(localStorage.getItem('shelter_id')),
       status2: 1,
 

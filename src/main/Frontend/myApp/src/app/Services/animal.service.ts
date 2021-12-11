@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Animal} from '../class/Animal';
 import {httpOptions} from './auth.service';
 import { Observable, throwError } from 'rxjs';
@@ -11,6 +11,7 @@ import {Datee} from '../class/Datee';
 import {Shelter} from '../class/Shelter';
 import {NotificationService} from './notification.service';
 import {IsAdopted} from "../class/IsAdopted";
+import {AuthInterceptor} from "../auth.interceptor";
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,11 @@ export class AnimalService {
 
  */
   addAnimal(animal: Animal): void {
+    const header = new HttpHeaders({
+      Token: `${localStorage.getItem('Token')}`,
+    });
 
-    this.http.post<Animal>(`${this.animalURL}`, animal, httpOptions).subscribe(
+    this.http.post<Animal>(`${this.animalURL}`, animal, {headers: header}).subscribe(
       data => {
         console.log(data);
       },
@@ -53,7 +57,7 @@ export class AnimalService {
     if (typeof valami === 'string') {
       params = params.append('animaltype_id', valami);
     }
-    return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params});
+    return this.http.get<Animal[]>(`${this.animalURL}/animaltype_id` , {params} );
   }
 
   public getanimalsbyshelterid(id: number): Observable<Animal[]> {

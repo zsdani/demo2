@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Animal} from '../class/Animal';
-import {httpOptions} from './auth.service';
+import {AuthService, httpOptions} from './auth.service';
 import {Shelter} from '../class/Shelter';
 import {Observable, Subscription} from 'rxjs';
 import {Datee} from '../class/Datee';
@@ -20,11 +20,16 @@ export class ShelterService {
     private http: HttpClient,
     private ns: NotificationService,
     private router: Router,
+    public auth: AuthService,
   ) {
   }
 
-  public addVote(shelterid:number, yourvote: number){
-    this.http.post(`${this.shelterURL}/vote/id?id=${shelterid}`, yourvote, httpOptions).subscribe(
+  public addVote(shelterid: number, yourvote: number){
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+
+    this.http.post(`${this.shelterURL}/vote/id?id=${shelterid}`, yourvote, {headers: header}).subscribe(
       data => {
         this.ns.show('Sikeres értékelés');
       },
@@ -37,17 +42,22 @@ export class ShelterService {
 
 
   public getShelters(): Observable<Shelter[]> {
+
     return this.http.get<Shelter[]>(`${this.shelterURL}`);
   }
 
 
 
   public getShelter(id: number): Observable<Shelter> {
-    return this.http.get<Shelter>(`${this.shelterURL}/id?id=${id}`, httpOptions);
+
+    return this.http.get<Shelter>(`${this.shelterURL}/id?id=${id}`);
   }
 
   updateShelter(id: number, shelter: Shelter): void {
-    this.http.put<Shelter>(`${this.shelterURL}?id=${id}`, shelter , httpOptions).subscribe(
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+    this.http.put<Shelter>(`${this.shelterURL}?id=${id}`, shelter , {headers: header}).subscribe(
       data => {
         this.ns.show('Sikeres menhely módosítás!');
 
@@ -62,10 +72,13 @@ export class ShelterService {
 
 
   addShelter(shelter: Shelter): void {
-    this.http.post<Shelter>(`${this.shelterURL}`, shelter, httpOptions).subscribe(
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+    this.http.post<Shelter>(`${this.shelterURL}`, shelter, {headers: header}).subscribe(
       data => {
         const PostData = {
-          ownerid: parseInt(localStorage.getItem('ownerID')),
+          ownerid: this.auth.user.id,
           shelterid: data.id
         };
         this.addSheltertoOwner(PostData);
@@ -80,20 +93,26 @@ export class ShelterService {
   }
 
   addSheltertoOwner(k: {ownerid: number, shelterid: number}): void{
-    console.log(k.shelterid + 'most elotte vagyunk ' + k.ownerid);
-    this.http.post(`${this.url}`, k).subscribe(
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+
+    this.http.post(`${this.url}`, k, {headers: header}).subscribe(
       data => {
 
-        console.log('Siker');
+
 
       });
-    console.log('most ment ki ');
+
 
   }
 
   getaSheltertoOwner(ownerid: number): Observable<OwnerShelter[]>{
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
 
-    return this.http.post<OwnerShelter[]>(`${this.url}/index?index=${ownerid}`, ownerid );
+    return this.http.post<OwnerShelter[]>(`${this.url}/index?index=${ownerid}`, ownerid, {headers: header} );
 
   }
 

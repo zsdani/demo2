@@ -39,8 +39,8 @@ export class MenuComponent implements OnInit {
 
 
 
-    if (localStorage.getItem('ownerRole') === 'USER') {
-      this.adoptedService.getadoptedanimalsbyowner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: IsAdopted[]) => {
+    if (this.auth.user.role === 'USER') {
+      this.adoptedService.getadoptedanimalsbyowner(this.auth.user.id).subscribe((res: IsAdopted[]) => {
         this.isadopteds = res;
         console.log('__________');
         console.log(res.length);

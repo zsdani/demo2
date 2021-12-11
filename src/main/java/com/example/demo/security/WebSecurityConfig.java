@@ -36,20 +36,49 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //.cors().and()
+                .cors().and()
                 .httpBasic().and()
                 .csrf().disable()
                 .authorizeRequests()
 
 
 
-                //.antMatchers("/api/owner/login").permitAll()
-                .antMatchers("/api/**/**").permitAll()
-                .antMatchers("/api/owner/login").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/shelter/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/animal/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/comment/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/date/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/owner/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/date/d").permitAll()
+
+                .antMatchers(HttpMethod.POST,"/api/shelter/vote/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.PUT,"/api/shelter/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/shelter/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/ownershelter/**").hasAnyAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.GET,"/api/files/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/files/**").hasAnyAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.PUT,"/api/comment/**").authenticated()
+                .antMatchers(HttpMethod.POST,"/api/comment/**").authenticated()
+                .antMatchers(HttpMethod.DELETE,"/api/comment/**").authenticated()
+                .antMatchers(HttpMethod.GET,"/api/owner/**").permitAll()
 
 
-                .antMatchers(HttpMethod.GET,"/api/owner").hasAnyAuthority("ADMIN")
-                //.antMatchers(HttpMethod.POST, "api/movie").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/date/**").authenticated()
+                .antMatchers(HttpMethod.POST,"/api/date/**").authenticated()
+                .antMatchers(HttpMethod.PUT,"/api/date/**").authenticated()
+
+
+                .antMatchers(HttpMethod.POST,"/api/animal/**").hasAnyAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.DELETE,"/api/adopted").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/adopted/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/adopted/**/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/adopted/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/adopted/**").hasAnyAuthority("ADMIN")
+
+
+
 
                 .anyRequest().authenticated()
                 .and()
@@ -60,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", TOKEN_HEADER_NAME, "Origin", "Content-Type", "Accept", "Authorization"));
         configuration.setAllowCredentials(true);

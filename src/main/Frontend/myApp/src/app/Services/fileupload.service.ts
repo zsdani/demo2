@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {httpOptions} from "./auth.service";
 import {Shelter} from "../class/Shelter";
 import {Animal} from "../class/Animal";
@@ -22,13 +22,20 @@ export class FileuploadService {
   ) {}
 
   public getFiles(): Observable<File[]> {
-    return this.http.get<File[]>(`${this.filesURL}`);
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+    return this.http.get<File[]>(`${this.filesURL}`,{headers: header});
   }
 
   addPicc(picc: FormData): void {
 
+    const header = new HttpHeaders().set(
+      'Token', `${localStorage.getItem('Token')}`
+    );
+
     console.log(picc);
-    this.http.post(`${this.filesURL}/upload`, picc).subscribe(
+    this.http.post(`${this.filesURL}/upload`, picc, {headers: header}).subscribe(
       data => {
         this.ns.show('Sikeres állat létrehozás');
 

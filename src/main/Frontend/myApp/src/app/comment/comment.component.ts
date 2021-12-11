@@ -43,7 +43,7 @@ export class CommentComponent implements OnInit{
     private shelterService: ShelterService,
     private commentService: CommentService,
     private ns: NotificationService,
-    private authService: AuthService,
+    private auth: AuthService,
     public dialog: MatDialog,
   ) {
     this.commentForm = this.formBuilder.group({
@@ -71,7 +71,7 @@ export class CommentComponent implements OnInit{
 
     if (form.valid) {
 
-      form.value.ownerid = parseInt(localStorage.getItem('ownerID'));
+      form.value.ownerid = this.auth.user.id;
       form.value.allatid = parseInt(localStorage.getItem('animalid'));
       form.value.date = Date.now();
       console.log(form.value);
@@ -94,7 +94,7 @@ export class CommentComponent implements OnInit{
       this.commentes = res;
       for (let i = 0; i < res.length; i++) {
         // this.ownersid.push(res[i].ownerid);
-        this.authService.getOwnerbyid(res[i].ownerid).subscribe((res4: User1) => {
+        this.auth.getOwnerbyid(res[i].ownerid).subscribe((res4: User1) => {
           this.commentes[i].username = res4.username;
 
 
@@ -106,12 +106,12 @@ export class CommentComponent implements OnInit{
 
 
     });
-    this.authService.getOwnerbyid(parseInt(localStorage.getItem('ownerID'))).subscribe((res3: User1 ) => {
+    this.auth.getOwnerbyid(this.auth.user.id).subscribe((res3: User1 ) => {
       this.user = res3;
     });
 
-    if (localStorage.getItem('ownerRole') === 'ADMIN'){
-        this.shelterService.getaSheltertoOwner(parseInt(localStorage.getItem('ownerID'))).subscribe((res: OwnerShelter[]) => {
+    if (this.auth.user.role ==='ADMIN'){
+        this.shelterService.getaSheltertoOwner(this.auth.user.id).subscribe((res: OwnerShelter[]) => {
         console.log('menhelyid:');
         console.log(res);
         for (let i = 0; i < res.length; i++) {
@@ -134,7 +134,7 @@ export class CommentComponent implements OnInit{
   }
 
   Commentiras(){
-    if (this.authService.isLogin$.value)
+    if (this.auth.isLoggedIn())
     {
 
       this.show = !this.show;
