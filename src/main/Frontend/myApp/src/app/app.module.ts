@@ -58,15 +58,6 @@ import { CommentComponent } from './comment/comment.component';
 import { NotificationComponent } from './notification/notification.component';
 import {MatBadge, MatBadgeModule} from '@angular/material/badge';
 import { MenuComponent } from './menu/menu.component';
-import { FilterPipe } from './Pipes/filter.pipe';
-import {AuthInterceptor} from "./auth.interceptor";
-
-
-
-
-
-
-
 
 
 
@@ -112,7 +103,7 @@ import {AuthInterceptor} from "./auth.interceptor";
 
     NotificationComponent,
     MenuComponent,
-    FilterPipe,
+
 
 
 

@@ -11,7 +11,7 @@ import {Datee} from '../class/Datee';
 import {Shelter} from '../class/Shelter';
 import {NotificationService} from './notification.service';
 import {IsAdopted} from "../class/IsAdopted";
-import {AuthInterceptor} from "../auth.interceptor";
+
 
 @Injectable({
   providedIn: 'root'
