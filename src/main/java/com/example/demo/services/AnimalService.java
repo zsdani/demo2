@@ -6,26 +6,17 @@ import com.example.demo.dal.entities.*;
 import com.example.demo.dal.repositories.*;
 import com.example.demo.properties.AnimalProperties;
 import com.example.demo.services.exceptions.DataNotFoundException;
-import org.hibernate.Criteria;
-import org.hibernate.Metamodel;
-import org.hibernate.type.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.context.annotation.SessionScope;
-import sun.tools.jconsole.JConsole;
+
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
