@@ -2,16 +2,8 @@
 
   <div class="sav" >
 
-    <div class="div" fxShow="false" fxShow.gt-sm style="position: center;">
+    <div class="div" >
 
-<!--
-      <div *ngIf="auth.isADMIN$.getValue() && auth.isLogin$.value && (isadoptedsadopted.length!==0 || isadoptedsvirtual.length!==0); else elseBlock0">
-        <button    class="mat-button" href="/mainpage" routerLink="/mainpage"><div style="padding-right: 15px" matBadge="!"  matBadgePosition="below after" matBadgeOverlap=true matBadgeColor="warn">Kezdőoldal</div> </button>
-      </div>
-      <ng-template #elseBlock0>
-        <button    class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
-      </ng-template>
--->
 
 
       <button    class="mat-button" href="/mainpage" routerLink="/mainpage">Kezdőoldal</button>
@@ -53,10 +45,12 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
+        <!--
         <button mat-menu-item>
           <mat-icon>account_circle</mat-icon>
           <span>Profilom</span>
         </button>
+        -->
         <button mat-menu-item (click)=auth.logout()>
           <mat-icon>logout</mat-icon>
           <span>Kijelentkezés</span>
@@ -64,7 +58,7 @@
       </mat-menu>
 
       <ng-template #elseBlock>
-        <button  class="mat-button-right" href="/login" routerLink="/login">Bejelentkezés/Regisztráció</button>
+        <button  class="mat-button-right" href="/login" routerLink="/login">Bejelentkezés/<br>Regisztráció</button>
       </ng-template>
 
 

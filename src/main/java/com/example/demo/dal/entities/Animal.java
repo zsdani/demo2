@@ -25,6 +25,8 @@ public class Animal extends BaseEntity {
 
     private int age;
 
+    private int agegroup;
+
     private String illnes;
 
     private String imagine;

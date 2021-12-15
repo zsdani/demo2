@@ -314,6 +314,7 @@ addShelter(form: FormGroup) {
 
   cancel() {
     this.show2 = false;
+    this.show3 = false;
 
   }
   addanimalclick(shelteid: number) {

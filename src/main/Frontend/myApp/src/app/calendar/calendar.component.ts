@@ -133,7 +133,9 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getevents(parseInt(localStorage.getItem('animalid'))).subscribe((res: Datee[]) => {
 
       this.date3 = res;
+      console.log("datumok");
       console.log(res);
+
 
       for (let i = 0; i < this.date3.length; i++) {
         this.date4[i] = res[i];
@@ -205,7 +207,11 @@ export class CalendarComponent implements OnInit {
 
     if (this.auth.isLogin$.value) {
       this.calendarService.addevent(PostData);
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 2500);
+
+
 
     }
     else{this.dialog.open(PopupadoptComponent); }
@@ -213,6 +219,8 @@ export class CalendarComponent implements OnInit {
 
     //this.ngOnInit();
   }
+
+
 
 
 

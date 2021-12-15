@@ -99,31 +99,31 @@ public class AnimalService implements SpecRepositroy {
         int x =animal.getAge();
         switch (x) {
             case 0:
-                animal.setAge(0);
+                animal.setAgegroup(0);
                 break;
             case 1:
-                animal.setAge(0);
+                animal.setAgegroup(0);
                 break;
             case 2:
-                animal.setAge(0);
+                animal.setAgegroup(0);
                 break;
             case 3:
-                animal.setAge(1);
+                animal.setAgegroup(1);
                 break;
             case 4:
-                animal.setAge(1);
+                animal.setAgegroup(1);
                 break;
             case 5:
-                animal.setAge(2);
+                animal.setAgegroup(2);
                 break;
             case 6:
-                animal.setAge(2);
+                animal.setAgegroup(2);
                 break;
             case 7:
-                animal.setAge(2);
+                animal.setAgegroup(2);
                 break;
             default:
-                animal.setAge(3);
+                animal.setAgegroup(3);
 
         }
 
@@ -182,15 +182,16 @@ public class AnimalService implements SpecRepositroy {
 
         int db=0;
 
-        System.out.println("age:"+spec.getAge());
+        System.out.println("agegroup:"+spec.getAgegroup());
         System.out.println("animaltype:"+spec.getAnimaltype());
         System.out.println("size:"+spec.getSize());
         System.out.println("gonadectomy:"+spec.getGonadectomy());
         System.out.println("shelteid:"+spec.getShelter_id());
         System.out.println("gender:"+spec.getGender());
+        System.out.println("_____________________");
 
 
-        if(spec.getAge()==-1){ageb=true;}else{ageb=false; db++;}
+        if(spec.getAgegroup()==-1){ageb=true;}else{ageb=false; db++;}
         if(spec.getSize()==-1){sizeb=true;}else{sizeb=false; db++;}
         if(spec.getGender()==-1){genderb=true;}else{genderb=false; db++;}
         if(spec.getShelter_id()==-1){shelter_idb=true;}else{shelter_idb=false; db++;}
@@ -210,7 +211,7 @@ public class AnimalService implements SpecRepositroy {
                 db2++;
             }
             if(!ageb){
-                if(list.get(i).getAge()!=spec.getAge()){
+                if(list.get(i).getAgegroup()!=spec.getAgegroup()){
                     db2++;
                 }
             }

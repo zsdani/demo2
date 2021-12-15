@@ -3,8 +3,8 @@
 <br>
 
 <div style="text-align: center" *ngIf="shelters2.length===0; else elseBlock" >
-
-  <form  [formGroup]="shelterForm" class="example-form"   (ngSubmit)="addShelter(shelterForm)">
+  <div class="div">
+  <form  [formGroup]="shelterForm" class="example-form"   (ngSubmit)="addShelter(shelterForm)" style="text-align: center;">
 
     <table class="example-full-width" ><tr>
       <td><mat-form-field class="example-full-width" appearance="fill">
@@ -85,16 +85,20 @@
 
 
   </form>
+  </div>
 
 
 </div>
-<ng-template #elseBlock>
+<ng-template #elseBlock >
 
-  <button (click)="toggle()" id="bt" class="button button1 ">
+  <div>
+  <button (click)="toggle()" id="bt" class="button button1 " >
     {{buttonName}}
   </button>
+  </div>
 
   <ng-container *ngIf="show">
+    <div class="div">
     <form  [formGroup]="shelterForm" class="example-form"  (ngSubmit)="addShelter(shelterForm)">
 
       <table class="example-full-width" ><tr>
@@ -176,6 +180,7 @@
 
 
     </form>
+      </div>
   </ng-container>
   <br>
   A te menhelye(i)d:
@@ -253,7 +258,7 @@
 
   </div>
 
-  <div *ngIf= "show3">
+  <div *ngIf= "show3" class="div2">
     <form  [formGroup]="animalForm" class="example-form"  (ngSubmit)="addAnimal(animalForm)">
       <div class="specdiv">
       <mat-form-field class="specfield2" appearance="fill">
@@ -400,11 +405,11 @@
           </mat-form-field>
         </tr>
       </table>
-      <div class="buttpos">
+      <div style="text-align: right;">
 
         <div *ngIf= "animalForm.valid; else elseBlock33">
           <h3>
-            <button   class="button button1 ">Létrehozás</button>
+            <button   class="button button1 " style="text-align: right;">Létrehozás</button>
             <div class="clearfix"></div>
           </h3></div>
         <ng-template #elseBlock33>
@@ -413,6 +418,11 @@
             <div class="clearfix"></div>
           </h3>
         </ng-template>
+        <div style="padding-right: 10px; text-align: right;">
+        <button class="button button1 " (click)="cancel()"  >
+          Mégse
+        </button>
+        </div>
       </div>
 
 
@@ -433,7 +443,7 @@
 
 
   <!-- MÓDOSÍTÁS MENHELY -->
-  <div *ngIf= "show2">
+  <div *ngIf= "show2" class="div">
     <form  [formGroup]="shelterForm2" class="example-form"  (ngSubmit)="modifyShelter(shelterForm2)">
 
       <table class="example-full-width" ><tr>
@@ -500,7 +510,6 @@
       </tr>
       </table>
 
-
       <div *ngIf= "shelterForm2.valid; else elseBlock">
         <h3>
           <button mat-button class="button button1 " >Módosítás</button>
@@ -513,14 +522,19 @@
         </h3>
       </ng-template>
 
+      <button class="button button1 " (click)="cancel()" >
+        Mégse
+      </button>
+
+
+
+
 
     </form>
 
 
 
-    <button class="button button1 " (click)="cancel()" >
-      Mégse
-    </button>
+
   </div>
 
 

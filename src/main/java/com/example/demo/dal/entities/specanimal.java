@@ -17,6 +17,7 @@ import javax.persistence.Id;
 public class specanimal extends BaseEntity {
 
     int age;
+    int agegroup;
     int size;
     int animaltype;
     int gonadectomy;

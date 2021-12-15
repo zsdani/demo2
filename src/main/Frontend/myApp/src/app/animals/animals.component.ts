@@ -95,7 +95,7 @@ export class AnimalsComponent implements OnInit {
 
   myFunction() {
     const PostData = {
-      age: this.selectedage,
+      agegroup: this.selectedage,
       size: this.selectedsize,
       animaltype: parseInt(localStorage.getItem('animaltype')),
       gender: this.selectedgender,
