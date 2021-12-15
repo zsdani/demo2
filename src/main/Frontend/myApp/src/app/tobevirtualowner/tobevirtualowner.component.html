@@ -102,9 +102,12 @@ A VIRTUÁLIS GAZDA NEVÉT közzétesszük a kiválasztott kutya részletek oldal
 
               <br>
               <br>
-              <div *ngIf="selectedanimal.virtual_owner!==null  ;else elseblock5" >
 
-                Már van virtuális gazdám ^^
+              <div *ngIf="selectedanimal.virtual_owner !==null  ;else elseblock5" >
+
+                {{selectedanimal.virtual_owner.status2===2 ? 'Elvileg már valaki beadta a kérvényt hogy a virtuális gazdám lehessen' : '' }}
+                {{selectedanimal.virtual_owner.status2===3 ? 'Képzeld olyan szerencsés vagyok hogy van már virtuális gazdám.' : '' }}
+
 
 
               </div>
