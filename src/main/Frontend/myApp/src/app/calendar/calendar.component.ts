@@ -205,11 +205,11 @@ export class CalendarComponent implements OnInit {
 
     };
 
-    if (this.auth.isLogin$.value) {
+    if (this.auth.isLoggedIn()) {
       this.calendarService.addevent(PostData);
       setTimeout(() => {
         location.reload();
-      }, 2500);
+      }, 1500);
 
 
 
